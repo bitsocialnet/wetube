@@ -30,3 +30,37 @@ SVGs are self-contained vectors with no font dependency. PNGs are transparent: l
 - etube is [Chakra Petch](https://github.com/google/fonts/tree/main/ofl/chakrapetch) Bold Italic, converted to outlines. The font and its SIL Open Font License 1.1 are in [fonts/](fonts/).
 
 [build.py](build.py) regenerates every file: `uv run build.py` (PNGs need `rsvg-convert`).
+
+## Showcase
+
+[showcase.html](showcase.html) is an interactive brand sheet: open it in a browser to try the logo on different backgrounds and sizes, and to switch the website mockup between light and dark. The screenshots below were captured from it. Mockups use placeholder videos and channels.
+
+![The WeTube logo on dark and white, with its symbol, colors and wordmark specs](showcase/overview.png)
+
+### In use
+
+![Website mockup in light mode: browser tab with the favicon, site header with the logo, topic chips and video grid](showcase/website-light.png)
+
+![Website mockup in dark mode](showcase/website-dark.png)
+
+![Phone mockups: app icon on the home screen, the app's video feed with the logo in the header and tab bar, and the launch screen](showcase/phones.png)
+
+![App icons from 180 to 32 px and a round channel avatar, on dark and white tiles](showcase/app-icons.png)
+
+![The symbol as a video player watermark, and a 1200 by 630 share card](showcase/player-and-share-card.png)
+
+### Backgrounds
+
+![The logo on white, fog, ink, black, slate, a day video, a night video and brand red, each with the red's contrast ratio](showcase/backgrounds.png)
+
+Slate (2.3:1) and brand red (1.0:1) are below 3:1; use white, fog, ink or black behind the logo, or a dark or bright video frame.
+
+![The configurator: lockup, background, version and size controls next to a live preview](showcase/configurator.png)
+
+### Sizes, anatomy, color and type
+
+![The symbol from 12 to 64 px and the full logo from 12 to 40 px, on white and ink](showcase/sizes.png)
+
+![Numbered anatomy of the symbol: W strokes, top edges, bisector split, square-cut corners and play counters](showcase/anatomy.png)
+
+![The four colors with hex, RGB and contrast values, and a Chakra Petch Bold Italic specimen](showcase/color-and-type.png)

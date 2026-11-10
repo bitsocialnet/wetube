@@ -6,6 +6,14 @@ WeTube is part of [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#
 
 > **Status: vision stage.** This repository reserves the name — development targets Phase 5. These documents describe the product vision and architecture; nothing here is built yet. WeTube depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
 
+## Look and Feel
+
+![WeTube website mockup in dark mode: header with the WeTube logo, topic chips and a grid of videos](design/logo/showcase/website-dark.png)
+
+![WeTube on a phone: app icon on the home screen, the app's video feed, and the launch screen](design/logo/showcase/phones.png)
+
+Concept mockups with placeholder videos and channels, showing the [WeTube logo](design/logo/) in use. App icons, the player watermark, a share card, sizes and colors are in the [logo showcase](design/logo/README.md#showcase).
+
 ## The Thesis
 
 YouTube is a single company that hosts every video, ranks every video, monetizes every video, and can delete any channel at will. Creators build audiences of millions on infrastructure they do not control and can lose overnight.
@@ -44,6 +52,7 @@ Viewers connect to channels purely peer-to-peer, exactly like 5chan users connec
 - [curation-and-discovery.md](curation-and-discovery.md) — directories, pubsub voting, discovery without a global algorithm
 - [monetization.md](monetization.md) — tipping, revenue sharing, and ads via Bitsocial Chain and RPCs
 - [open-questions.md](open-questions.md) — design decisions not yet made
+- [design/logo](design/logo/README.md) — the WeTube logo: files, colors, construction, and mockups
 
 ## License
 
