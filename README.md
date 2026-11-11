@@ -4,7 +4,7 @@
 
 WeTube is part of [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5): decentralize all social media. Phase 5 explicitly names "creator video and a credible YouTube alternative" as one of the formats Bitsocial apps will rival. WeTube is that app.
 
-> **Status: early preview.** A read-only web client is in `src/`: it browses channels and plays videos peer-to-peer, with no uploads, accounts or monetization yet. The full product targets Phase 5 and depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
+> **Status: early preview.** A read-only web client is in `src/`: it browses channels and plays videos peer-to-peer, falling back between each video's sources, with no uploads, view counts or monetization yet. Progress is tracked in [roadmap.md](roadmap.md). The full product targets Phase 5 and depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
 
 ## Development
 
@@ -17,9 +17,9 @@ corepack yarn test
 corepack yarn build   # static output in build/
 ```
 
-Home page channels are listed in [src/data/channels.ts](src/data/channels.ts). Until WeTube channels exist, it shows Seedit's `videos-posting.bso` community; any community opens by address from the header.
+Home page channels are listed in [src/data/channels.ts](src/data/channels.ts): the Open Movies demo channel (the Blender open movies, each mirrored on several hosts) and Seedit's `videos-posting.bso`. Any community opens by typing its address in the search box.
 
-Until the [video post BSIP](video-sources.md#the-schema-will-be-a-bsip) exists, a video is an ordinary post: `title` is the video title, `link` is the primary source, and `content` is the description, optionally followed by mirror sources. The client plays YouTube, Invidious, Vimeo, Odysee, Bitchute and Streamable embeds, direct video files and `ipfs://` links:
+Until the [video post BSIP](video-sources.md#the-post-format-now-and-in-the-bsip) exists, a video is an ordinary post: `title` is the video title, `link` is the primary source, and `content` is the description, optionally followed by mirror sources. The client plays YouTube, Invidious, Vimeo, PeerTube, Odysee, Bitchute and Streamable embeds, direct video files and `ipfs://` links:
 
 ```text
 What this video is about.
@@ -52,7 +52,7 @@ WeTube splits YouTube into its parts and decentralizes each one:
 | Video hosting | A list of redundant embed sources per video (web embeds, IPFS, WebTorrent) |
 | Comments, likes, dislikes | Bitsocial replies and votes, seeded by users peer-to-peer |
 | View counts | Open problem — likely aggregated from each embed source's counter by competing RPC/indexer aggregators |
-| Homepage / trending | Client directories curated by decentralized pubsub voting |
+| Homepage / trending | Categories: community lists of channels, ranked by users' pubsub votes |
 | Recommendation algorithm | Provided by competing public RPCs; users can switch it or turn it off |
 | Monetization | Bitsocial Chain: tipping, revenue sharing; ads run by RPCs or by channel owners themselves |
 | Terms of service, global bans | None. Each channel sets its own rules; no one can set rules for all channels |
@@ -74,7 +74,9 @@ Viewers connect to channels purely peer-to-peer, exactly like 5chan users connec
 
 - [how-it-works.md](how-it-works.md) — architecture: channels as communities, nodes, RPCs, the posting model
 - [video-sources.md](video-sources.md) — the embed source list: how videos stay up without Bitsocial hosting them
-- [curation-and-discovery.md](curation-and-discovery.md) — directories, pubsub voting, discovery without a global algorithm
+- [curation-and-discovery.md](curation-and-discovery.md) — categories as voted community lists, discovery without a global algorithm
+- [views.md](views.md) — view counts through view providers that viewers choose
+- [roadmap.md](roadmap.md) — what is built, what is next, and the decisions behind it
 - [monetization.md](monetization.md) — tipping, revenue sharing, and ads via Bitsocial Chain and RPCs
 - [open-questions.md](open-questions.md) — design decisions not yet made
 - [design/logo](design/logo/README.md) — the WeTube logo: files, colors, construction, and mockups

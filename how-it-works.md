@@ -18,9 +18,46 @@ This is the main difference from clients like 5chan, where anyone passing the ch
 
 - **Only the channel owner can create posts.** A post is a video (see [video-sources.md](video-sources.md) for what a video post contains).
 - **Anyone can comment** underneath a video, subject to the channel's anti-spam challenge, exactly like replying in any Bitsocial community.
-- **Anyone can like or dislike** videos and comments using Bitsocial's native community votes — tallied by the owner's node and seeded with the post. (Pubsub voting is a separate system, used only for directory curation.)
+- **Anyone can like or dislike** videos and comments using Bitsocial's native community votes — tallied by the owner's node and seeded with the post. (Pubsub voting is a separate system, used only to rank channels in categories.)
 
 This maps 1:1 to YouTube's structure — channel uploads, viewer comments, likes and dislikes — using primitives the protocol already has. Enforcement is simply community configuration: the owner's node rejects top-level posts from anyone but the owner.
+
+### The channel configuration
+
+A WeTube channel uses the "reply-able profile" configuration of [BSIP-14](https://bsips.bitsocial.net/bsip-14) (author communities), with votes allowed so viewers can like and dislike:
+
+```json
+{
+  "roles": { "<owner author address>": { "role": "owner" } },
+  "features": { "requirePostLink": true },
+  "settings": {
+    "challenges": [
+      {
+        "name": "fail",
+        "options": { "error": "Only the channel owner can post videos here. Anyone can comment and vote." },
+        "publicOptions": ["error"],
+        "exclude": [
+          { "roles": ["owner"] },
+          { "publicationType": { "reply": true, "vote": true, "commentEdit": true, "commentModeration": true, "communityEdit": true } }
+        ]
+      },
+      {
+        "name": "@bitsocial/spam-blocker-challenge",
+        "options": { "serverUrl": "https://spamblocker.bitsocial.net/api/v1", "autoAcceptThreshold": "0.2", "autoRejectThreshold": "0.8" },
+        "exclude": [{ "roles": ["owner"] }, { "publicationType": { "commentModeration": true, "communityEdit": true } }]
+      }
+    ]
+  }
+}
+```
+
+| Publisher and publication | `fail` challenge | Spam blocker | Result |
+| --- | --- | --- | --- |
+| owner, anything | excluded by role | excluded by role | accepted |
+| anyone else, video post | fails | | rejected with the channel's message |
+| anyone else, comment, vote or edit | excluded by publication type | applies | challenged like any community |
+
+The Open Movies demo channel runs this configuration, and a fresh signer's video post was rejected while its comment got the spam-blocker challenge (2026-11-11). Each Bitsocial client has community defaults that fit its UX, and Forge RPC will apply this one to channels created from WeTube, the way it applies board defaults for 5chan.
 
 ## Connecting: Pure Peer-to-Peer, With an RPC Escape Hatch
 
@@ -43,6 +80,6 @@ A video post, its embed source list, its likes and dislikes, and its comments ar
 | What videos are posted | Whether users seed and re-share existing content |
 | The embed source list of each video (updatable any time) | Votes already cast by users |
 | Comment moderation and challenge config in their channel | Other channels, or any global rule |
-| Their channel's monetization (see [monetization.md](monetization.md)) | Directory rankings (decided by voting — see [curation-and-discovery.md](curation-and-discovery.md)) |
+| Their channel's monetization (see [monetization.md](monetization.md)) | Category rankings (decided by voting — see [curation-and-discovery.md](curation-and-discovery.md)) |
 
 There are no global admins and no global rules. Each channel is like the owner's own site: they can do whatever they want with it — and nothing to anyone else's.

@@ -43,10 +43,25 @@ A well-sourced video mixes all three: fast embeds first, peer-to-peer sources as
 - Surface source health to the channel owner so they know when to update the list.
 - Render everything else — title, description, thumbnail, duration, comments, votes — from Bitsocial data, so the page works even while sources are loading or dead.
 
-## The Schema Will Be a BSIP
+## The Post Format: Now and in the BSIP
 
-The video post shape (how sources, thumbnails, and video metadata are encoded in a community post) should be standardized as a **BSIP** (Application category, `bitsocialnet/BSIPs`), so every Bitsocial client — not just WeTube — renders video posts consistently instead of falling back to a raw link list. The encoding details are still open — see [open-questions.md](open-questions.md).
+**Now (decided 2026-11-11):** a video is an ordinary post. `title` is the video title, `link` is the primary source, and `content` is the description followed by an optional `Mirrors:` line with one URL per line. Every Bitsocial client already renders it: 5chan and Seedit show the link as a video and the mirrors as plain links. The client parses it in [src/lib/video-sources.ts](src/lib/video-sources.ts).
 
-## A Side Effect: Embeds Are Where View Counts Live
+A post's `link` cannot change after publishing, but its author can edit `content` (BSIP-7), so the mirror list is the part that rotates: the owner adds a mirror, drops a dead one, or reorders them, and the post keeps its CID, comments and likes. The Open Movies demo channel did this to its Sintel post on 2026-11-11.
 
-Pure peer-to-peer playback can't count views — there is no server to count them, and viewers don't broadcast signed "I watched this" events. But most embed hosts already expose per-video view counters, so a video's source list doubles as the input to **view aggregation**: an aggregator (plausibly run by RPCs/indexers) sums the counters across a video's sources to estimate total views. This is the least-solved part of WeTube and has its own section in [open-questions.md](open-questions.md).
+**Later: a video post BSIP with an editable `comment.sources`.** The BSIP (Application category, `bitsocialnet/BSIPs`) will standardize sources, thumbnails and video metadata so every client renders video posts the same way instead of parsing text. It will propose a structured `comment.sources` field that authors can edit like `content`, checked only as `https` or `ipfs://` URLs. Adding a field to comments and comment edits is a pkc-js change, so it goes to a pkc-js issue once the demo shows the need; whether to add it is the pkc-js maintainers' call.
+
+Why not the fields pkc-js already has:
+
+- **`comment.gallery`** (pkcprotocol/pkc-js#436) holds media files only: the community rejects any item whose URL path lacks a media file extension, so YouTube, Vimeo, PeerTube and Odysee pages fail, and `ipfs://` fails because items must be `https`. Galleries are also off unless a community enables them, and they cannot be edited. A gallery is several different media; sources are one video in several places.
+- **`comment.links`**, proposed in the same issue, was a replacement for `link`, could not be edited either, and was dropped in favor of `link` plus `gallery`.
+
+## Source Types and Availability
+
+The client plays YouTube and Invidious, Vimeo, PeerTube (any instance, recognized by its URL shapes), Odysee, Bitchute and Streamable embeds, direct video files, and `ipfs://` links. A file reports its own load error. Embeds show their errors inside the iframe without telling the page, so before playing a YouTube, Vimeo or PeerTube source the client asks the host's oEmbed or API whether the video still exists; a 404 skips it. A check that cannot answer (network error, rate limit) lets the source play.
+
+Known gaps are tracked in [roadmap.md](roadmap.md): `ipfs://` sources go through a public gateway, which cannot find content provided only to Bitsocial's routers, and Blender's PeerTube embed fails at some player widths.
+
+## View Counts
+
+Peer-to-peer playback cannot count views, and viewers do not broadcast signed "I watched this" events. WeTube counts them through view providers that viewers can choose or turn off, and providers can also report the counters of a video's embed hosts. See [views.md](views.md).

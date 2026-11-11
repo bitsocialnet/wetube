@@ -6,7 +6,7 @@ Monetization is the most important part of WeTube. Creators leave a platform for
 
 - **No bank or platform can seize creator funds.** Payments settle on Bitsocial Chain to keys the creator holds. There is no payout account to freeze, no demonetization switch.
 - **Content stays off-chain.** The chain carries names, payments, and economic structures only. Videos, comments, and votes remain peer-to-peer Bitsocial content.
-- **Every party monetizes what they actually provide.** Creators monetize their channels, RPCs monetize their infrastructure, directories and clients monetize their curation. Nobody takes a cut of someone else's layer by force — cuts are terms you agree to and can exit.
+- **Every party monetizes what they actually provide.** Creators monetize their channels, RPCs monetize their infrastructure, list curators and clients monetize their curation. Nobody takes a cut of someone else's layer by force — cuts are terms you agree to and can exit.
 
 ## Creator Revenue Streams
 
