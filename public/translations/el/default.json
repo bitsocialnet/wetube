@@ -61,7 +61,6 @@
   "language_value": "Γλώσσα: {{language}}",
   "send_feedback": "Αποστολή σχολίων",
   "someone": "Κάποιος",
-  "replied": "απάντησε:",
   "notifications": "Ειδοποιήσεις",
   "notifications_unread": "Ειδοποιήσεις, {{number}} μη αναγνωσμένες",
   "no_notifications": "Δεν υπάρχουν ειδοποιήσεις ακόμη. Οι απαντήσεις στα σχόλιά σας θα εμφανίζονται εδώ.",
@@ -144,5 +143,6 @@
   "last_updated": "Τελευταία ενημέρωση {{time}}.",
   "last_updated_with_reason": "Τελευταία ενημέρωση {{time}} («{{reason}}»).",
   "show_less": "Εμφάνιση λιγότερων",
-  "more": "…περισσότερα"
+  "more": "…περισσότερα",
+  "user_replied": "<bold>{{author}}</bold> απάντησε: {{text}}"
 }

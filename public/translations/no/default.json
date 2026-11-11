@@ -61,7 +61,6 @@
   "language_value": "Språk: {{language}}",
   "send_feedback": "Send tilbakemelding",
   "someone": "Noen",
-  "replied": "svarte:",
   "notifications": "Varsler",
   "notifications_unread": "Varsler, {{number}} uleste",
   "no_notifications": "Ingen varsler ennå. Svar på kommentarene dine vises her.",
@@ -144,5 +143,6 @@
   "last_updated": "Sist oppdatert {{time}}.",
   "last_updated_with_reason": "Sist oppdatert {{time}} («{{reason}}»).",
   "show_less": "Vis mindre",
-  "more": "…mer"
+  "more": "…mer",
+  "user_replied": "<bold>{{author}}</bold> svarte: {{text}}"
 }

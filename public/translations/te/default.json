@@ -61,7 +61,6 @@
   "language_value": "భాష: {{language}}",
   "send_feedback": "ఫీడ్‌బ్యాక్‌ను పంపండి",
   "someone": "ఎవరో",
-  "replied": "రిప్లయి ఇచ్చారు:",
   "notifications": "నోటిఫికేషన్‌లు",
   "notifications_unread": "నోటిఫికేషన్‌లు, చదవనివి {{number}}",
   "no_notifications": "ఇంకా నోటిఫికేషన్‌లు ఏవీ లేవు. మీ కామెంట్‌లకు వచ్చే రిప్లయిలు ఇక్కడ కనిపిస్తాయి.",
@@ -144,5 +143,6 @@
   "last_updated": "చివరి అప్‌డేట్: {{time}}.",
   "last_updated_with_reason": "చివరి అప్‌డేట్: {{time}} (“{{reason}}”).",
   "show_less": "తక్కువ చూపించు",
-  "more": "…మరిన్ని"
+  "more": "…మరిన్ని",
+  "user_replied": "<bold>{{author}}</bold> రిప్లయి ఇచ్చారు: {{text}}"
 }

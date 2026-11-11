@@ -61,7 +61,6 @@
   "language_value": "भाषा: {{language}}",
   "send_feedback": "सुझाव भेजें",
   "someone": "अज्ञात उपयोगकर्ता",
-  "replied": "ने जवाब दिया:",
   "notifications": "सूचनाएं",
   "notifications_unread": "सूचनाएं, {{number}} नहीं पढ़ी गईं",
   "no_notifications": "अभी कोई सूचना नहीं है। आपकी टिप्पणियों के जवाब यहां दिखेंगे।",
@@ -144,5 +143,6 @@
   "last_updated": "आखिरी अपडेट {{time}}।",
   "last_updated_with_reason": "आखिरी अपडेट {{time}} (“{{reason}}”)।",
   "show_less": "कम दिखाएं",
-  "more": "…ज़्यादा"
+  "more": "…ज़्यादा",
+  "user_replied": "<bold>{{author}}</bold> ने जवाब दिया: {{text}}"
 }

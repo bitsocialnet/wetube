@@ -4,7 +4,8 @@ import { formatCount, timeAgo } from '../lib/format';
 /** The translation function with relative-time and count formatters in the interface language. */
 export const useFormat = () => {
   const { t, i18n } = useTranslation();
-  const { language } = i18n;
+  // The language the strings are in, so dates and counts match them even when a locale failed to load.
+  const language = i18n.resolvedLanguage ?? i18n.language;
   return {
     t,
     language,

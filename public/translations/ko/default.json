@@ -61,7 +61,6 @@
   "language_value": "언어: {{language}}",
   "send_feedback": "의견 보내기",
   "someone": "알 수 없는 사용자",
-  "replied": "님이 답글을 남겼습니다:",
   "notifications": "알림",
   "notifications_unread": "알림, 읽지 않음 {{number}}개",
   "no_notifications": "아직 알림이 없습니다. 내 댓글에 달린 답글이 여기에 표시됩니다.",
@@ -144,5 +143,6 @@
   "last_updated": "최종 업데이트: {{time}}",
   "last_updated_with_reason": "최종 업데이트: {{time}} (“{{reason}}”)",
   "show_less": "간략히",
-  "more": "…더보기"
+  "more": "…더보기",
+  "user_replied": "<bold>{{author}}</bold>님이 답글을 남겼습니다: {{text}}"
 }

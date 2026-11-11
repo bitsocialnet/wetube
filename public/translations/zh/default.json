@@ -61,7 +61,6 @@
   "language_value": "语言：{{language}}",
   "send_feedback": "发送反馈",
   "someone": "有人",
-  "replied": "回复了：",
   "notifications": "通知",
   "notifications_unread": "通知，{{number}} 条未读",
   "no_notifications": "暂无通知。你的评论收到的回复会显示在这里。",
@@ -144,5 +143,6 @@
   "last_updated": "最后更新于{{time}}。",
   "last_updated_with_reason": "最后更新于{{time}}（“{{reason}}”）。",
   "show_less": "收起",
-  "more": "…更多"
+  "more": "…更多",
+  "user_replied": "<bold>{{author}}</bold>回复了：{{text}}"
 }

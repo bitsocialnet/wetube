@@ -50,6 +50,18 @@ export const SUPPORTED_LANGUAGES = Object.keys(LANGUAGE_NAMES) as Language[];
 
 export const getLanguageName = (language: string) => (Object.hasOwn(LANGUAGE_NAMES, language) ? LANGUAGE_NAMES[language as Language] : language);
 
+// Codes browsers report for these languages that differ from ours: Norwegian Bokmål and Nynorsk, and the
+// legacy codes for Filipino (Tagalog) and Hebrew.
+const LANGUAGE_ALIASES = new Map([
+  ['nb', 'no'],
+  ['nn', 'no'],
+  ['tl', 'fil'],
+  ['iw', 'he'],
+]);
+
+/** A browser language code ("nb-NO") as the interface language it matches ("no"); other codes are unchanged. */
+export const normalizeLanguageCode = (code: string) => LANGUAGE_ALIASES.get(code.split('-')[0]?.toLowerCase() ?? '') ?? code;
+
 /** Remembers the viewer's choice; until they choose, the browser's language is used. */
 export const saveLanguage = (language: string) => {
   try {

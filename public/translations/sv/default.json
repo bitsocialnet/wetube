@@ -61,7 +61,6 @@
   "language_value": "Språk: {{language}}",
   "send_feedback": "Skicka feedback",
   "someone": "Någon",
-  "replied": "svarade:",
   "notifications": "Aviseringar",
   "notifications_unread": "Aviseringar, {{number}} olästa",
   "no_notifications": "Inga aviseringar än. Svar på dina kommentarer visas här.",
@@ -144,5 +143,6 @@
   "last_updated": "Senast uppdaterad {{time}}.",
   "last_updated_with_reason": "Senast uppdaterad {{time}} (”{{reason}}”).",
   "show_less": "Visa mindre",
-  "more": "…mer"
+  "more": "…mer",
+  "user_replied": "<bold>{{author}}</bold> svarade: {{text}}"
 }

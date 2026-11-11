@@ -61,7 +61,6 @@
   "language_value": "言語: {{language}}",
   "send_feedback": "フィードバックの送信",
   "someone": "誰か",
-  "replied": "が返信しました:",
   "notifications": "通知",
   "notifications_unread": "通知、未読 {{number}} 件",
   "no_notifications": "通知はまだありません。コメントへの返信がここに表示されます。",
@@ -144,5 +143,6 @@
   "last_updated": "最終更新: {{time}}",
   "last_updated_with_reason": "最終更新: {{time}}（「{{reason}}」）",
   "show_less": "一部を表示",
-  "more": "…もっと見る"
+  "more": "…もっと見る",
+  "user_replied": "<bold>{{author}}</bold>が返信しました: {{text}}"
 }

@@ -1,28 +1,29 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { REPOSITORY_URL, type PlannedPagePath } from '../../data/navigation';
+import { PLANNED_PAGE_PATHS, REPOSITORY_URL, type PlannedPagePath } from '../../data/navigation';
 import styles from './planned.module.css';
 
 /** The page behind a sidebar section that is not built yet: what it will do. */
 const Planned = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const pages = new Map<string, { title: string; description: string }>([
-    ['/feed/subscriptions', { title: t('subscriptions'), description: t('subscriptions_description') }],
-    ['/feed/liked', { title: t('liked_videos'), description: t('liked_videos_description') }],
-    ['/feed/history', { title: t('history'), description: t('history_description') }],
-    ['/categories', { title: t('categories'), description: t('categories_description') }],
-    ['/feed/playlists', { title: t('playlists'), description: t('playlists_description') }],
-    ['/settings', { title: t('settings'), description: t('settings_description') }],
-    ['/signin', { title: t('sign_in'), description: t('sign_in_description') }],
-  ] satisfies [PlannedPagePath, { title: string; description: string }][]);
-  const page = pages.get(pathname);
+  const pages: Record<PlannedPagePath, { title: string; description: string }> = {
+    '/feed/subscriptions': { title: t('subscriptions'), description: t('subscriptions_description') },
+    '/feed/liked': { title: t('liked_videos'), description: t('liked_videos_description') },
+    '/feed/history': { title: t('history'), description: t('history_description') },
+    '/categories': { title: t('categories'), description: t('categories_description') },
+    '/feed/playlists': { title: t('playlists'), description: t('playlists_description') },
+    '/settings': { title: t('settings'), description: t('settings_description') },
+    '/signin': { title: t('sign_in'), description: t('sign_in_description') },
+  };
+  const page = PLANNED_PAGE_PATHS.find((path) => path === pathname);
   if (!page) return null;
+  const { title, description } = pages[page];
 
   return (
     <section className={styles.planned}>
-      <h1 className={styles.title}>{page.title}</h1>
-      <p className={styles.description}>{page.description}</p>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.description}>{description}</p>
       <p className={styles.status}>
         <Trans
           t={t}

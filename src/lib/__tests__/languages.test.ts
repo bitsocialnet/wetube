@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { SUPPORTED_LANGUAGES } from '../languages';
+import { normalizeLanguageCode, SUPPORTED_LANGUAGES } from '../languages';
 
 const translationsRoot = new URL('../../../public/translations/', import.meta.url);
 const readLocale = (language: string): Record<string, string> => JSON.parse(readFileSync(new URL(`${language}/default.json`, translationsRoot), 'utf8'));
@@ -22,5 +22,18 @@ describe('interface languages', () => {
       expect(locale[key], `${language}.${key}`).toBeTruthy();
       expect(tokens(locale[key] ?? ''), `${language}.${key}`).toEqual(tokens(value));
     }
+  });
+});
+
+describe('normalizeLanguageCode', () => {
+  it('maps the codes browsers use for Norwegian, Filipino and Hebrew to ours', () => {
+    expect(normalizeLanguageCode('nb-NO')).toBe('no');
+    expect(normalizeLanguageCode('nn')).toBe('no');
+    expect(normalizeLanguageCode('tl')).toBe('fil');
+    expect(normalizeLanguageCode('iw')).toBe('he');
+  });
+  it('leaves other codes for i18next to match', () => {
+    expect(normalizeLanguageCode('pt-BR')).toBe('pt-BR');
+    expect(normalizeLanguageCode('de')).toBe('de');
   });
 });

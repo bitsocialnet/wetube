@@ -61,7 +61,6 @@
   "language_value": "Язык: {{language}}",
   "send_feedback": "Отправить отзыв",
   "someone": "Кто-то",
-  "replied": "ответил(а):",
   "notifications": "Уведомления",
   "notifications_unread": "Уведомления, непрочитанных: {{number}}",
   "no_notifications": "Уведомлений пока нет. Здесь будут появляться ответы на ваши комментарии.",
@@ -144,5 +143,6 @@
   "last_updated": "Последнее обновление: {{time}}.",
   "last_updated_with_reason": "Последнее обновление: {{time}} («{{reason}}»).",
   "show_less": "Свернуть",
-  "more": "…ещё"
+  "more": "…ещё",
+  "user_replied": "<bold>{{author}}</bold> ответил(а): {{text}}"
 }

@@ -61,7 +61,6 @@
   "language_value": "Dil: {{language}}",
   "send_feedback": "Geri bildirim gönder",
   "someone": "Biri",
-  "replied": "yanıt verdi:",
   "notifications": "Bildirimler",
   "notifications_unread": "Bildirimler, {{number}} okunmamış",
   "no_notifications": "Henüz bildirim yok. Yorumlarınıza gelen yanıtlar burada gösterilir.",
@@ -144,5 +143,6 @@
   "last_updated": "Son güncelleme: {{time}}.",
   "last_updated_with_reason": "Son güncelleme: {{time}} (“{{reason}}”).",
   "show_less": "Daha az göster",
-  "more": "…daha fazla"
+  "more": "…daha fazla",
+  "user_replied": "<bold>{{author}}</bold> yanıt verdi: {{text}}"
 }

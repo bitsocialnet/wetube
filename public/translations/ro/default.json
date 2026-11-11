@@ -61,7 +61,6 @@
   "language_value": "Limbă: {{language}}",
   "send_feedback": "Trimiteți feedback",
   "someone": "Cineva",
-  "replied": "a răspuns:",
   "notifications": "Notificări",
   "notifications_unread": "Notificări, {{number}} necitite",
   "no_notifications": "Nicio notificare încă. Răspunsurile la comentariile dumneavoastră vor apărea aici.",
@@ -144,5 +143,6 @@
   "last_updated": "Ultima actualizare: {{time}}.",
   "last_updated_with_reason": "Ultima actualizare: {{time}} („{{reason}}”).",
   "show_less": "Afișați mai puțin",
-  "more": "…mai mult"
+  "more": "…mai mult",
+  "user_replied": "<bold>{{author}}</bold> a răspuns: {{text}}"
 }

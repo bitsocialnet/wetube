@@ -61,7 +61,6 @@
   "language_value": "اللغة: {{language}}",
   "send_feedback": "إرسال ملاحظات",
   "someone": "شخص ما",
-  "replied": "ردّ:",
   "notifications": "الإشعارات",
   "notifications_unread": "الإشعارات، {{number}} غير مقروءة",
   "no_notifications": "لا توجد إشعارات بعد. ستظهر هنا الردود على تعليقاتك.",
@@ -144,5 +143,6 @@
   "last_updated": "آخر تحديث {{time}}.",
   "last_updated_with_reason": "آخر تحديث {{time}} («{{reason}}»).",
   "show_less": "عرض أقل",
-  "more": "…المزيد"
+  "more": "…المزيد",
+  "user_replied": "<bold>{{author}}</bold> ردّ: {{text}}"
 }

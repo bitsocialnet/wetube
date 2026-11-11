@@ -61,7 +61,6 @@
   "language_value": "Sprache: {{language}}",
   "send_feedback": "Feedback senden",
   "someone": "Jemand",
-  "replied": "hat geantwortet:",
   "notifications": "Benachrichtigungen",
   "notifications_unread": "Benachrichtigungen, {{number}} ungelesen",
   "no_notifications": "Noch keine Benachrichtigungen. Antworten auf deine Kommentare werden hier angezeigt.",
@@ -144,5 +143,6 @@
   "last_updated": "Zuletzt aktualisiert {{time}}.",
   "last_updated_with_reason": "Zuletzt aktualisiert {{time}} („{{reason}}“).",
   "show_less": "Weniger anzeigen",
-  "more": "…mehr"
+  "more": "…mehr",
+  "user_replied": "<bold>{{author}}</bold> hat geantwortet: {{text}}"
 }

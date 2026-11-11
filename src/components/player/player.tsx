@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useFormat } from '../../hooks/use-format';
 import { useSourceAvailability } from '../../hooks/use-source-availability';
 import type { VideoSource } from '../../lib/video-sources';
 import { initialPlayerState, playerReducer } from './player-state';
@@ -19,7 +19,7 @@ const EMBED_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; 
  * oEmbed or API (useSourceAvailability). Key this component by video so its state resets.
  */
 export const Player = ({ sources, title }: PlayerProps) => {
-  const { t, i18n } = useTranslation();
+  const { t, language } = useFormat();
   const [state, dispatch] = useReducer(playerReducer, initialPlayerState);
   const source = sources[state.selectedIndex];
   const markFailed = useCallback((failed: VideoSource) => dispatch({ type: 'fail', playUrl: failed.playUrl, sources }), [sources]);
@@ -59,7 +59,7 @@ export const Player = ({ sources, title }: PlayerProps) => {
       {!allFailed && skipped.length > 0 && (
         <p className={styles.notice} role='status'>
           {t('playing_from', {
-            failed: new Intl.ListFormat(i18n.language, { type: 'conjunction' }).format(skipped.map((candidate) => candidate.label)),
+            failed: new Intl.ListFormat(language, { type: 'conjunction' }).format(skipped.map((candidate) => candidate.label)),
             source: source.label,
           })}
         </p>

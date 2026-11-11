@@ -61,7 +61,6 @@
   "language_value": "ভাষা: {{language}}",
   "send_feedback": "মতামত জানান",
   "someone": "কেউ",
-  "replied": "উত্তর দিয়েছেন:",
   "notifications": "বিজ্ঞপ্তি",
   "notifications_unread": "বিজ্ঞপ্তি, {{number}}টি অপঠিত",
   "no_notifications": "এখনও কোনও বিজ্ঞপ্তি নেই। আপনার মন্তব্যের উত্তর এখানে দেখা যাবে।",
@@ -144,5 +143,6 @@
   "last_updated": "সর্বশেষ আপডেট {{time}}।",
   "last_updated_with_reason": "সর্বশেষ আপডেট {{time}} (“{{reason}}”)।",
   "show_less": "কম দেখান",
-  "more": "…আরও"
+  "more": "…আরও",
+  "user_replied": "<bold>{{author}}</bold> উত্তর দিয়েছেন: {{text}}"
 }

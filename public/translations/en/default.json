@@ -61,7 +61,7 @@
   "language_value": "Language: {{language}}",
   "send_feedback": "Send feedback",
   "someone": "Someone",
-  "replied": "replied:",
+  "user_replied": "<bold>{{author}}</bold> replied: {{text}}",
   "notifications": "Notifications",
   "notifications_unread": "Notifications, {{number}} unread",
   "no_notifications": "No notifications yet. Replies to your comments will show up here.",

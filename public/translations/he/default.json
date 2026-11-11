@@ -61,7 +61,6 @@
   "language_value": "שפה: {{language}}",
   "send_feedback": "שליחת משוב",
   "someone": "מישהו",
-  "replied": "הגיב/ה:",
   "notifications": "התראות",
   "notifications_unread": "התראות, {{number}} שלא נקראו",
   "no_notifications": "אין עדיין התראות. תשובות לתגובות שלך יופיעו כאן.",
@@ -144,5 +143,6 @@
   "last_updated": "עודכן לאחרונה {{time}}.",
   "last_updated_with_reason": "עודכן לאחרונה {{time}} (\"{{reason}}\").",
   "show_less": "הצגת פחות",
-  "more": "…עוד"
+  "more": "…עוד",
+  "user_replied": "<bold>{{author}}</bold> הגיב/ה: {{text}}"
 }

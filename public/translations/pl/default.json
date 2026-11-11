@@ -61,7 +61,6 @@
   "language_value": "Język: {{language}}",
   "send_feedback": "Prześlij opinię",
   "someone": "Ktoś",
-  "replied": "odpowiedział(a):",
   "notifications": "Powiadomienia",
   "notifications_unread": "Powiadomienia, nieprzeczytane: {{number}}",
   "no_notifications": "Nie masz jeszcze powiadomień. Tutaj pojawią się odpowiedzi na Twoje komentarze.",
@@ -144,5 +143,6 @@
   "last_updated": "Ostatnia aktualizacja {{time}}.",
   "last_updated_with_reason": "Ostatnia aktualizacja {{time}} („{{reason}}”).",
   "show_less": "Pokaż mniej",
-  "more": "…więcej"
+  "more": "…więcej",
+  "user_replied": "<bold>{{author}}</bold> odpowiedział(a): {{text}}"
 }

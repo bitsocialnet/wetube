@@ -61,7 +61,6 @@
   "language_value": "Kieli: {{language}}",
   "send_feedback": "Lähetä palautetta",
   "someone": "Joku",
-  "replied": "vastasi:",
   "notifications": "Ilmoitukset",
   "notifications_unread": "Ilmoitukset, {{number}} lukematonta",
   "no_notifications": "Ei vielä ilmoituksia. Vastaukset kommentteihisi näkyvät täällä.",
@@ -144,5 +143,6 @@
   "last_updated": "Päivitetty viimeksi {{time}}.",
   "last_updated_with_reason": "Päivitetty viimeksi {{time}} (”{{reason}}”).",
   "show_less": "Näytä vähemmän",
-  "more": "…lisää"
+  "more": "…lisää",
+  "user_replied": "<bold>{{author}}</bold> vastasi: {{text}}"
 }

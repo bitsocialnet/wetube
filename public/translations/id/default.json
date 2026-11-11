@@ -61,7 +61,6 @@
   "language_value": "Bahasa: {{language}}",
   "send_feedback": "Kirim masukan",
   "someone": "Seseorang",
-  "replied": "membalas:",
   "notifications": "Notifikasi",
   "notifications_unread": "Notifikasi, {{number}} belum dibaca",
   "no_notifications": "Belum ada notifikasi. Balasan untuk komentar Anda akan muncul di sini.",
@@ -144,5 +143,6 @@
   "last_updated": "Terakhir diperbarui {{time}}.",
   "last_updated_with_reason": "Terakhir diperbarui {{time}} (“{{reason}}”).",
   "show_less": "Tampilkan lebih sedikit",
-  "more": "…selengkapnya"
+  "more": "…selengkapnya",
+  "user_replied": "<bold>{{author}}</bold> membalas: {{text}}"
 }

@@ -5,6 +5,7 @@ import { Bell } from 'lucide-react';
 import { useDismiss } from '../../hooks/use-dismiss';
 import { useFormat } from '../../hooks/use-format';
 import { shortAddress, videoPath } from '../../lib/channels';
+import { ReplySummary } from './reply-summary';
 import styles from './notifications-menu.module.css';
 
 const MAX_SHOWN = 20;
@@ -17,7 +18,7 @@ const NotificationItem = ({ notification, onOpen }: { notification: Notification
   const content = (
     <>
       <span className={styles.itemText}>
-        <strong>{author}</strong> {t('replied')} {text.length > 120 ? `${text.slice(0, 120)}…` : text}
+        <ReplySummary author={author} text={text.length > 120 ? `${text.slice(0, 120)}…` : text} />
       </span>
       {notification.timestamp && <span className={styles.itemTime}>{timeAgo(notification.timestamp)}</span>}
     </>

@@ -61,7 +61,6 @@
   "language_value": "Taal: {{language}}",
   "send_feedback": "Feedback sturen",
   "someone": "Iemand",
-  "replied": "heeft geantwoord:",
   "notifications": "Meldingen",
   "notifications_unread": "Meldingen, {{number}} ongelezen",
   "no_notifications": "Nog geen meldingen. Antwoorden op je reacties verschijnen hier.",
@@ -144,5 +143,6 @@
   "last_updated": "Laatst bijgewerkt {{time}}.",
   "last_updated_with_reason": "Laatst bijgewerkt {{time}} (‘{{reason}}’).",
   "show_less": "Minder weergeven",
-  "more": "…meer"
+  "more": "…meer",
+  "user_replied": "<bold>{{author}}</bold> heeft geantwoord: {{text}}"
 }

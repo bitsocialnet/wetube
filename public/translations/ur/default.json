@@ -61,7 +61,6 @@
   "language_value": "زبان: {{language}}",
   "send_feedback": "تاثرات بھیجیں",
   "someone": "نامعلوم صارف",
-  "replied": "نے جواب دیا:",
   "notifications": "اطلاعات",
   "notifications_unread": "اطلاعات، {{number}} بغیر پڑھی ہوئی",
   "no_notifications": "ابھی کوئی اطلاع نہیں ہے۔ آپ کے تبصروں کے جوابات یہاں دکھائی دیں گے۔",
@@ -144,5 +143,6 @@
   "last_updated": "آخری اپ ڈیٹ {{time}}۔",
   "last_updated_with_reason": "آخری اپ ڈیٹ {{time}} (“{{reason}}”)۔",
   "show_less": "کم دکھائیں",
-  "more": "…مزید"
+  "more": "…مزید",
+  "user_replied": "<bold>{{author}}</bold> نے جواب دیا: {{text}}"
 }

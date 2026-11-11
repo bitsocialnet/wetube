@@ -61,7 +61,6 @@
   "language_value": "Мова: {{language}}",
   "send_feedback": "Надіслати відгук",
   "someone": "Хтось",
-  "replied": "відповів(-ла):",
   "notifications": "Сповіщення",
   "notifications_unread": "Сповіщення, непрочитаних: {{number}}",
   "no_notifications": "Сповіщень поки немає. Тут з’являтимуться відповіді на ваші коментарі.",
@@ -144,5 +143,6 @@
   "last_updated": "Востаннє оновлено {{time}}.",
   "last_updated_with_reason": "Востаннє оновлено {{time}} («{{reason}}»).",
   "show_less": "Згорнути",
-  "more": "…більше"
+  "more": "…більше",
+  "user_replied": "<bold>{{author}}</bold> відповів(-ла): {{text}}"
 }

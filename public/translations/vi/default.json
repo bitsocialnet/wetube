@@ -61,7 +61,6 @@
   "language_value": "Ngôn ngữ: {{language}}",
   "send_feedback": "Gửi ý kiến phản hồi",
   "someone": "Ai đó",
-  "replied": "đã trả lời:",
   "notifications": "Thông báo",
   "notifications_unread": "Thông báo, {{number}} chưa đọc",
   "no_notifications": "Chưa có thông báo nào. Các câu trả lời cho bình luận của bạn sẽ hiển thị ở đây.",
@@ -144,5 +143,6 @@
   "last_updated": "Cập nhật lần cuối {{time}}.",
   "last_updated_with_reason": "Cập nhật lần cuối {{time}} (“{{reason}}”).",
   "show_less": "Ẩn bớt",
-  "more": "…xem thêm"
+  "more": "…xem thêm",
+  "user_replied": "<bold>{{author}}</bold> đã trả lời: {{text}}"
 }

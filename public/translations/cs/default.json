@@ -61,7 +61,6 @@
   "language_value": "Jazyk: {{language}}",
   "send_feedback": "Odeslat zpětnou vazbu",
   "someone": "Někdo",
-  "replied": "odpověděl(a):",
   "notifications": "Oznámení",
   "notifications_unread": "Oznámení, nepřečtená: {{number}}",
   "no_notifications": "Zatím žádná oznámení. Zobrazí se tu odpovědi na vaše komentáře.",
@@ -144,5 +143,6 @@
   "last_updated": "Naposledy aktualizováno {{time}}.",
   "last_updated_with_reason": "Naposledy aktualizováno {{time}} („{{reason}}“).",
   "show_less": "Zobrazit méně",
-  "more": "…více"
+  "more": "…více",
+  "user_replied": "<bold>{{author}}</bold> odpověděl(a): {{text}}"
 }

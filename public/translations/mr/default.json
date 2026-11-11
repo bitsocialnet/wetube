@@ -61,7 +61,6 @@
   "language_value": "भाषा: {{language}}",
   "send_feedback": "अभिप्राय पाठवा",
   "someone": "अज्ञात वापरकर्ता",
-  "replied": "यांनी उत्तर दिले:",
   "notifications": "सूचना",
   "notifications_unread": "सूचना, {{number}} न वाचलेल्या",
   "no_notifications": "अद्याप कोणत्याही सूचना नाहीत. तुमच्या टिप्पण्यांना आलेली उत्तरे येथे दिसतील.",
@@ -144,5 +143,6 @@
   "last_updated": "शेवटचे अपडेट {{time}}.",
   "last_updated_with_reason": "शेवटचे अपडेट {{time}} (“{{reason}}”).",
   "show_less": "कमी दाखवा",
-  "more": "…आणखी"
+  "more": "…आणखी",
+  "user_replied": "<bold>{{author}}</bold> यांनी उत्तर दिले: {{text}}"
 }

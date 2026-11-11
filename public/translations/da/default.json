@@ -61,7 +61,6 @@
   "language_value": "Sprog: {{language}}",
   "send_feedback": "Send feedback",
   "someone": "Nogen",
-  "replied": "svarede:",
   "notifications": "Notifikationer",
   "notifications_unread": "Notifikationer, {{number}} ulæste",
   "no_notifications": "Ingen notifikationer endnu. Svar på dine kommentarer vises her.",
@@ -144,5 +143,6 @@
   "last_updated": "Senest opdateret {{time}}.",
   "last_updated_with_reason": "Senest opdateret {{time}} (»{{reason}}«).",
   "show_less": "Vis mindre",
-  "more": "…mere"
+  "more": "…mere",
+  "user_replied": "<bold>{{author}}</bold> svarede: {{text}}"
 }

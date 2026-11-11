@@ -61,7 +61,6 @@
   "language_value": "Gjuha: {{language}}",
   "send_feedback": "Dërgo komente",
   "someone": "Dikush",
-  "replied": "u përgjigj:",
   "notifications": "Njoftimet",
   "notifications_unread": "Njoftimet, {{number}} të palexuara",
   "no_notifications": "Ende nuk ka njoftime. Përgjigjet ndaj komenteve të tua do të shfaqen këtu.",
@@ -144,5 +143,6 @@
   "last_updated": "Përditësuar së fundi {{time}}.",
   "last_updated_with_reason": "Përditësuar së fundi {{time}} (“{{reason}}”).",
   "show_less": "Shfaq më pak",
-  "more": "…më shumë"
+  "more": "…më shumë",
+  "user_replied": "<bold>{{author}}</bold> u përgjigj: {{text}}"
 }
