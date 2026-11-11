@@ -1,0 +1,50 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 32px 16px;
+}
+
+.empty,
+.status {
+  padding: 48px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.status {
+  padding-top: 24px;
+}
+
+.sentinel {
+  height: 1px;
+}
+
+.skeletonThumbnail,
+.skeletonLine,
+.skeletonLineShort {
+  background: var(--surface);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.skeletonThumbnail {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+}
+
+.skeletonLine,
+.skeletonLineShort {
+  height: 14px;
+  margin-top: 14px;
+  border-radius: 4px;
+}
+
+.skeletonLineShort {
+  width: 60%;
+  margin-top: 8px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}

@@ -4,7 +4,32 @@
 
 WeTube is part of [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5): decentralize all social media. Phase 5 explicitly names "creator video and a credible YouTube alternative" as one of the formats Bitsocial apps will rival. WeTube is that app.
 
-> **Status: vision stage.** This repository reserves the name — development targets Phase 5. These documents describe the product vision and architecture; nothing here is built yet. WeTube depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
+> **Status: early preview.** A read-only web client is in `src/`: it browses channels and plays videos peer-to-peer, with no uploads, accounts or monetization yet. The full product targets Phase 5 and depends on infrastructure from earlier master plan phases (public RPCs, Bitsocial Chain, pubsub voting).
+
+## Development
+
+The client is a static React app using the same stack as 5chan: Vite, TypeScript, `@bitsocial/bitsocial-react-hooks` and pkc-js running in the browser.
+
+```sh
+corepack yarn install
+corepack yarn start   # http://localhost:5180
+corepack yarn test
+corepack yarn build   # static output in build/
+```
+
+Home page channels are listed in [src/data/channels.ts](src/data/channels.ts). Until WeTube channels exist, it shows Seedit's `videos-posting.bso` community; any community opens by address from the header.
+
+Until the [video post BSIP](video-sources.md#the-schema-will-be-a-bsip) exists, a video is an ordinary post: `title` is the video title, `link` is the primary source, and `content` is the description, optionally followed by mirror sources. The client plays YouTube, Invidious, Vimeo, Odysee, Bitchute and Streamable embeds, direct video files and `ipfs://` links:
+
+```text
+What this video is about.
+
+Mirrors:
+https://vimeo.com/76979871
+ipfs://bafy…/video.mp4
+```
+
+Authors can edit `content` but not `link`, so the mirror list is the part that can change after posting.
 
 ## Look and Feel
 

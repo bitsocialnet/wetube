@@ -1,0 +1,91 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px var(--page-gutter);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+/* Logo SVGs are 168 units tall for 112 units of artwork, with a 28-unit top and 24-unit side margin. */
+.logoCrop {
+  --logo-height: 24px;
+  display: inline-block;
+  overflow: hidden;
+  height: var(--logo-height);
+  line-height: 0;
+}
+
+.logoCrop img {
+  display: block;
+  height: calc(var(--logo-height) * 168 / 112);
+  width: auto;
+  margin: calc(var(--logo-height) * -28 / 112) calc(var(--logo-height) * -24 / 112);
+}
+
+.previewTag {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.search {
+  display: flex;
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.submit {
+  padding: 9px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0 999px 999px 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: var(--surface-hover);
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}

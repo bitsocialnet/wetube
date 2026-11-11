@@ -1,0 +1,27 @@
+.chips {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 12px 0 20px;
+  scrollbar-width: none;
+}
+
+.chip,
+.chipActive {
+  flex: none;
+  padding: 6px 14px;
+  background: var(--surface);
+  border-radius: var(--radius-small);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: var(--surface-hover);
+}
+
+.chipActive {
+  background: var(--ink);
+  color: var(--bg);
+}

@@ -1,0 +1,84 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #000000;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.sourcesLabel {
+  color: var(--muted);
+}
+
+.sourceButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sourceButton {
+  padding: 4px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.sourceButton:hover {
+  background: var(--surface-hover);
+}
+
+.sourceButton[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.sourceButton[data-failed] {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.openLink {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.openLink:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+{
+  "name": "wetube",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A peer-to-peer video client built on Bitsocial",
+  "type": "module",
+  "license": "GPL-3.0-or-later",
+  "packageManager": "yarn@4.17.1",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "type-check": "tsc --noEmit",
+    "lint": "oxlint --deny-warnings src",
+    "format": "oxfmt src"
+  },
+  "dependencies": {
+    "@bitsocial/bitsocial-react-hooks": "0.2.2",
+    "assert": "2.1.0",
+    "buffer": "6.0.3",
+    "crypto-browserify": "3.12.1",
+    "events": "3.3.0",
+    "isomorphic-fetch": "3.0.0",
+    "process": "0.11.10",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.4",
+    "stream-browserify": "3.0.0",
+    "util": "0.12.5"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "oxfmt": "0.74.0",
+    "oxlint": "1.89.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

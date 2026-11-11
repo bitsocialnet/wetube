@@ -1,0 +1,99 @@
+.card,
+.compact {
+  min-width: 0;
+}
+
+.compact {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.thumbnail {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.compact .thumbnail {
+  border-radius: var(--radius-small);
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnailFallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.details {
+  display: flex;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.compact .details {
+  padding-top: 0;
+}
+
+.avatarLink {
+  flex: none;
+}
+
+.text {
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.compact .title {
+  font-size: 14px;
+}
+
+.title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.channelName,
+.stats {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact .channelName,
+.compact .stats {
+  font-size: 13px;
+}
+
+.channelName:hover {
+  color: var(--ink);
+}
