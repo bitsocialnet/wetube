@@ -51,7 +51,10 @@ const Watch = () => {
               </div>
             </div>
             <div className={styles.description}>
-              <p className={styles.descriptionMeta}>{timeAgo(post.timestamp)}</p>
+              <p className={styles.descriptionMeta}>
+                <span title='View counts are not available yet'>? views</span>
+                {post.timestamp ? ` · ${timeAgo(post.timestamp)}` : ''}
+              </p>
               {video.description && <p className={styles.descriptionText}>{video.description}</p>}
             </div>
             <Comments post={post} />

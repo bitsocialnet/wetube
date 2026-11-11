@@ -1,4 +1,5 @@
-/* Colors from design/logo/showcase.html (website mockup, dark and light). */
+/* Colors from design/logo/showcase.html (website mockup). src/lib/theme.ts sets <html data-theme> from
+   the viewer's choice or the device; the media query only covers a page whose script has not run. */
 :root {
   color-scheme: dark;
   --bg: #0f1218;
@@ -9,16 +10,33 @@
   --muted: #9399a4;
   --brand: #ed004a;
   --accent: #ff3d73;
-  --focus: #7aa2ff;
+  --focus: #ff3d73;
+  --overlay: rgb(0 0 0 / 0.55);
+  --popover-shadow: 0 8px 28px rgb(0 0 0 / 0.45);
   --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --radius: 12px;
   --radius-small: 8px;
   --page-gutter: clamp(16px, 3vw, 32px);
+  --header-height: 56px;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f2f3f5;
+  --surface-hover: #e8eaee;
+  --line: #e4e6ea;
+  --ink: #14171c;
+  --muted: #6a707b;
+  --accent: #d6003f;
+  --focus: #d6003f;
+  --overlay: rgb(0 0 0 / 0.35);
+  --popover-shadow: 0 8px 28px rgb(20 23 28 / 0.18);
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme]) {
     color-scheme: light;
     --bg: #ffffff;
     --surface: #f2f3f5;
@@ -27,7 +45,7 @@
     --ink: #14171c;
     --muted: #6a707b;
     --accent: #d6003f;
-    --focus: #2457d6;
+    --focus: #d6003f;
   }
 }
 

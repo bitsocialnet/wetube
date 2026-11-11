@@ -15,6 +15,11 @@ interface ElementSourceApi {
 }
 
 declare global {
+  interface ImportMetaEnv {
+    readonly VITE_APP_VERSION: string;
+    readonly VITE_COMMIT_REF: string;
+  }
+
   interface Window {
     // Read by bitsocial-react-hooks when it creates the default account.
     defaultPkcOptions?: Record<string, unknown>;

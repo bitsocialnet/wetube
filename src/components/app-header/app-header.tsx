@@ -1,51 +1,68 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Menu, Search } from 'lucide-react';
 import logoOnDark from '../../../design/logo/wetube-logo-on-dark.svg';
 import logoOnLight from '../../../design/logo/wetube-logo-on-light.svg';
-import { channelPath } from '../../lib/channels';
+import { useTheme } from '../../hooks/use-theme';
+import { channelPath, looksLikeChannelAddress } from '../../lib/channels';
+import { AccountMenu } from '../account-menu';
 import styles from './app-header.module.css';
 
-export const AppHeader = () => {
-  const navigate = useNavigate();
-  const [address, setAddress] = useState('');
+interface AppHeaderProps {
+  onToggleSidebar: () => void;
+}
 
-  const openChannel = (event: FormEvent<HTMLFormElement>) => {
+export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('q') ?? '');
+  const { resolved } = useTheme();
+
+  // A channel address opens the channel; anything else searches the videos on the home page.
+  const search = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const trimmed = address.trim();
+    const trimmed = query.trim();
     if (!trimmed) return;
-    navigate(channelPath(trimmed));
-    setAddress('');
+    if (looksLikeChannelAddress(trimmed)) {
+      navigate(channelPath(trimmed));
+      setQuery('');
+    } else {
+      navigate(`/?${new URLSearchParams({ q: trimmed })}`);
+    }
   };
 
   return (
     <header className={styles.header}>
-      <Link to='/' className={styles.brand} aria-label='WeTube home'>
-        {/* The SVGs carry a margin around the artwork; the wrapper crops it, as in the logo showcase. */}
-        <span className={styles.logoCrop}>
-          <picture>
-            <source srcSet={logoOnLight} media='(prefers-color-scheme: light)' />
-            <img src={logoOnDark} alt='' />
-          </picture>
-        </span>
-        <span className={styles.previewTag}>Preview</span>
-      </Link>
-      <form className={styles.search} role='search' onSubmit={openChannel}>
-        <label htmlFor='channel-address' className='visually-hidden'>
-          Open a channel by address
-        </label>
+      <div className={styles.start}>
+        <button type='button' className={styles.iconButton} onClick={onToggleSidebar} aria-label='Menu'>
+          <Menu size={22} aria-hidden='true' />
+        </button>
+        <Link to='/' className={styles.brand} aria-label='WeTube home'>
+          {/* The SVGs carry a margin around the artwork; the wrapper crops it, as in the logo showcase. */}
+          <span className={styles.logoCrop}>
+            <img src={resolved === 'light' ? logoOnLight : logoOnDark} alt='' />
+          </span>
+          <span className={styles.previewTag}>Preview</span>
+        </Link>
+      </div>
+      <form className={styles.search} role='search' onSubmit={search}>
         <input
-          id='channel-address'
           className={styles.input}
-          value={address}
-          onChange={(event) => setAddress(event.target.value)}
-          placeholder='Open a channel: name.bso or 12D3KooW…'
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder='Search'
+          aria-label='Search videos, or open a channel by its address'
           autoComplete='off'
           spellCheck={false}
+          type='search'
         />
-        <button type='submit' className={styles.submit}>
-          Open
+        <button type='submit' className={styles.submit} aria-label='Search'>
+          <Search size={20} aria-hidden='true' />
         </button>
       </form>
+      <div className={styles.end}>
+        <AccountMenu />
+      </div>
     </header>
   );
 };

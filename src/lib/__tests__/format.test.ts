@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { plural, timeAgo } from '../format';
-import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress, videoPath } from '../channels';
+import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, looksLikeChannelAddress, shortAddress, videoPath } from '../channels';
 
 describe('timeAgo', () => {
   const now = 1_800_000_000_000;
@@ -42,5 +42,12 @@ describe('channel addresses', () => {
     expect(getChannelAddressFromHandle('@alice.bso')).toBe('alice.bso');
     expect(getChannelAddressFromHandle('alice.bso')).toBeUndefined();
     expect(getChannelAddressFromHandle('@')).toBeUndefined();
+  });
+  it('tells channel addresses from search text', () => {
+    expect(looksLikeChannelAddress('alice.bso')).toBe(true);
+    expect(looksLikeChannelAddress('12D3KooWGrpURz4BR1EWChGnwmAavSLkW2ie6YWoj2dZE3XLU7bw')).toBe(true);
+    expect(looksLikeChannelAddress('big buck bunny')).toBe(false);
+    expect(looksLikeChannelAddress('sintel')).toBe(false);
+    expect(looksLikeChannelAddress('v1.2 release')).toBe(false);
   });
 });

@@ -1,27 +1,144 @@
+.toolbar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  background: var(--bg);
+}
+
+.filtersButton {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 0;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.filtersButton:hover,
+.filtersButton[aria-expanded='true'] {
+  background: var(--surface-hover);
+}
+
+.activeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 .chips {
   display: flex;
   gap: 10px;
+  min-width: 0;
   overflow-x: auto;
-  padding: 12px 0 20px;
   scrollbar-width: none;
 }
 
-.chip,
-.chipActive {
+.chip {
   flex: none;
-  padding: 6px 14px;
+  height: 32px;
+  padding: 0 12px;
   background: var(--surface);
+  border: 0;
   border-radius: var(--radius-small);
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .chip:hover {
   background: var(--surface-hover);
 }
 
-.chipActive {
+.chip[aria-pressed='true'] {
   background: var(--ink);
   color: var(--bg);
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px 24px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filterTitle {
+  width: 100%;
+  margin: 0 0 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.filterOption {
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filterOption:hover {
+  color: var(--ink);
+}
+
+.filterOption[aria-pressed='true'] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.clearFilters {
+  align-self: end;
+  justify-self: start;
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.searchStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.clearSearch {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--surface);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
 }

@@ -28,3 +28,8 @@ export const channelHue = (address: string) => {
   for (const char of address) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
   return hash % 360;
 };
+
+const PUBLIC_KEY_ADDRESS = /^12D3KooW[1-9A-HJ-NP-Za-km-z]{44}$/;
+
+/** True for a .bso-style name or a 12D3KooW… public key, which the search box opens as a channel. */
+export const looksLikeChannelAddress = (query: string) => !/\s/.test(query) && (PUBLIC_KEY_ADDRESS.test(query) || /^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(query));

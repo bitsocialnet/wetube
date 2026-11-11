@@ -1,12 +1,26 @@
-import { useLayoutEffect, type ReactNode } from 'react';
+import { useLayoutEffect, useState, type ReactNode } from 'react';
 import { Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { AppHeader } from './components/app-header';
+import { Sidebar } from './components/sidebar';
+import { PLANNED_PAGES } from './data/navigation';
 import { getChannelAddressFromHandle } from './lib/channels';
 import Channel from './views/channel';
 import Home from './views/home';
 import NotFound from './views/not-found';
+import Planned from './views/planned';
 import Watch from './views/watch';
 import styles from './app.module.css';
+
+const SIDEBAR_EXPANDED_KEY = 'wetube:sidebar-expanded';
+const SMALL_SCREEN_QUERY = '(max-width: 768px)';
+
+const readSidebarExpanded = () => {
+  try {
+    return window.localStorage.getItem(SIDEBAR_EXPANDED_KEY) === 'true';
+  } catch {
+    return false;
+  }
+};
 
 // HashRouter has no scroll restoration; start each page at the top.
 const ScrollToTop = () => {
@@ -21,33 +35,59 @@ const ScrollToTop = () => {
 // match any segment and render only when it starts with @.
 const ChannelRoute = ({ children }: { children: ReactNode }) => (getChannelAddressFromHandle(useParams().channelHandle) ? children : <NotFound />);
 
-const App = () => (
-  <div className={styles.app}>
-    <ScrollToTop />
-    <AppHeader />
-    <main className={styles.main}>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route
-          path='/:channelHandle'
-          element={
-            <ChannelRoute>
-              <Channel />
-            </ChannelRoute>
-          }
-        />
-        <Route
-          path='/:channelHandle/v/:videoCid'
-          element={
-            <ChannelRoute>
-              <Watch />
-            </ChannelRoute>
-          }
-        />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </main>
-  </div>
-);
+const App = () => {
+  const [sidebarExpanded, setSidebarExpanded] = useState(readSidebarExpanded);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // The menu button expands the rail on wide screens and opens the drawer on small ones.
+  const toggleSidebar = () => {
+    if (window.matchMedia(SMALL_SCREEN_QUERY).matches) {
+      setDrawerOpen((open) => !open);
+      return;
+    }
+    const next = !sidebarExpanded;
+    setSidebarExpanded(next);
+    try {
+      window.localStorage.setItem(SIDEBAR_EXPANDED_KEY, String(next));
+    } catch {
+      // Not persisted; the choice still applies to this page.
+    }
+  };
+
+  return (
+    <div className={styles.app}>
+      <ScrollToTop />
+      <AppHeader onToggleSidebar={toggleSidebar} />
+      <div className={styles.body}>
+        <Sidebar expanded={sidebarExpanded} drawerOpen={drawerOpen} onCloseDrawer={() => setDrawerOpen(false)} />
+        <main className={styles.main}>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            {PLANNED_PAGES.map((page) => (
+              <Route key={page.path} path={page.path} element={<Planned />} />
+            ))}
+            <Route
+              path='/:channelHandle'
+              element={
+                <ChannelRoute>
+                  <Channel />
+                </ChannelRoute>
+              }
+            />
+            <Route
+              path='/:channelHandle/v/:videoCid'
+              element={
+                <ChannelRoute>
+                  <Watch />
+                </ChannelRoute>
+              }
+            />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
+    </div>
+  );
+};
 
 export default App;

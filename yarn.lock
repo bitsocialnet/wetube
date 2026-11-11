@@ -7407,6 +7407,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:0.563.0":
+  version: 0.563.0
+  resolution: "lucide-react@npm:0.563.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/4a2027be255755d64ce18040062426dec07a5da920c000d9cd330e383fa10716a584c927dc03e91daccc6e05f6f486d4f49d1bd009e5f7763aa6fcf704806554
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^1.4.3":
   version: 1.4.5
   resolution: "magic-string@npm:1.4.5"
@@ -10746,6 +10755,7 @@ __metadata:
     isomorphic-fetch: "npm:3.0.0"
     js-yaml: "npm:5.5.0"
     knip: "npm:6.42.1"
+    lucide-react: "npm:0.563.0"
     oxc-parser: "npm:0.152.0"
     oxfmt: "npm:0.74.0"
     oxlint: "npm:1.89.0"
