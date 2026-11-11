@@ -253,7 +253,7 @@ export const isPlayableVideoPost = (comment: VideoComment | undefined) => Boolea
 // Change the key whenever the filter's rules change, so cached feeds are rebuilt.
 export const videoPostsFilter: CommentsFilter = { key: 'wetube-playable-video-v1', filter: (comment) => isPlayableVideoPost(comment) };
 
-export type PreviewSource = { kind: 'video'; url: string } | { kind: 'iframe'; url: string; referrerPolicy: 'origin' | 'no-referrer' };
+export type PreviewSource = { kind: 'video'; url: string } | { kind: 'iframe'; player: 'youtube' | 'vimeo'; url: string; referrerPolicy: 'origin' | 'no-referrer' };
 
 /**
  * What a card plays, muted, while the pointer rests on its thumbnail. A direct file is preferred: it
@@ -278,10 +278,10 @@ export const getPreviewSource = (video: Pick<Video, 'sources'>): PreviewSource |
       loop: '1',
       playlist: youtubeId,
     });
-    return { kind: 'iframe', url: `${youtube.playUrl}?${params}`, referrerPolicy: 'origin' };
+    return { kind: 'iframe', player: 'youtube', url: `${youtube.playUrl}?${params}`, referrerPolicy: 'origin' };
   }
   const vimeo = video.sources.find((source) => source.kind === 'vimeo');
   // background=1 is Vimeo's muted, looping, controls-free mode.
-  if (vimeo) return { kind: 'iframe', url: `${vimeo.playUrl}&background=1`, referrerPolicy: 'no-referrer' };
+  if (vimeo) return { kind: 'iframe', player: 'vimeo', url: `${vimeo.playUrl}&background=1`, referrerPolicy: 'no-referrer' };
   return undefined;
 };

@@ -37,6 +37,14 @@
   pointer-events: none;
 }
 
+/* YouTube's embed overlays a title bar along its top edge and its logo along the bottom. A frame twice as
+   tall as the thumbnail still shows the 16:9 video edge to edge, centered, and leaves those edges outside
+   the thumbnail, which clips them. */
+.preview[data-player='youtube'] {
+  top: -50%;
+  height: 200%;
+}
+
 .preview[data-shown] {
   opacity: 1;
   transition: opacity 0.2s ease;

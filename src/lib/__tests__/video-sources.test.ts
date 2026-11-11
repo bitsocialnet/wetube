@@ -154,10 +154,11 @@ describe('getPreviewSource', () => {
 
   it('falls back to a muted YouTube embed, then Vimeo in background mode', () => {
     const youtube = getPreviewSource(sources('https://video.blender.org/w/2PcJe5aZqozRvH7MJ8BTmC', 'https://youtu.be/dQw4w9WgXcQ'));
-    expect(youtube).toMatchObject({ kind: 'iframe', referrerPolicy: 'origin' });
+    expect(youtube).toMatchObject({ kind: 'iframe', player: 'youtube', referrerPolicy: 'origin' });
     expect(youtube?.kind === 'iframe' && new URL(youtube.url).searchParams.get('mute')).toBe('1');
     expect(getPreviewSource(sources('https://vimeo.com/1084537'))).toEqual({
       kind: 'iframe',
+      player: 'vimeo',
       url: 'https://player.vimeo.com/video/1084537?dnt=1&background=1',
       referrerPolicy: 'no-referrer',
     });

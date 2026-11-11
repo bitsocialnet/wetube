@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { useChannel } from '../../hooks/use-channel';
 import { useHoverPreview } from '../../hooks/use-hover-preview';
+import { useYouTubePlaying } from '../../hooks/use-youtube-playing';
 import { channelPath, shortAddress, videoPath } from '../../lib/channels';
 import { timeAgo } from '../../lib/format';
 import { preconnect } from '../../lib/preconnect';
+import { withYouTubeJsApi } from '../../lib/youtube-embed';
 import { getPreviewSource, getVideo, type PreviewSource } from '../../lib/video-sources';
 import { ChannelAvatar } from '../channel-avatar';
 import styles from './video-card.module.css';
@@ -54,19 +56,34 @@ const Thumbnail = ({ urls, frameUrl, label }: { urls: string[]; frameUrl?: strin
   );
 };
 
-// An embed reports its page loaded before its player shows a frame; this covers the player's start-up.
-const EMBED_START_MS = 1200;
+// After an embed's page loads, how long to wait before showing it anyway: a YouTube embed reports when it
+// starts playing (useYouTubePlaying), so its wait is only a fallback; Vimeo's covers its player start-up.
+const EMBED_FALLBACK_MS = { youtube: 3000, vimeo: 1200 } as const;
+// YouTube flashes a play/pause animation in the middle of the player as playback starts; wait it out.
+const YOUTUBE_START_ANIMATION_MS = 400;
 
-// Loads muted over the thumbnail while hidden, and shows once `visible` and it has a frame, so the
-// thumbnail never flashes black.
+// Loads muted over the thumbnail while hidden, and shows once `visible` and playing, so the thumbnail
+// never flashes black.
 const Preview = ({ source, title, visible }: { source: PreviewSource; title: string; visible: boolean }) => {
   const [ready, setReady] = useState(false);
   const [embedLoaded, setEmbedLoaded] = useState(false);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const [youTubePlaying, setYouTubePlaying] = useState(false);
+  const markReady = useCallback(() => setReady(true), []);
+  const markYouTubePlaying = useCallback(() => setYouTubePlaying(true), []);
+  const player = source.kind === 'iframe' ? source.player : undefined;
+  const embedUrl = useMemo(() => (source.kind === 'iframe' && source.player === 'youtube' ? withYouTubeJsApi(source.url, window.location.origin) : source.url), [source]);
+  useYouTubePlaying(frameRef, embedLoaded && player === 'youtube', markYouTubePlaying);
   useEffect(() => {
-    if (!embedLoaded) return;
-    const timer = window.setTimeout(() => setReady(true), EMBED_START_MS);
+    if (!youTubePlaying) return;
+    const timer = window.setTimeout(markReady, YOUTUBE_START_ANIMATION_MS);
     return () => window.clearTimeout(timer);
-  }, [embedLoaded]);
+  }, [youTubePlaying, markReady]);
+  useEffect(() => {
+    if (!embedLoaded || !player) return;
+    const timer = window.setTimeout(markReady, EMBED_FALLBACK_MS[player]);
+    return () => window.clearTimeout(timer);
+  }, [embedLoaded, player, markReady]);
   const shown = (visible && ready) || undefined;
   return source.kind === 'video' ? (
     <video
@@ -80,13 +97,15 @@ const Preview = ({ source, title, visible }: { source: PreviewSource; title: str
       preload='auto'
       tabIndex={-1}
       aria-hidden='true'
-      onPlaying={() => setReady(true)}
+      onPlaying={markReady}
     />
   ) : (
     <iframe
+      ref={frameRef}
       className={styles.preview}
       data-shown={shown}
-      src={source.url}
+      data-player={player}
+      src={embedUrl}
       title={`Preview of ${title}`}
       allow='autoplay; encrypted-media'
       sandbox='allow-scripts allow-same-origin'
