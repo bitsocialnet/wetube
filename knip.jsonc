@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@5.86.0/schema-jsonc.json",
+  "ignoreFiles": [
+    // Swapped in for zustand/shallow by a vite.config.ts alias, not imported by the app graph.
+    "src/lib/zustand-shallow-shim.ts"
+  ],
+  "ignoreDependencies": [
+    // Node built-in polyfills wired through vite.config.ts aliases, which Knip does not trace.
+    "assert",
+    "buffer",
+    "crypto-browserify",
+    "events",
+    "process",
+    "util",
+    // Binaries the dev and browser scripts resolve from node_modules/.bin by path.
+    "@playwright/cli",
+    "portless"
+  ]
+}

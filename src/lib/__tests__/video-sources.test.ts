@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getVideo, getVideoSources, isPlayableVideoPost, parseVideoSource, splitVideoContent } from './video-sources';
+import { getVideo, getVideoSources, isPlayableVideoPost, parseVideoSource, splitVideoContent } from '../video-sources';
 
 describe('parseVideoSource', () => {
   it('embeds YouTube watch, short, shorts and live links through youtube-nocookie', () => {

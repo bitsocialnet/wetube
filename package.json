@@ -7,13 +7,22 @@
   "license": "GPL-3.0-or-later",
   "packageManager": "yarn@4.17.1",
   "scripts": {
-    "start": "vite",
+    "start": "node scripts/start-dev.js",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "type-check": "tsc --noEmit",
-    "lint": "oxlint --deny-warnings src",
-    "format": "oxfmt src"
+    "lint": "oxlint --deny-warnings src && corepack yarn boundaries",
+    "boundaries": "node scripts/check-module-boundaries.mjs",
+    "format": "oxfmt src scripts",
+    "knip": "knip --production --include dependencies,unlisted,binaries --no-progress",
+    "knip:full": "knip --no-progress --no-exit-code",
+    "doctor": "react-doctor . -y",
+    "deps:check-pinned": "node scripts/check-pinned-versions.mjs",
+    "agent:verify": "node scripts/agent-verify.mjs",
+    "ai-workflow:sync": "node scripts/sync-ai-workflow.mjs",
+    "ai-workflow:check": "node scripts/validate-ai-workflow.mjs",
+    "ai-workflow:test": "node --test --test-concurrency=1 scripts/__tests__/*.node-test.mjs"
   },
   "dependencies": {
     "@bitsocial/bitsocial-react-hooks": "0.2.2",
@@ -30,12 +39,22 @@
     "util": "0.12.5"
   },
   "devDependencies": {
+    "@playwright/cli": "0.1.22",
     "@types/node": "22.20.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
+    "agentation": "3.1.2",
+    "cross-spawn": "7.0.6",
+    "element-source": "0.0.5",
+    "js-yaml": "5.5.0",
+    "knip": "6.42.1",
+    "oxc-parser": "0.152.0",
     "oxfmt": "0.74.0",
     "oxlint": "1.89.0",
+    "portless": "0.11.1",
+    "react-doctor": "0.9.18",
+    "smol-toml": "1.9.1",
     "typescript": "7.0.2",
     "vite": "8.3.5",
     "vitest": "5.0.5"

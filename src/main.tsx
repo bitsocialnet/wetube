@@ -7,6 +7,8 @@ import './index.css';
 
 // The hooks read window.defaultPkcOptions when they first load, so configure it before importing the app.
 configurePkcOptions();
+// Development inspectors (Agentation, element-source); the guarded import is dropped from production builds.
+if (import.meta.env.DEV) void import('./lib/dev-tools');
 const { default: App } = await import('./app');
 
 createRoot(document.getElementById('root') as HTMLElement).render(

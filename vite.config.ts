@@ -42,7 +42,21 @@ export default defineConfig({
   },
   optimizeDeps: {
     entries: ['index.html'],
-    include: ['ethers', 'assert', 'buffer', 'process', 'util', 'stream-browserify', 'isomorphic-fetch'],
+    include: [
+      'ethers',
+      'assert',
+      'buffer',
+      'process',
+      'util',
+      'stream-browserify',
+      'isomorphic-fetch',
+      // The dev-only inspectors in src/lib/dev-tools.ts. Discovered late, they were bundled in a second
+      // optimizer pass with their own copy of React, which broke Agentation with an invalid hook call.
+      'react',
+      'react-dom/client',
+      'agentation',
+      'element-source',
+    ],
   },
   define: {
     'process.version': JSON.stringify(''),
@@ -51,6 +65,6 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'scripts/**/*.test.js'],
   },
 });

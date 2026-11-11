@@ -8,11 +8,11 @@ WeTube is part of [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#
 
 ## Development
 
-The client is a static React app using the same stack as 5chan: Vite, TypeScript, `@bitsocial/bitsocial-react-hooks` and pkc-js running in the browser.
+The client is a static React app using the same stack as 5chan: Vite, TypeScript, `@bitsocial/bitsocial-react-hooks` and pkc-js running in the browser. Agents working on it follow [AGENTS.md](AGENTS.md), the same workflow as the other Bitsocial clients.
 
 ```sh
 corepack yarn install
-corepack yarn start   # http://localhost:5180
+corepack yarn start   # https://wetube.localhost through Portless; PORTLESS=0 serves http://localhost:5180
 corepack yarn test
 corepack yarn build   # static output in build/
 ```

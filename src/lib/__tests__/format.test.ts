@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { plural, timeAgo } from './format';
-import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress, videoPath } from './channels';
+import { plural, timeAgo } from '../format';
+import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress, videoPath } from '../channels';
 
 describe('timeAgo', () => {
   const now = 1_800_000_000_000;
