@@ -31,7 +31,7 @@ test('shared sources generate valid, deterministic harness outputs', (t) => {
   assert.equal(fs.existsSync(path.join(root, '.cursor')), false);
   const result = validateWorkflow(root);
   assert.deepEqual(result.errors, []);
-  assert.equal(result.roles, 2);
+  assert.equal(result.roles, 3);
   const codexBrowserCheck = before.get('.codex/agents/browser-check.toml');
   assert.match(codexBrowserCheck, /name = ['"]browser-check['"]/);
   assert.doesNotMatch(codexBrowserCheck, /(?:^|\n)model\s*=/);

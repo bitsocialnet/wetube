@@ -37,13 +37,14 @@ The AI directories use LF line endings through `.gitattributes` so generated tex
 | `playwright-cli`, `inspect-elements` | Browser verification and DOM-to-source mapping |
 | `implement-plan` | Execute a plan with optional bounded delegation |
 | `readme` | Maintain verified project documentation |
+| `translate` | Generate translations, then apply maps through a single writer |
 | `context7` | Retrieve version-appropriate library documentation |
 | `ui-sdk` | Build interactive components on UI SDK; copied from `vercel-labs/ui` `packages/core/skills/ui-sdk` at `220c1a0`, refresh it when bumping `@ui-sdk/*` |
 | `find-skills` | Find additional skills when explicitly requested |
 
 ## Roles and models
 
-Keep custom roles for `browser-check` and `reviewer`. Use the harness's built-in worker/general-purpose or explorer role for ordinary implementation and code discovery. The parent assigns acceptance criteria and ownership; one owner runs heavyweight checks.
+Keep custom roles for `browser-check`, `translator`, and `reviewer`. Use the harness's built-in worker/general-purpose or explorer role for ordinary implementation and code discovery. The parent assigns acceptance criteria and ownership; one owner runs heavyweight checks.
 
 Codex agent files include `name`, `description`, and `developer_instructions`. `.codex/config.toml` caps concurrent children at four using `max_concurrent_threads_per_session`. Shared role metadata contains the name, description, and optional sandbox mode; it deliberately has no model fields.
 
@@ -57,7 +58,7 @@ Shared skill frontmatter uses `disable-model-invocation: true` for user-invoked 
 
 - `yarn ai-workflow:sync` regenerates compatibility outputs using installed `js-yaml` and `smol-toml`.
 - `yarn ai-workflow:check` parses source/frontmatter/configs, checks generated outputs, invocation metadata, model-field placement, and the formatter-only hook wiring. It does not resolve model identifiers against a provider catalog.
-- `yarn ai-workflow:test` runs isolated Node fixtures for hook payloads, verification ownership, and workflow generation/validation.
+- `yarn ai-workflow:test` runs isolated Node fixtures for hook payloads, verification ownership, translation writers, and workflow generation/validation.
 - After upgrading an agent application, verify skill/role discovery in that application. Syntax/parity checks do not replace a loader check. Reload the application if an existing session retains an old catalog.
 - Hooks require the harness's project trust and hook review; do not bypass trust to make a check pass. See [hooks-setup.md](hooks-setup.md).
 
