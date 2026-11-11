@@ -2,10 +2,94 @@
   margin-top: 24px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
 .heading {
-  margin: 0 0 16px;
-  font-size: 18px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sort {
+  position: relative;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  background: none;
+  border: 0;
+  font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.sortMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 20;
+  min-width: 180px;
+  padding: 8px 0;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+}
+
+.sortOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: 0;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sortOption:hover {
+  background: var(--surface-hover);
+}
+
+.check {
+  display: inline-flex;
+  width: 16px;
+}
+
+.compose {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.compose > :last-child {
+  flex: 1;
+}
+
+.composeField {
+  width: 100%;
+  padding: 8px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+  text-align: left;
+  cursor: text;
+}
+
+.composeField:hover {
+  border-bottom-color: var(--muted);
 }
 
 .list {
@@ -27,8 +111,6 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 36px;
-  height: 36px;
   border-radius: 50%;
   color: #ffffff;
   font-weight: 600;
@@ -39,8 +121,7 @@
 }
 
 .meta,
-.content,
-.stats {
+.content {
   margin: 0;
 }
 
@@ -64,10 +145,35 @@
 
 .stats {
   display: flex;
-  gap: 14px;
-  margin-top: 6px;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+}
+
+.voteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.voteButton:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.replies {
+  margin-left: 8px;
+  font-weight: 600;
 }
 
 .empty {
