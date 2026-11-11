@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import { useNotifications, type Notification } from '@bitsocial/bitsocial-react-hooks';
 import { Bell } from 'lucide-react';
 import { useDismiss } from '../../hooks/use-dismiss';
+import { useFormat } from '../../hooks/use-format';
 import { shortAddress, videoPath } from '../../lib/channels';
-import { timeAgo } from '../../lib/format';
 import styles from './notifications-menu.module.css';
 
 const MAX_SHOWN = 20;
 
 // A notification is a reply to one of the account's comments; it opens the video it was posted under.
 const NotificationItem = ({ notification, onOpen }: { notification: Notification; onOpen: () => void }) => {
-  const author: string = notification.author?.displayName || shortAddress(notification.author?.address) || 'Someone';
+  const { t, timeAgo } = useFormat();
+  const author: string = notification.author?.displayName || shortAddress(notification.author?.address) || t('someone');
   const text: string = notification.content || notification.title || '';
   const content = (
     <>
       <span className={styles.itemText}>
-        <strong>{author}</strong> replied: {text.length > 120 ? `${text.slice(0, 120)}…` : text}
+        <strong>{author}</strong> {t('replied')} {text.length > 120 ? `${text.slice(0, 120)}…` : text}
       </span>
       {notification.timestamp && <span className={styles.itemTime}>{timeAgo(notification.timestamp)}</span>}
     </>
@@ -35,6 +36,7 @@ const NotificationItem = ({ notification, onOpen }: { notification: Notification
 /** YouTube's notification bell, fed by the account's notifications from bitsocial-react-hooks. */
 export const NotificationsMenu = () => {
   const { notifications, markAsRead } = useNotifications();
+  const { t, count } = useFormat();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -57,7 +59,7 @@ export const NotificationsMenu = () => {
         ref={buttonRef}
         type='button'
         className={styles.trigger}
-        aria-label={unread > 0 ? `Notifications, ${unread} unread` : 'Notifications'}
+        aria-label={unread > 0 ? t('notifications_unread', { number: count(unread) }) : t('notifications')}
         aria-haspopup='dialog'
         aria-expanded={open}
         onClick={toggle}
@@ -66,10 +68,10 @@ export const NotificationsMenu = () => {
         {unread > 0 && <span className={styles.badge}>{unread > 9 ? '9+' : unread}</span>}
       </button>
       {open && (
-        <div className={styles.panel} role='dialog' aria-label='Notifications'>
-          <h2 className={styles.title}>Notifications</h2>
+        <div className={styles.panel} role='dialog' aria-label={t('notifications')}>
+          <h2 className={styles.title}>{t('notifications')}</h2>
           {notifications.length === 0 ? (
-            <p className={styles.empty}>No notifications yet. Replies to your comments will show up here.</p>
+            <p className={styles.empty}>{t('no_notifications')}</p>
           ) : (
             <div className={styles.list}>
               {notifications.slice(0, MAX_SHOWN).map((notification) => (

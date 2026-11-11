@@ -1,31 +1,20 @@
 import type { CommentsFilter } from '@bitsocial/bitsocial-react-hooks';
 import { getVideo, isPlayableVideoPost, type VideoComment } from './video-sources';
 
-// Home page filters, kept in the URL so a filtered view can be shared. Duration is missing because video
-// posts do not carry one yet (open-questions.md).
-export const SORT_OPTIONS = [
-  { value: 'hot', label: 'Popular' },
-  { value: 'new', label: 'Upload date' },
-  { value: 'active', label: 'Recent comments' },
-  { value: 'topAll', label: 'Most liked' },
-] as const;
+// Home page filters, kept in the URL so a filtered view can be shared; views/home labels each option.
+// Duration is missing because video posts do not carry one yet (open-questions.md).
+export const SORT_OPTIONS = [{ value: 'hot' }, { value: 'new' }, { value: 'active' }, { value: 'topAll' }] as const;
 
 export const DATE_OPTIONS = [
-  { value: 'day', label: 'Today', seconds: 24 * 3600 },
-  { value: 'week', label: 'This week', seconds: 7 * 24 * 3600 },
-  { value: 'month', label: 'This month', seconds: 30 * 24 * 3600 },
-  { value: 'year', label: 'This year', seconds: 365 * 24 * 3600 },
+  { value: 'day', seconds: 24 * 3600 },
+  { value: 'week', seconds: 7 * 24 * 3600 },
+  { value: 'month', seconds: 30 * 24 * 3600 },
+  { value: 'year', seconds: 365 * 24 * 3600 },
 ] as const;
 
-export const SOURCE_OPTIONS = [
-  { value: 'youtube', label: 'YouTube' },
-  { value: 'peertube', label: 'PeerTube' },
-  { value: 'vimeo', label: 'Vimeo' },
-  { value: 'file', label: 'Video files' },
-  { value: 'ipfs', label: 'IPFS' },
-] as const;
+export const SOURCE_OPTIONS = [{ value: 'youtube' }, { value: 'peertube' }, { value: 'vimeo' }, { value: 'file' }, { value: 'ipfs' }] as const;
 
-export const FEATURE_OPTIONS = [{ value: 'mirrored', label: 'Mirrored (2+ sources)' }] as const;
+export const FEATURE_OPTIONS = [{ value: 'mirrored' }] as const;
 
 export interface HomeFilters {
   sort: (typeof SORT_OPTIONS)[number]['value'];

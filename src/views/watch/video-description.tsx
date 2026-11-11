@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
-import { timeAgo } from '../../lib/format';
+import { useFormat } from '../../hooks/use-format';
 import type { Video } from '../../lib/video-sources';
 import styles from './watch.module.css';
 
@@ -13,6 +13,7 @@ interface VideoDescriptionProps {
 }
 
 export const VideoDescription = ({ post, video }: VideoDescriptionProps) => {
+  const { t, timeAgo, count } = useFormat();
   const [expanded, setExpanded] = useState(false);
   const edit = post.edit as { timestamp?: number; reason?: string } | undefined;
   const long = video.description.length > COLLAPSED_LENGTH || video.sources.length > 1;
@@ -20,9 +21,9 @@ export const VideoDescription = ({ post, video }: VideoDescriptionProps) => {
   return (
     <div className={styles.description} data-expanded={expanded || undefined}>
       <p className={styles.descriptionMeta}>
-        <span title='View counts are not available yet'>? views</span>
+        <span title={t('views_unavailable')}>{t('unknown_views')}</span>
         {post.timestamp ? <span>{timeAgo(post.timestamp)}</span> : null}
-        {video.sources.length > 1 && <span>Mirrored on {video.sources.length} hosts</span>}
+        {video.sources.length > 1 && <span>{t('mirrored_on_hosts', { number: count(video.sources.length) })}</span>}
       </p>
       {video.description && (
         <p className={styles.descriptionText} data-clamped={!expanded || undefined}>
@@ -31,11 +32,12 @@ export const VideoDescription = ({ post, video }: VideoDescriptionProps) => {
       )}
       {expanded && (
         // WeTube's own section: where the video plays from, which only the channel owner can change.
-        <section className={styles.mirrors} aria-label='Sources'>
-          <h2 className={styles.mirrorsTitle}>Sources</h2>
+        <section className={styles.mirrors} aria-label={t('sources')}>
+          <h2 className={styles.mirrorsTitle}>{t('sources')}</h2>
           <p className={styles.mirrorsNote}>
-            WeTube plays the first source that works. The channel owner can add, remove or reorder them at any time; the video keeps its page, comments and likes.
-            {edit?.timestamp ? ` Last updated ${timeAgo(edit.timestamp)}${edit.reason ? ` (“${edit.reason}”)` : ''}.` : ''}
+            {t('sources_note')}
+            {edit?.timestamp &&
+              ` ${edit.reason ? t('last_updated_with_reason', { time: timeAgo(edit.timestamp), reason: edit.reason }) : t('last_updated', { time: timeAgo(edit.timestamp) })}`}
           </p>
           <ol className={styles.mirrorsList}>
             {video.sources.map((source) => (
@@ -51,7 +53,7 @@ export const VideoDescription = ({ post, video }: VideoDescriptionProps) => {
       )}
       {long && (
         <button type='button' className={styles.moreButton} aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>
-          {expanded ? 'Show less' : '…more'}
+          {expanded ? t('show_less') : t('more')}
         </button>
       )}
     </div>

@@ -2,7 +2,7 @@ import { useLayoutEffect, useState, type ReactNode } from 'react';
 import { Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
 import { AppHeader } from './components/app-header';
 import { Sidebar } from './components/sidebar';
-import { PLANNED_PAGES } from './data/navigation';
+import { PLANNED_PAGE_PATHS } from './data/navigation';
 import { getChannelAddressFromHandle, getChannelSection, getScrollPage } from './lib/channels';
 import Channel from './views/channel';
 import Home from './views/home';
@@ -72,8 +72,8 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/feed/watch-later' element={<WatchLater />} />
-            {PLANNED_PAGES.map((page) => (
-              <Route key={page.path} path={page.path} element={<Planned />} />
+            {PLANNED_PAGE_PATHS.map((path) => (
+              <Route key={path} path={path} element={<Planned />} />
             ))}
             <Route
               path='/:channelHandle/:channelSection?'

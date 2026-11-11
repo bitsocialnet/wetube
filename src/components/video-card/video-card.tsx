@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
+import { useTranslation } from 'react-i18next';
 import { useChannel } from '../../hooks/use-channel';
+import { useFormat } from '../../hooks/use-format';
 import { useHoverPreview } from '../../hooks/use-hover-preview';
 import { useYouTubePlaying } from '../../hooks/use-youtube-playing';
 import { channelPath, shortAddress, videoPath } from '../../lib/channels';
-import { timeAgo } from '../../lib/format';
 import { preconnect } from '../../lib/preconnect';
 import { withYouTubeJsApi } from '../../lib/youtube-embed';
 import { getPreviewSource, getVideo, type PreviewSource } from '../../lib/video-sources';
@@ -65,6 +66,7 @@ const YOUTUBE_START_ANIMATION_MS = 400;
 // Loads muted over the thumbnail while hidden, and shows once `visible` and playing, so the thumbnail
 // never flashes black.
 const Preview = ({ source, title, visible }: { source: PreviewSource; title: string; visible: boolean }) => {
+  const { t } = useTranslation();
   const [ready, setReady] = useState(false);
   const [embedLoaded, setEmbedLoaded] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
@@ -106,7 +108,7 @@ const Preview = ({ source, title, visible }: { source: PreviewSource; title: str
       data-shown={shown}
       data-player={player}
       src={embedUrl}
-      title={`Preview of ${title}`}
+      title={t('preview_of', { title })}
       allow='autoplay; encrypted-media'
       sandbox='allow-scripts allow-same-origin'
       referrerPolicy={source.referrerPolicy}
@@ -118,6 +120,7 @@ const Preview = ({ source, title, visible }: { source: PreviewSource; title: str
 };
 
 export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCardProps) => {
+  const { t, timeAgo } = useFormat();
   const video = useMemo(() => getVideo(post), [post]);
   const channelAddress: string = post.communityAddress;
   const channel = useChannel(showChannel ? channelAddress : undefined, { onlyIfCached: true });
@@ -134,13 +137,14 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
 
   const href = videoPath(channelAddress, post.cid);
   const channelTitle = channel.title || shortAddress(channelAddress);
+  const title = video.title || t('untitled_video');
 
   return (
     <article className={styles[layout === 'grid' ? 'card' : layout]}>
       {/* The title link is the accessible one; the thumbnail repeats it for pointer users. */}
       <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true' onPointerEnter={preview.onPointerEnter} onPointerLeave={preview.onPointerLeave}>
         <Thumbnail urls={video.thumbnailUrls} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
-        {preview.loading && previewSource && <Preview source={previewSource} title={video.title} visible={preview.visible} />}
+        {preview.loading && previewSource && <Preview source={previewSource} title={title} visible={preview.visible} />}
       </Link>
       <div className={styles.details}>
         {showChannel && layout === 'grid' && (
@@ -150,7 +154,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
         )}
         <div className={styles.text}>
           <h3 className={styles.title}>
-            <Link to={href}>{video.title}</Link>
+            <Link to={href}>{title}</Link>
           </h3>
           {showChannel && (
             <Link to={channelPath(channelAddress)} className={styles.channelName}>
@@ -159,7 +163,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
           )}
           <p className={styles.stats}>
             {/* View counts come from view providers, which are not built yet (views.md). */}
-            <span title='View counts are not available yet'>? views</span>
+            <span title={t('views_unavailable')}>{t('unknown_views')}</span>
             {post.timestamp ? ` · ${timeAgo(post.timestamp)}` : ''}
           </p>
           {layout === 'list' && video.description && <p className={styles.description}>{video.description}</p>}

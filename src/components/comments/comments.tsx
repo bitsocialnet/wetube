@@ -1,19 +1,18 @@
 import { useCallback, useRef, useState } from 'react';
 import { useAccount, useReplies, type Comment } from '@bitsocial/bitsocial-react-hooks';
+import { useTranslation } from 'react-i18next';
 import { Check, ListFilter, ThumbsDown, ThumbsUp } from 'lucide-react';
+import type { TFunction } from 'i18next';
 import { useDismiss } from '../../hooks/use-dismiss';
+import { useFormat } from '../../hooks/use-format';
 import { channelHue, shortAddress } from '../../lib/channels';
-import { formatCount, plural, timeAgo } from '../../lib/format';
 import { SignInPrompt } from '../sign-in-prompt';
 import styles from './comments.module.css';
 
-const SORTS = [
-  { value: 'best', label: 'Top comments' },
-  { value: 'new', label: 'Newest first' },
-] as const;
-type Sort = (typeof SORTS)[number]['value'];
+const SORTS = ['best', 'new'] as const;
+type Sort = (typeof SORTS)[number];
 
-const authorName = (comment: Comment) => comment.author?.displayName || shortAddress(comment.author?.address) || 'Anonymous';
+const authorName = (comment: Comment, t: TFunction) => comment.author?.displayName || shortAddress(comment.author?.address) || t('anonymous');
 
 const Avatar = ({ seed, name, size = 36 }: { seed: string; name: string; size?: number }) => (
   <span className={styles.avatar} style={{ width: size, height: size, background: `hsl(${channelHue(seed)} 45% 40%)` }} aria-hidden='true'>
@@ -22,7 +21,8 @@ const Avatar = ({ seed, name, size = 36 }: { seed: string; name: string; size?: 
 );
 
 const CommentItem = ({ comment }: { comment: Comment }) => {
-  const name = authorName(comment);
+  const { t, timeAgo, count } = useFormat();
+  const name = authorName(comment, t);
   const address: string = comment.author?.address ?? '';
   return (
     <li className={styles.comment}>
@@ -38,23 +38,27 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
         <div className={styles.stats}>
           <SignInPrompt
             className={styles.voteButton}
-            label={`Like (${plural(comment.upvoteCount, 'like')})`}
-            title='Like this comment?'
-            text='Sign in to make your opinion count.'
+            label={t('like_label', { likes: comment.upvoteCount === 1 ? t('one_like') : t('x_likes', { number: count(comment.upvoteCount) }) })}
+            title={t('like_comment_title')}
+            text={t('sign_in_to_vote')}
           >
             <ThumbsUp size={16} aria-hidden='true' />
-            {formatCount(comment.upvoteCount)}
+            {count(comment.upvoteCount)}
           </SignInPrompt>
           <SignInPrompt
             className={styles.voteButton}
-            label={`Dislike (${plural(comment.downvoteCount, 'dislike')})`}
-            title="Don't like this comment?"
-            text='Sign in to make your opinion count.'
+            label={t('dislike_label', {
+              dislikes: comment.downvoteCount === 1 ? t('one_dislike') : t('x_dislikes', { number: count(comment.downvoteCount) }),
+            })}
+            title={t('dislike_comment_title')}
+            text={t('sign_in_to_vote')}
           >
             <ThumbsDown size={16} aria-hidden='true' />
-            {formatCount(comment.downvoteCount)}
+            {count(comment.downvoteCount)}
           </SignInPrompt>
-          {(comment.replyCount ?? 0) > 0 && <span className={styles.replies}>{plural(comment.replyCount, 'reply', 'replies')}</span>}
+          {(comment.replyCount ?? 0) > 0 && (
+            <span className={styles.replies}>{comment.replyCount === 1 ? t('one_reply') : t('x_replies', { number: count(comment.replyCount) })}</span>
+          )}
         </div>
       </div>
     </li>
@@ -62,6 +66,8 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
 };
 
 const SortMenu = ({ sort, onChange }: { sort: Sort; onChange: (sort: Sort) => void }) => {
+  const { t } = useTranslation();
+  const labels: Record<Sort, string> = { best: t('top_comments'), new: t('newest_first') };
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const close = useCallback(() => setOpen(false), []);
@@ -70,24 +76,24 @@ const SortMenu = ({ sort, onChange }: { sort: Sort; onChange: (sort: Sort) => vo
     <div className={styles.sort} ref={rootRef}>
       <button type='button' className={styles.sortButton} aria-haspopup='menu' aria-expanded={open} onClick={() => setOpen(!open)}>
         <ListFilter size={20} aria-hidden='true' />
-        Sort by
+        {t('sort_by')}
       </button>
       {open && (
-        <div className={styles.sortMenu} role='menu' aria-label='Sort comments'>
+        <div className={styles.sortMenu} role='menu' aria-label={t('sort_comments')}>
           {SORTS.map((option) => (
             <button
-              key={option.value}
+              key={option}
               type='button'
               role='menuitemradio'
-              aria-checked={sort === option.value}
+              aria-checked={sort === option}
               className={styles.sortOption}
               onClick={() => {
-                onChange(option.value);
+                onChange(option);
                 setOpen(false);
               }}
             >
-              <span className={styles.check}>{sort === option.value && <Check size={16} aria-hidden='true' />}</span>
-              {option.label}
+              <span className={styles.check}>{sort === option && <Check size={16} aria-hidden='true' />}</span>
+              {labels[option]}
             </button>
           ))}
         </div>
@@ -99,23 +105,24 @@ const SortMenu = ({ sort, onChange }: { sort: Sort; onChange: (sort: Sort) => vo
 /** Top-level comments under a video, with a sort menu and a comment box that asks the viewer to sign in. */
 export const Comments = ({ post }: { post: Comment | undefined }) => {
   const [sort, setSort] = useState<Sort>('best');
+  const { t, count } = useFormat();
   const account = useAccount();
   const { replies, hasMore, loadMore } = useReplies({ comment: post?.cid ? post : undefined, sortType: sort, repliesPerPage: 20 });
   const visibleReplies = replies.filter((reply) => !reply.removed && !reply.deleted);
-  const accountName: string = account?.author?.displayName || 'Anonymous';
+  const accountName: string = account?.author?.displayName || t('anonymous');
 
   return (
     <section className={styles.comments} aria-labelledby='comments-heading'>
       <div className={styles.header}>
         <h2 id='comments-heading' className={styles.heading}>
-          {plural(post?.replyCount, 'comment')}
+          {post?.replyCount === 1 ? t('one_comment') : t('x_comments', { number: count(post?.replyCount) })}
         </h2>
         <SortMenu sort={sort} onChange={setSort} />
       </div>
       <div className={styles.compose}>
         <Avatar seed={account?.author?.address || accountName} name={accountName} size={40} />
-        <SignInPrompt className={styles.composeField} title='Want to join the conversation?' text='Sign in to comment.'>
-          Add a comment…
+        <SignInPrompt className={styles.composeField} title={t('join_conversation_title')} text={t('sign_in_to_comment')}>
+          {t('add_comment')}
         </SignInPrompt>
       </div>
       {visibleReplies.length > 0 ? (
@@ -125,11 +132,11 @@ export const Comments = ({ post }: { post: Comment | undefined }) => {
           ))}
         </ul>
       ) : (
-        !hasMore && <p className={styles.empty}>No comments yet.</p>
+        !hasMore && <p className={styles.empty}>{t('no_comments')}</p>
       )}
       {hasMore && (
         <button type='button' className={styles.more} onClick={() => void loadMore()}>
-          {visibleReplies.length > 0 ? 'Show more comments' : 'Load comments'}
+          {visibleReplies.length > 0 ? t('show_more_comments') : t('load_comments')}
         </button>
       )}
     </section>

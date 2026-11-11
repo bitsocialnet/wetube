@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useChannel } from '../../hooks/use-channel';
 import { getChannelAddressFromHandle, getChannelIdentifier, getChannelSection } from '../../lib/channels';
 import { ChannelHeader } from './channel-header';
@@ -11,6 +12,7 @@ import { ChannelVideos } from './channel-videos';
 import styles from './channel.module.css';
 
 const Channel = () => {
+  const { t } = useTranslation();
   const { channelHandle, channelSection } = useParams();
   const channelAddress = getChannelAddressFromHandle(channelHandle) ?? '';
   // The app only routes known sections here.
@@ -27,7 +29,7 @@ const Channel = () => {
       <div key={channelAddress} className={styles.section}>
         {section === 'home' && <ChannelHome channelAddress={channelAddress} communities={communities} />}
         {section === 'videos' && <ChannelVideos channelAddress={channelAddress} communities={communities} />}
-        {section === 'playlists' && <p className={styles.empty}>This channel has no playlists. WeTube does not support playlists yet.</p>}
+        {section === 'playlists' && <p className={styles.empty}>{t('channel_no_playlists')}</p>}
         {section === 'posts' && <ChannelPosts communities={communities} />}
         {section === 'search' && <ChannelSearch communities={communities} query={query} />}
       </div>

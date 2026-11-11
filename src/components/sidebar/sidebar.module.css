@@ -32,6 +32,14 @@
   text-align: center;
 }
 
+/* A label may use the rail's padding, so up to its full 72px; a longer word ("Prenumerationer") is
+   hyphenated in the interface language (<html lang>) instead of being clipped by the rail. */
+.shortLabel {
+  margin-inline: -4px;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
 .item:hover {
   background: var(--surface);
 }

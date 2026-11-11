@@ -203,6 +203,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.29.7":
+  version: 7.29.13
+  resolution: "@babel/runtime@npm:7.29.13"
+  checksum: 10c0/6e589f63a3f9192bc8de99a5bc02ff14daf14590e8de77c0f3487f4b7c3784181c60dfad927986d232fbf5581723bb577aae704b42ec14c8c44ad05b590b96d6
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.29.7":
   version: 7.29.7
   resolution: "@babel/template@npm:7.29.7"
@@ -6143,6 +6150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-parse-stringify@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "html-parse-stringify@npm:4.0.1"
+  checksum: 10c0/8d7267acbc8b70a50096176e28ba491af89fb31613b6a062bce4b8201b2703fd652bedfbe0db6efe90145379c89524a3319b1b58b8c96a72779b0f49e4c2c180
+  languageName: node
+  linkType: hard
+
 "htmlparser2@npm:^10.1.0":
   version: 10.1.0
   resolution: "htmlparser2@npm:10.1.0"
@@ -6162,6 +6176,34 @@ __metadata:
     agent-base: "npm:6"
     debug: "npm:4"
   checksum: 10c0/6dd639f03434003577c62b27cafdb864784ef19b2de430d8ae2a1d45e31c4fd60719e5637b44db1a88a046934307da7089e03d6089ec3ddacc1189d8de8897d1
+  languageName: node
+  linkType: hard
+
+"i18next-browser-languagedetector@npm:8.2.1":
+  version: 8.2.1
+  resolution: "i18next-browser-languagedetector@npm:8.2.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+  checksum: 10c0/d200847a79b4cb2764ef59b33e5399085d4d56b2b038e884bb54fffe17953b467899142a6ef6e985592234f10049d14d06b80f2c56441ae80648c5a6717704f3
+  languageName: node
+  linkType: hard
+
+"i18next-http-backend@npm:4.0.4":
+  version: 4.0.4
+  resolution: "i18next-http-backend@npm:4.0.4"
+  checksum: 10c0/f7b6a07820f2a4917da1bd8af70c27ec6dfdfbb9b954240ad5d914cfcabc4b75288b821aa54e9394319e22d6db116b1a9af7a9346cca7f06966257c22872fe0d
+  languageName: node
+  linkType: hard
+
+"i18next@npm:26.5.7":
+  version: 26.5.7
+  resolution: "i18next@npm:26.5.7"
+  peerDependencies:
+    typescript: ^5 || ^6 || ^7
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/c5da205990515dfc0a963682d98506927ed51b5232d87e95b447bbae574d089be551c1c14ccc80ca25fb97665fc321a489009745082b626f665a8be68ea0e8af
   languageName: node
   linkType: hard
 
@@ -9244,6 +9286,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-i18next@npm:17.1.5":
+  version: 17.1.5
+  resolution: "react-i18next@npm:17.1.5"
+  dependencies:
+    "@babel/runtime": "npm:^7.29.7"
+    html-parse-stringify: "npm:^4.0.1"
+    use-sync-external-store: "npm:^1.6.0"
+  peerDependencies:
+    i18next: ">= 26.2.0"
+    react: ">= 16.8.0"
+    typescript: ^5 || ^6 || ^7
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10c0/d48f8024d3a197d06dd280c917929e01732e5a2c345c9619b75bdcd9af17f86827feea0913a3623cb95020e46ddaffaf7ba3a7cf0abb9c180674b7fc749c4e95
+  languageName: node
+  linkType: hard
+
 "react-native-webrtc@npm:^124.0.6":
   version: 124.0.8
   resolution: "react-native-webrtc@npm:124.0.8"
@@ -10465,7 +10529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.2.2":
+"use-sync-external-store@npm:^1.2.2, use-sync-external-store@npm:^1.6.0":
   version: 1.7.0
   resolution: "use-sync-external-store@npm:1.7.0"
   peerDependencies:
@@ -10776,6 +10840,9 @@ __metadata:
     crypto-browserify: "npm:3.12.1"
     element-source: "npm:0.0.5"
     events: "npm:3.3.0"
+    i18next: "npm:26.5.7"
+    i18next-browser-languagedetector: "npm:8.2.1"
+    i18next-http-backend: "npm:4.0.4"
     isomorphic-fetch: "npm:3.0.0"
     js-yaml: "npm:5.5.0"
     knip: "npm:6.42.1"
@@ -10788,6 +10855,7 @@ __metadata:
     react: "npm:19.3.1"
     react-doctor: "npm:0.9.18"
     react-dom: "npm:19.3.1"
+    react-i18next: "npm:17.1.5"
     react-router-dom: "npm:7.18.4"
     smol-toml: "npm:1.9.1"
     stream-browserify: "npm:3.0.0"

@@ -1,5 +1,6 @@
 import { useCallback, useId, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useDismiss } from '../../hooks/use-dismiss';
 import styles from './sign-in-prompt.module.css';
 
@@ -19,6 +20,7 @@ interface SignInPromptProps {
  * (BSIP-14 profiles through Forge RPC), opens YouTube's "sign in to…" prompt instead of acting.
  */
 export const SignInPrompt = ({ title, text, children, className, label, placement = 'below' }: SignInPromptProps) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +50,7 @@ export const SignInPrompt = ({ title, text, children, className, label, placemen
           <span className={styles.title}>{title}</span>
           <span className={styles.text}>{text}</span>
           <Link to='/signin' className={styles.signIn} onClick={() => setOpen(false)}>
-            Sign in
+            {t('sign_in')}
           </Link>
         </span>
       )}

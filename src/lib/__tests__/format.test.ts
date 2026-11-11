@@ -1,25 +1,30 @@
 import { describe, expect, it } from 'vitest';
-import { plural, timeAgo } from '../format';
+import { formatCount, timeAgo } from '../format';
 import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, looksLikeChannelAddress, shortAddress, videoPath } from '../channels';
 
 describe('timeAgo', () => {
   const now = 1_800_000_000_000;
+  const en = { language: 'en', justNow: 'just now' };
   it('formats the largest whole unit', () => {
-    expect(timeAgo(now / 1000 - 30, now)).toBe('just now');
-    expect(timeAgo(now / 1000 - 3 * 3600, now)).toBe('3 hours ago');
-    expect(timeAgo(now / 1000 - 24 * 3600, now)).toBe('yesterday');
-    expect(timeAgo(now / 1000 - 15 * 24 * 3600, now)).toBe('2 weeks ago');
+    expect(timeAgo(now / 1000 - 30, en, now)).toBe('just now');
+    expect(timeAgo(now / 1000 - 3 * 3600, en, now)).toBe('3 hours ago');
+    expect(timeAgo(now / 1000 - 24 * 3600, en, now)).toBe('yesterday');
+    expect(timeAgo(now / 1000 - 15 * 24 * 3600, en, now)).toBe('2 weeks ago');
+  });
+  it('formats in the interface language', () => {
+    expect(timeAgo(now / 1000 - 3 * 3600, { language: 'es', justNow: 'ahora' }, now)).toBe('hace 3 horas');
+    expect(timeAgo(now / 1000 - 30, { language: 'es', justNow: 'ahora' }, now)).toBe('ahora');
   });
   it('returns nothing without a timestamp', () => {
-    expect(timeAgo(undefined, now)).toBe('');
+    expect(timeAgo(undefined, en, now)).toBe('');
   });
 });
 
-describe('plural', () => {
-  it('uses the singular only for one', () => {
-    expect(plural(1, 'comment')).toBe('1 comment');
-    expect(plural(0, 'comment')).toBe('0 comments');
-    expect(plural(12400, 'like')).toBe('12.4K likes');
+describe('formatCount', () => {
+  it('abbreviates large counts in the interface language', () => {
+    expect(formatCount(12400, 'en')).toBe('12.4K');
+    expect(formatCount(undefined, 'en')).toBe('0');
+    expect(formatCount(12400, 'de')).toBe('12.400');
   });
 });
 

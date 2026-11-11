@@ -1,4 +1,5 @@
 import { useCallback, useReducer } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSourceAvailability } from '../../hooks/use-source-availability';
 import type { VideoSource } from '../../lib/video-sources';
 import { initialPlayerState, playerReducer } from './player-state';
@@ -18,13 +19,14 @@ const EMBED_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; 
  * oEmbed or API (useSourceAvailability). Key this component by video so its state resets.
  */
 export const Player = ({ sources, title }: PlayerProps) => {
+  const { t, i18n } = useTranslation();
   const [state, dispatch] = useReducer(playerReducer, initialPlayerState);
   const source = sources[state.selectedIndex];
   const markFailed = useCallback((failed: VideoSource) => dispatch({ type: 'fail', playUrl: failed.playUrl, sources }), [sources]);
   useSourceAvailability(source, markFailed);
 
   if (!source) {
-    return <div className={styles.message}>This post has no source WeTube can play.</div>;
+    return <div className={styles.message}>{t('no_playable_source')}</div>;
   }
 
   const allFailed = sources.every((candidate) => state.failedUrls.includes(candidate.playUrl));
@@ -35,7 +37,7 @@ export const Player = ({ sources, title }: PlayerProps) => {
       <div className={styles.frame}>
         {allFailed ? (
           <div className={styles.message} role='alert'>
-            {sources.length === 1 ? "This video's source could not be played." : `None of this video's ${sources.length} sources could be played.`}
+            {sources.length === 1 ? t('source_failed') : t('all_sources_failed', { number: sources.length })}
           </div>
         ) : source.kind === 'file' ? (
           <video key={source.playUrl} className={styles.media} src={source.playUrl} controls playsInline preload='metadata' onError={() => markFailed(source)} />
@@ -56,12 +58,15 @@ export const Player = ({ sources, title }: PlayerProps) => {
       </div>
       {!allFailed && skipped.length > 0 && (
         <p className={styles.notice} role='status'>
-          Not available on {skipped.map((candidate) => candidate.label).join(', ')}. Playing from {source.label}.
+          {t('playing_from', {
+            failed: new Intl.ListFormat(i18n.language, { type: 'conjunction' }).format(skipped.map((candidate) => candidate.label)),
+            source: source.label,
+          })}
         </p>
       )}
       <div className={styles.sources}>
         <span className={styles.sourcesLabel} id='video-sources-label'>
-          {sources.length === 1 ? 'Source' : `${sources.length} sources`}
+          {sources.length === 1 ? t('source') : t('x_sources', { number: sources.length })}
         </span>
         <div className={styles.sourceButtons} role='group' aria-labelledby='video-sources-label'>
           {sources.map((candidate, index) => {
@@ -78,13 +83,13 @@ export const Player = ({ sources, title }: PlayerProps) => {
                 title={candidate.url}
               >
                 {candidate.label}
-                {failed && <span className='visually-hidden'> (not available)</span>}
+                {failed && <span className='visually-hidden'> {t('not_available')}</span>}
               </button>
             );
           })}
         </div>
         <a className={styles.openLink} href={source.url} target='_blank' rel='noopener noreferrer'>
-          Open on {source.label}
+          {t('open_on', { source: source.label })}
         </a>
       </div>
     </div>

@@ -38,6 +38,7 @@ For an unexpected repo-specific issue, tell the contributor and continue indepen
 | Code or automation changed | Select affected checks using [verification.md](docs/agent-playbooks/verification.md); use `agent:verify` for integration/build changes or an explicitly requested full pass |
 | React state, effects, data flow, or rendering performance changed | Review relevant React guidance; use advisory `yarn doctor` for newly introduced diagnostics |
 | UI behavior/layout changed | Verify the affected flow; select browsers/viewports using [verification.md](docs/agent-playbooks/verification.md) |
+| Translation keys/values or user-facing text | Use the `translate` skill; every UI string goes through i18next, and one process applies locale changes at a time |
 | `package.json` changed | Run `corepack yarn install` to synchronize `yarn.lock`; keep `yarn deps:check-pinned` passing |
 | Dependencies, moved files, or imports changed | `yarn boundaries` (part of `yarn lint`) must pass; see module boundaries in [src/AGENTS.md](src/AGENTS.md). Run advisory `yarn knip`; resolve relevant new findings |
 | AI workflow files changed | Edit shared sources, run `yarn ai-workflow:sync`, then `yarn ai-workflow:check` and `yarn ai-workflow:test` |
@@ -47,7 +48,7 @@ For an unexpected repo-specific issue, tell the contributor and continue indepen
 ## Code and design
 
 - Use Corepack-managed Yarn 4, never npm for project dependency changes. Pin exact versions and keep the lockfile synchronized. Yarn enforces a 3-day `npmMinimalAgeGate` and runs no install scripts; preapprove a package or enable scripts in `.yarnrc.yml` only with a stated reason.
-- Stack: React 19, TypeScript, React Router 7, Vite, `@bitsocial/bitsocial-react-hooks` with pkc-js in the browser, CSS modules, oxlint, oxfmt, Vitest. It matches 5chan's stack; add Zustand when shared state is first needed, as 5chan does.
+- Stack: React 19, TypeScript, React Router 7, Vite, `@bitsocial/bitsocial-react-hooks` with pkc-js in the browser, i18next, CSS modules, oxlint, oxfmt, Vitest. It matches 5chan's stack; add Zustand when shared state is first needed, as 5chan does.
 - Keep page composition in `src/views/`, reusable UI in `src/components/`, hooks in `src/hooks/`, shared state in `src/stores/`, helpers in `src/lib/`, static data in `src/data/`. Dependencies flow one way between those layers; see module boundaries in [src/AGENTS.md](src/AGENTS.md).
 - Use Zustand for shared/global state; local component state may use `useState`.
 - Use Bitsocial hooks for protocol data access. Do not fetch data in effects or synchronize derived state with effects; derive values during render.
@@ -84,7 +85,7 @@ For an unexpected repo-specific issue, tell the contributor and continue indepen
 
 ## Skills and delegation
 
-- Shared skills live in `.agents/skills/`; shared roles in `.agents/roles/` (`browser-check`, `reviewer`). `.claude/skills/` and harness agent files are generated compatibility outputs. See [skills-and-tools.md](docs/agent-playbooks/skills-and-tools.md).
+- Shared skills live in `.agents/skills/`; shared roles in `.agents/roles/` (`browser-check`, `reviewer`, `translator`). `.claude/skills/` and harness agent files are generated compatibility outputs. See [skills-and-tools.md](docs/agent-playbooks/skills-and-tools.md).
 - Keep harness-specific hooks, permissions, and metadata explicit; byte-identical files do not establish equivalent runtime behavior.
 - Keep model and reasoning choices out of committed skills and custom agents. Use the app's runtime defaults, parent inheritance, and supported invocation-time choices.
 - Delegate substantial independent work when it improves speed, context isolation, or independent review. Give each child its scope, acceptance criteria, context, file ownership, and evidence to return; check that evidence before accepting a child's result. Use at most four active workers by default. Browser work always remains serialized.
@@ -101,4 +102,4 @@ Canonical dev URL: `https://wetube.localhost`; other worktrees may use branch-sc
 
 Common checks: `yarn agent:verify` (lint, type-check, tests, build, conditional workflow check, advisory Knip), `yarn doctor`, `yarn knip`, `yarn deps:check-pinned`, `yarn ai-workflow:sync`, `yarn ai-workflow:check`, `yarn ai-workflow:test`, `./scripts/pw-session.sh status`.
 
-Load details on demand: [hooks](docs/agent-playbooks/hooks-setup.md), [verification](docs/agent-playbooks/verification.md), [skills/tools](docs/agent-playbooks/skills-and-tools.md), [long-running work](docs/agent-playbooks/long-running-agent-workflow.md), [known surprises](docs/agent-playbooks/known-surprises.md).
+Load details on demand: [hooks](docs/agent-playbooks/hooks-setup.md), [verification](docs/agent-playbooks/verification.md), [translations](docs/agent-playbooks/translations.md), [skills/tools](docs/agent-playbooks/skills-and-tools.md), [long-running work](docs/agent-playbooks/long-running-agent-workflow.md), [known surprises](docs/agent-playbooks/known-surprises.md).

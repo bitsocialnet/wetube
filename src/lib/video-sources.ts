@@ -39,6 +39,7 @@ export interface VideoComment {
 }
 
 export interface Video {
+  /** Empty when neither the post's title nor its description has one; the UI shows "Untitled video". */
   title: string;
   description: string;
   sources: VideoSource[];
@@ -241,7 +242,7 @@ export const getVideo = (comment: VideoComment | undefined): Video | undefined =
   const { description } = splitVideoContent(comment.content);
   const fallbackTitle = firstLine(description).slice(0, 100);
   return {
-    title: comment.title?.trim() || fallbackTitle || 'Untitled video',
+    title: comment.title?.trim() || fallbackTitle,
     description,
     sources,
     thumbnailUrls: [...sources.flatMap((source) => (source.thumbnailUrl ? [source.thumbnailUrl] : [])), ...(comment.thumbnailUrl ? [comment.thumbnailUrl] : [])],

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Menu, Search } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import logoOnDark from '../../../design/logo/wetube-logo-on-dark.svg';
 import logoOnLight from '../../../design/logo/wetube-logo-on-light.svg';
 import { useTheme } from '../../hooks/use-theme';
@@ -18,6 +19,7 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') ?? '');
   const { resolved } = useTheme();
+  const { t } = useTranslation();
 
   // A channel address opens the channel; anything else searches the videos on the home page.
   const search = (event: FormEvent<HTMLFormElement>) => {
@@ -35,15 +37,15 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.start}>
-        <button type='button' className={styles.iconButton} onClick={onToggleSidebar} aria-label='Menu'>
+        <button type='button' className={styles.iconButton} onClick={onToggleSidebar} aria-label={t('menu')}>
           <Menu size={22} aria-hidden='true' />
         </button>
-        <Link to='/' className={styles.brand} aria-label='WeTube home'>
+        <Link to='/' className={styles.brand} aria-label={t('wetube_home')}>
           {/* The SVGs carry a margin around the artwork; the wrapper crops it, as in the logo showcase. */}
           <span className={styles.logoCrop}>
             <img src={resolved === 'light' ? logoOnLight : logoOnDark} alt='' />
           </span>
-          <span className={styles.previewTag}>Preview</span>
+          <span className={styles.previewTag}>{t('preview')}</span>
         </Link>
       </div>
       <form className={styles.search} role='search' onSubmit={search}>
@@ -51,13 +53,13 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
           className={styles.input}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder='Search'
-          aria-label='Search videos, or open a channel by its address'
+          placeholder={t('search')}
+          aria-label={t('search_label')}
           autoComplete='off'
           spellCheck={false}
           type='search'
         />
-        <button type='submit' className={styles.submit} aria-label='Search'>
+        <button type='submit' className={styles.submit} aria-label={t('search')}>
           <Search size={20} aria-hidden='true' />
         </button>
       </form>

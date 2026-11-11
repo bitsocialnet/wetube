@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { useLoadMore } from '../../hooks/use-load-more';
+import { useTranslation } from 'react-i18next';
 import { VideoCard } from '../video-card';
 import styles from './video-grid.module.css';
 
@@ -15,6 +16,7 @@ interface VideoGridProps {
 const SKELETON_COUNT = 8;
 
 export const VideoGrid = ({ posts, hasMore, loadMore, showChannel = true, emptyMessage }: VideoGridProps) => {
+  const { t } = useTranslation();
   const sentinelRef = useLoadMore(hasMore, loadMore);
 
   if (posts.length === 0 && !hasMore) {
@@ -38,7 +40,7 @@ export const VideoGrid = ({ posts, hasMore, loadMore, showChannel = true, emptyM
       </div>
       {posts.length === 0 && (
         <p className={styles.status} role='status'>
-          Loading videos from peers…
+          {t('loading_videos')}
         </p>
       )}
       {hasMore && <div key={posts.length} ref={sentinelRef} className={styles.sentinel} />}

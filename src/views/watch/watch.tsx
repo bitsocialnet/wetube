@@ -2,16 +2,17 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useComment } from '@bitsocial/bitsocial-react-hooks';
 import { Check, Clock, Share2, ThumbsDown, ThumbsUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { ChannelAvatar } from '../../components/channel-avatar';
 import { Comments } from '../../components/comments';
 import { Player } from '../../components/player';
 import { SignInPrompt } from '../../components/sign-in-prompt';
 import { SubscribeButtons } from '../../components/subscribe-buttons';
 import { useChannel } from '../../hooks/use-channel';
+import { useFormat } from '../../hooks/use-format';
 import { useWatchLater } from '../../hooks/use-watch-later';
 import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress } from '../../lib/channels';
 import { copyText } from '../../lib/clipboard';
-import { formatCount, plural } from '../../lib/format';
 import { getVideo } from '../../lib/video-sources';
 import { toggleWatchLater } from '../../lib/watch-later';
 import { RelatedVideos } from './related-videos';
@@ -20,6 +21,7 @@ import styles from './watch.module.css';
 
 // Copies the page's link; the hash route is the whole address of the video.
 const ShareButton = () => {
+  const { t } = useTranslation();
   const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle');
   const share = () => {
     void copyText(window.location.href).then((copied) => {
@@ -30,12 +32,13 @@ const ShareButton = () => {
   return (
     <button type='button' className={styles.actionButton} onClick={share} aria-live='polite'>
       {state === 'copied' ? <Check size={20} aria-hidden='true' /> : <Share2 size={20} aria-hidden='true' />}
-      {state === 'copied' ? 'Link copied' : state === 'failed' ? 'Copy failed' : 'Share'}
+      {state === 'copied' ? t('link_copied') : state === 'failed' ? t('copy_failed') : t('share')}
     </button>
   );
 };
 
 const Watch = () => {
+  const { t, count } = useFormat();
   const { channelHandle, videoCid = '' } = useParams();
   const channelAddress = getChannelAddressFromHandle(channelHandle) ?? '';
   const community = useMemo(() => getChannelIdentifier(channelAddress), [channelAddress]);
@@ -50,15 +53,15 @@ const Watch = () => {
     <div className={styles.layout}>
       <div className={styles.primary}>
         {loaded && video ? (
-          <Player key={videoCid} sources={video.sources} title={video.title} />
+          <Player key={videoCid} sources={video.sources} title={video.title || t('untitled_video')} />
         ) : (
           <div className={styles.playerPlaceholder} role='status'>
-            {post.error ? `Could not load this video: ${post.error.message}` : 'Loading the video post from peers…'}
+            {post.error ? t('could_not_load_video', { error: post.error.message }) : t('loading_video_post')}
           </div>
         )}
         {loaded && video && (
           <>
-            <h1 className={styles.title}>{video.title}</h1>
+            <h1 className={styles.title}>{video.title || t('untitled_video')}</h1>
             <div className={styles.ownerRow}>
               <div className={styles.owner}>
                 <Link to={channelPath(channelAddress)} className={styles.ownerLink}>
@@ -76,28 +79,30 @@ const Watch = () => {
                 <div className={styles.votes}>
                   <SignInPrompt
                     className={styles.voteButton}
-                    label={`Like (${plural(post.upvoteCount, 'like')})`}
-                    title='Like this video?'
-                    text='Sign in to make your opinion count.'
+                    label={t('like_label', { likes: post.upvoteCount === 1 ? t('one_like') : t('x_likes', { number: count(post.upvoteCount) }) })}
+                    title={t('like_video_title')}
+                    text={t('sign_in_to_vote')}
                   >
                     <ThumbsUp size={20} aria-hidden='true' />
-                    {formatCount(post.upvoteCount)}
+                    {count(post.upvoteCount)}
                   </SignInPrompt>
                   <span className={styles.voteDivider} aria-hidden='true' />
                   <SignInPrompt
                     className={styles.voteButton}
-                    label={`Dislike (${plural(post.downvoteCount, 'dislike')})`}
-                    title="Don't like this video?"
-                    text='Sign in to make your opinion count.'
+                    label={t('dislike_label', {
+                      dislikes: post.downvoteCount === 1 ? t('one_dislike') : t('x_dislikes', { number: count(post.downvoteCount) }),
+                    })}
+                    title={t('dislike_video_title')}
+                    text={t('sign_in_to_vote')}
                   >
                     <ThumbsDown size={20} aria-hidden='true' />
-                    {formatCount(post.downvoteCount)}
+                    {count(post.downvoteCount)}
                   </SignInPrompt>
                 </div>
                 <ShareButton />
                 <button type='button' className={styles.actionButton} aria-pressed={savedForLater} onClick={() => toggleWatchLater({ cid: videoCid, channelAddress })}>
                   {savedForLater ? <Check size={20} aria-hidden='true' /> : <Clock size={20} aria-hidden='true' />}
-                  {savedForLater ? 'Saved' : 'Watch later'}
+                  {savedForLater ? t('saved') : t('watch_later')}
                 </button>
               </div>
             </div>
