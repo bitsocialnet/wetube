@@ -7,7 +7,10 @@
   gap: 16px;
   height: var(--header-height);
   padding: 0 16px;
-  background: var(--bg);
+  /* Frosted glass, as on YouTube: what scrolls under the header shows through, blurred. */
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .start,
@@ -89,8 +92,8 @@
   min-width: 0;
   height: 40px;
   padding: 0 16px;
-  background: var(--bg);
-  border: 1px solid var(--line);
+  background: var(--field);
+  border: 1px solid var(--field-line);
   border-right: 0;
   border-radius: 999px 0 0 999px;
   outline: none;
@@ -117,8 +120,8 @@
   justify-content: center;
   width: 64px;
   height: 40px;
-  background: var(--surface);
-  border: 1px solid var(--line);
+  background: var(--field-button);
+  border: 1px solid var(--field-line);
   border-radius: 0 999px 999px 0;
   cursor: pointer;
 }

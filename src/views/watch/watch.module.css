@@ -124,7 +124,11 @@
   background: var(--surface-hover);
 }
 
-/* The two vote buttons share one pill, split by a divider. */
+/* The two vote buttons share one pill, split by a divider; the pill carries the fill. */
+.votes .voteButton {
+  background: transparent;
+}
+
 .votes > :first-child .voteButton {
   border-radius: 999px 0 0 999px;
 }

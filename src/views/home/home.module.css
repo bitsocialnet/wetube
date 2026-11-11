@@ -6,7 +6,10 @@
   align-items: center;
   gap: 12px;
   padding: 12px 0;
-  background: var(--bg);
+  /* Continues the header's frosted glass, as YouTube's chip bar does. */
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .filtersButton {

@@ -38,7 +38,7 @@
   z-index: 20;
   min-width: 180px;
   padding: 8px 0;
-  background: var(--surface);
+  background: var(--raised);
   border-radius: var(--radius);
   box-shadow: var(--popover-shadow);
 }

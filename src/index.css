@@ -1,16 +1,27 @@
-/* Colors from design/logo/showcase.html (website mockup). src/lib/theme.ts sets <html data-theme> from
-   the viewer's choice or the device; the media query only covers a page whose script has not run. */
+/* Neutrals and the header glass match YouTube's own values (read from youtube.com, 2026-11-11), so WeTube
+   feels like the same kind of app; the reds are WeTube's (design/logo/README.md). src/lib/theme.ts sets
+   <html data-theme> from the viewer's choice or the device; the media query only covers a page whose
+   script has not run. */
 :root {
   color-scheme: dark;
-  --bg: #0f1218;
-  --surface: #1b2029;
-  --surface-hover: #232935;
-  --line: #252b35;
-  --ink: #eef0f3;
-  --muted: #9399a4;
+  --bg: #0f0f0f;
+  /* Chips, buttons and boxes are translucent over the page, as on YouTube. */
+  --surface: rgb(255 255 255 / 0.1);
+  --surface-hover: rgb(255 255 255 / 0.2);
+  /* Menus and popovers need a solid color. */
+  --raised: #282828;
+  --line: rgb(255 255 255 / 0.2);
+  --field: #121212;
+  --field-line: #303030;
+  --field-button: rgb(255 255 255 / 0.08);
+  --ink: #f1f1f1;
+  --muted: #aaaaaa;
   --brand: #ed004a;
   --accent: #ff3d73;
   --focus: #ff3d73;
+  /* The frosted header: YouTube's glass color and blur. */
+  --glass: rgb(15 15 15 / 0.8);
+  --glass-blur: blur(48px);
   --overlay: rgb(0 0 0 / 0.55);
   --popover-shadow: 0 8px 28px rgb(0 0 0 / 0.45);
   --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -24,28 +35,38 @@
 :root[data-theme='light'] {
   color-scheme: light;
   --bg: #ffffff;
-  --surface: #f2f3f5;
-  --surface-hover: #e8eaee;
-  --line: #e4e6ea;
-  --ink: #14171c;
-  --muted: #6a707b;
+  --surface: rgb(0 0 0 / 0.05);
+  --surface-hover: rgb(0 0 0 / 0.1);
+  --raised: #ffffff;
+  --line: rgb(0 0 0 / 0.1);
+  --field: #ffffff;
+  --field-line: #d1d1d1;
+  --field-button: #f8f8f8;
+  --ink: #0f0f0f;
+  --muted: #606060;
   --accent: #d6003f;
   --focus: #d6003f;
+  --glass: rgb(255 255 255 / 0.9);
   --overlay: rgb(0 0 0 / 0.35);
-  --popover-shadow: 0 8px 28px rgb(20 23 28 / 0.18);
+  --popover-shadow: 0 8px 28px rgb(0 0 0 / 0.18);
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color-scheme: light;
     --bg: #ffffff;
-    --surface: #f2f3f5;
-    --surface-hover: #e8eaee;
-    --line: #e4e6ea;
-    --ink: #14171c;
-    --muted: #6a707b;
+    --surface: rgb(0 0 0 / 0.05);
+    --surface-hover: rgb(0 0 0 / 0.1);
+    --raised: #ffffff;
+    --line: rgb(0 0 0 / 0.1);
+    --field: #ffffff;
+    --field-line: #d1d1d1;
+    --field-button: #f8f8f8;
+    --ink: #0f0f0f;
+    --muted: #606060;
     --accent: #d6003f;
     --focus: #d6003f;
+    --glass: rgb(255 255 255 / 0.9);
   }
 }
 
@@ -59,9 +80,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html,
+body {
+  background: var(--bg);
+}
+
 body {
   margin: 0;
-  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 15px;
