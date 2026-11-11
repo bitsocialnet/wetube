@@ -138,9 +138,10 @@
   display: block;
 }
 
+/* The logo's red, the same in both themes. */
 .tagline {
   margin: 8px 0 0;
-  color: var(--ink);
+  color: var(--brand);
   font-style: italic;
   font-weight: 600;
 }

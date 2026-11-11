@@ -80,9 +80,8 @@ export const Sidebar = ({ expanded, overlay, drawerOpen, onCloseDrawer }: Sideba
           ))}
         </nav>
         <a className={styles.poweredBy} href='https://bitsocial.net' target='_blank' rel='noopener noreferrer'>
-          Powered by
+          Powered by Bitsocial
           <img src={bitsocialLogo} alt='' width='16' height='16' />
-          Bitsocial
         </a>
         <p className={styles.tagline}>Our tubes, our rules.</p>
       </footer>
