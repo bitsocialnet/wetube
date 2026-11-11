@@ -8,7 +8,11 @@ export const getChannelIdentifier = (address: string): CommunityIdentifier => {
   return address.includes('.') ? { name: address } : { publicKey: address };
 };
 
-export const channelPath = (address: string) => `/c/${encodeURIComponent(address)}`;
+// Channels live at /@<address>, like YouTube's /@handle. The address is a .bso name or a public key.
+export const channelPath = (address: string) => `/@${encodeURIComponent(address)}`;
+
+/** The channel address in a /@<address> route segment, or undefined when the segment is not a channel. */
+export const getChannelAddressFromHandle = (handle: string | undefined) => (handle?.startsWith('@') && handle.length > 1 ? handle.slice(1) : undefined);
 
 export const videoPath = (channelAddress: string, cid: string) => `${channelPath(channelAddress)}/v/${encodeURIComponent(cid)}`;
 

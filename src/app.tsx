@@ -1,6 +1,7 @@
-import { useLayoutEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLayoutEffect, type ReactNode } from 'react';
+import { Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { AppHeader } from './components/app-header';
+import { getChannelAddressFromHandle } from './lib/channels';
 import Channel from './views/channel';
 import Home from './views/home';
 import NotFound from './views/not-found';
@@ -16,6 +17,10 @@ const ScrollToTop = () => {
   return null;
 };
 
+// React Router matches whole segments only, so /@:address can't be a route pattern. Channel routes
+// match any segment and render only when it starts with @.
+const ChannelRoute = ({ children }: { children: ReactNode }) => (getChannelAddressFromHandle(useParams().channelHandle) ? children : <NotFound />);
+
 const App = () => (
   <div className={styles.app}>
     <ScrollToTop />
@@ -23,8 +28,22 @@ const App = () => (
     <main className={styles.main}>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/c/:channelAddress' element={<Channel />} />
-        <Route path='/c/:channelAddress/v/:videoCid' element={<Watch />} />
+        <Route
+          path='/:channelHandle'
+          element={
+            <ChannelRoute>
+              <Channel />
+            </ChannelRoute>
+          }
+        />
+        <Route
+          path='/:channelHandle/v/:videoCid'
+          element={
+            <ChannelRoute>
+              <Watch />
+            </ChannelRoute>
+          }
+        />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </main>

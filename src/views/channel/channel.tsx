@@ -4,12 +4,12 @@ import { useFeed } from '@bitsocial/bitsocial-react-hooks';
 import { ChannelAvatar } from '../../components/channel-avatar';
 import { VideoGrid } from '../../components/video-grid';
 import { useChannel } from '../../hooks/use-channel';
-import { getChannelIdentifier, shortAddress } from '../../lib/channels';
+import { getChannelAddressFromHandle, getChannelIdentifier, shortAddress } from '../../lib/channels';
 import { videoPostsFilter } from '../../lib/video-sources';
 import styles from './channel.module.css';
 
 const Channel = () => {
-  const { channelAddress = '' } = useParams();
+  const channelAddress = getChannelAddressFromHandle(useParams().channelHandle) ?? '';
   const channel = useChannel(channelAddress);
   const communities = useMemo(() => [getChannelIdentifier(channelAddress)], [channelAddress]);
   const { feed, hasMore, loadMore } = useFeed({ communities, sortType: 'new', postsPerPage: 24, filter: videoPostsFilter });

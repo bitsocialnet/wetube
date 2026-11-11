@@ -6,7 +6,7 @@ import { Comments } from '../../components/comments';
 import { Player } from '../../components/player';
 import { VideoCard } from '../../components/video-card';
 import { useChannel } from '../../hooks/use-channel';
-import { channelPath, getChannelIdentifier, shortAddress } from '../../lib/channels';
+import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress } from '../../lib/channels';
 import { formatCount, plural, timeAgo } from '../../lib/format';
 import { getVideo, videoPostsFilter } from '../../lib/video-sources';
 import styles from './watch.module.css';
@@ -14,7 +14,8 @@ import styles from './watch.module.css';
 const MORE_VIDEOS_COUNT = 10;
 
 const Watch = () => {
-  const { channelAddress = '', videoCid = '' } = useParams();
+  const { channelHandle, videoCid = '' } = useParams();
+  const channelAddress = getChannelAddressFromHandle(channelHandle) ?? '';
   const community = useMemo(() => getChannelIdentifier(channelAddress), [channelAddress]);
   const communities = useMemo(() => [community], [community]);
   const post = useComment({ commentCid: videoCid, community });

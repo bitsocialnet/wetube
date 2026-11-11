@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { plural, timeAgo } from './format';
-import { getChannelIdentifier, shortAddress } from './channels';
+import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress, videoPath } from './channels';
 
 describe('timeAgo', () => {
   const now = 1_800_000_000_000;
@@ -35,5 +35,12 @@ describe('channel addresses', () => {
   it('shortens public keys but not names', () => {
     expect(shortAddress('12D3KooWAGHV9th2FN48KPvHMJwxen8h5mSM39pkaZWvvzcWMPr9')).toBe('12D3KooW…MPr9');
     expect(shortAddress('alice.bso')).toBe('alice.bso');
+  });
+  it('routes channels as /@address and videos under them', () => {
+    expect(channelPath('alice.bso')).toBe('/@alice.bso');
+    expect(videoPath('alice.bso', 'QmCid')).toBe('/@alice.bso/v/QmCid');
+    expect(getChannelAddressFromHandle('@alice.bso')).toBe('alice.bso');
+    expect(getChannelAddressFromHandle('alice.bso')).toBeUndefined();
+    expect(getChannelAddressFromHandle('@')).toBeUndefined();
   });
 });
