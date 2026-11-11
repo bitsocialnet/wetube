@@ -1,0 +1,11 @@
+# GitHub's language bar should show the app (src/, TypeScript and CSS). These folders are tooling and
+# design assets: scripts/ is the agent and dev tooling shared with the other Bitsocial clients, and
+# design/ holds the logo files, its showcase page and the script that builds them.
+/scripts/** linguist-vendored
+/design/** linguist-documentation
+
+# Shared AI sources and generated compatibility files must agree across platforms, as in 5chan.
+/.agents/** text=auto eol=lf
+/.claude/** text=auto eol=lf
+/.codex/** text=auto eol=lf
+/.cursor/** text=auto eol=lf
