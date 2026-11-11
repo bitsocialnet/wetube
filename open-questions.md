@@ -37,13 +37,13 @@ Design decisions not yet made. These are the questions to answer before WeTube m
 
 ## Discovery Beyond Categories
 
-**Decided 2026-11-11: categories are community lists (BSIP-15) ranked by pubsub voting (BSIP-18), reviewed by the developers; WeTube uses no BSIP-19 directories.** See [curation-and-discovery.md](curation-and-discovery.md#categories-community-lists-ranked-by-users).
+**Decided 2026-11-11: categories are community lists (BSIP-15) for reviewed membership, fetched at runtime, with channels ranked live by pubsub voting (BSIP-18); WeTube uses no BSIP-19 directories.** See [curation-and-discovery.md](curation-and-discovery.md#categories-community-lists-ranked-by-users).
 
 
-**Decided: recommendation algorithms come from public RPCs, and users can switch between them** (or turn them off), the same model as the flagship Bitsocial app — see [curation-and-discovery.md](curation-and-discovery.md). Remaining:
+**Decided: search and recommendations come from switchable providers, separate from the node RPC** (bitsocial-algorithms' decision), with a Forge-run WeTube index as the default; viewers can switch or turn them off — see [curation-and-discovery.md](curation-and-discovery.md#search-related-videos-and-feeds-come-from-providers). Remaining:
 
-- Search: rely on neutral crawler/indexers (bitsocial-indexer style) with WeTube-specific ranking, or ship a dedicated video search instance?
-- What does the client show with no RPC connected — pure client-side "up next" from subscribed/related channels?
+- Naming and public face of the index: a WeTube Archive site like 5archive, or an API only?
+- Which signals the default algorithm uses, given that view counts and watch time come from opt-in providers.
 
 ## Monetization Details
 

@@ -38,7 +38,7 @@ A provider learns which videos an IP address watches. Providers should keep tota
 
 ## Who Runs Providers
 
-Bitsocial Forge runs the default provider. Paid creator analytics built on it (watch time, retention, audience by country, all aggregated) are a Forge product. The provider API should become a BSIP so that other operators can run compatible providers and clients can list them.
+Bitsocial Forge runs the default provider as part of its WeTube index, which also serves search and related videos ([curation-and-discovery.md](curation-and-discovery.md#search-related-videos-and-feeds-come-from-providers)). Paid creator analytics built on it (watch time, retention, audience by country, all aggregated) are a Forge product. The provider API should become a BSIP so that other operators can run compatible providers and clients can list them.
 
 ## Until Then
 
