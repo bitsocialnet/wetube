@@ -164,6 +164,22 @@ def wrap(body, width, title):
             f'<g transform="translate({MARGIN_X} {MARGIN_Y})">{body}</g></svg>\n')
 
 
+FAVICON_PAD = 2.0  # units around the symbol; a tab icon has no room for the logo files' margins
+
+
+def favicon(mark):
+    """The symbol alone in a square cropped to it, for browser tabs. Its top edges follow the
+    browser's light or dark theme, since a tab bar is either."""
+    side = SYMBOL_WIDTH + 2 * FAVICON_PAD
+    body = mark.replace(f'<g fill="{EDGES["dark"]}">', '<g class="edge">')
+    assert 'class="edge"' in body, 'symbol() no longer groups the top edges by fill color'
+    style = (f'<style>.edge{{fill:{EDGES["dark"]}}}'
+             f'@media (prefers-color-scheme: light){{.edge{{fill:{EDGES["light"]}}}}}</style>')
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{side:.3f}" height="{side:.3f}" viewBox="0 0 {side:.3f} {side:.3f}" '
+            f'role="img" aria-label="WeTube"><title>WeTube</title>{style}'
+            f'<g transform="translate({FAVICON_PAD} {(side - HEIGHT) / 2:.3f})">{body}</g></svg>\n')
+
+
 def main():
     paths, (xmin, ymin, xmax, ymax) = etube()
     scale = HEIGHT / (ymax - ymin)
@@ -178,11 +194,14 @@ def main():
                                          (f'wetube-mark-on-{surface}', mark, SYMBOL_WIDTH, 'WeTube symbol')]:
             (ROOT / f'{name}.svg').write_text(wrap(body, width, title))
             written.append(name)
+    (ROOT / 'wetube-favicon.svg').write_text(favicon(symbol(EDGES['dark'])))
     print(f'symbol fit {FIT:.5f}; symbol {SYMBOL_WIDTH:.3f} x {HEIGHT:.0f}; logo {logo_width:.3f} x {HEIGHT:.0f} (plus {MARGIN_X}/{MARGIN_Y} margins)')
     if shutil.which('rsvg-convert'):
         for name in written:
             size = ['-w', '2400'] if 'logo' in name else ['-h', '1024']
             subprocess.run(['rsvg-convert', *size, f'{name}.svg', '-o', f'{name}.png'], cwd=ROOT, check=True)
+        # For browsers that take no SVG tab icon; a PNG cannot follow the theme, so it keeps the dark edges.
+        subprocess.run(['rsvg-convert', '-w', '64', 'wetube-favicon.svg', '-o', 'wetube-favicon.png'], cwd=ROOT, check=True)
         print('PNGs exported with rsvg-convert.')
     else:
         print('rsvg-convert not found; PNGs not regenerated.')

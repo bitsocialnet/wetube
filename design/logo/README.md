@@ -19,6 +19,7 @@ Avoid backgrounds where the red drops below 3:1, such as mid grays or the brand 
 | [wetube-logo-on-dark.svg](wetube-logo-on-dark.svg) · [PNG](wetube-logo-on-dark.png) | Full logo, dark backgrounds |
 | [wetube-mark-on-light.svg](wetube-mark-on-light.svg) · [PNG](wetube-mark-on-light.png) | Symbol only, light backgrounds |
 | [wetube-mark-on-dark.svg](wetube-mark-on-dark.svg) · [PNG](wetube-mark-on-dark.png) | Symbol only, dark backgrounds |
+| [wetube-favicon.svg](wetube-favicon.svg) · [PNG](wetube-favicon.png) | Browser tab icon: the symbol in a square cropped to it, without the margins. The SVG's top edges follow the browser's light or dark theme; the 64 px PNG keeps the dark ones |
 
 SVGs are self-contained vectors with no font dependency. PNGs are transparent: logos 2400 px wide, symbols 1024 px tall. Every file has an even 24-unit side and 28-unit top and bottom margin around the artwork, so the symbol centers on its own bounds (for example in an app icon).
 
