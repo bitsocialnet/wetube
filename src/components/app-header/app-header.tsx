@@ -6,6 +6,7 @@ import logoOnLight from '../../../design/logo/wetube-logo-on-light.svg';
 import { useTheme } from '../../hooks/use-theme';
 import { channelPath, looksLikeChannelAddress } from '../../lib/channels';
 import { AccountMenu } from '../account-menu';
+import { NotificationsMenu } from '../notifications-menu';
 import styles from './app-header.module.css';
 
 interface AppHeaderProps {
@@ -61,6 +62,7 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
         </button>
       </form>
       <div className={styles.end}>
+        <NotificationsMenu />
         <AccountMenu />
       </div>
     </header>

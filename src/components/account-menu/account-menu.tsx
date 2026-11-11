@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAccount } from '@bitsocial/bitsocial-react-hooks';
 import { ArrowLeft, Check, ChevronRight, Clapperboard, Code, MessageSquareWarning, Moon, Settings, UserRound } from 'lucide-react';
+import { REPOSITORY_URL } from '../../data/navigation';
+import { useDismiss } from '../../hooks/use-dismiss';
 import { useTheme } from '../../hooks/use-theme';
 import { channelHue, shortAddress } from '../../lib/channels';
 import { setThemePreference, type ThemePreference } from '../../lib/theme';
 import styles from './account-menu.module.css';
 
-const REPOSITORY_URL = 'https://github.com/bitsocialnet/wetube';
 const THEME_LABELS: Record<ThemePreference, string> = { system: 'Device theme', dark: 'Dark theme', light: 'Light theme' };
 const version = import.meta.env.VITE_APP_VERSION;
 const commitRef = import.meta.env.VITE_COMMIT_REF;
@@ -30,27 +31,12 @@ export const AccountMenu = () => {
   };
 
   // Close on a click outside the menu or on Escape, which also returns focus to the button.
-  useEffect(() => {
-    if (!open) return;
-    const onPointerDown = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-        setView('main');
-      }
-    };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
-      setOpen(false);
-      setView('main');
-      buttonRef.current?.focus();
-    };
-    document.addEventListener('pointerdown', onPointerDown);
-    document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown);
-      document.removeEventListener('keydown', onKeyDown);
-    };
-  }, [open]);
+  const dismiss = useCallback((reason: 'outside' | 'escape') => {
+    setOpen(false);
+    setView('main');
+    if (reason === 'escape') buttonRef.current?.focus();
+  }, []);
+  useDismiss(open, rootRef, dismiss);
 
   const avatar = (size: number) => (
     <span

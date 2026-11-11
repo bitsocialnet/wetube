@@ -1,17 +1,23 @@
-/* Compact rail (72px, icon over a short label) by default; full width with [data-expanded]; on small
-   screens hidden unless opened as a drawer. */
+/* The compact rail (72px, icon over a short label) is the default. [data-expanded] widens it on wide
+   screens. [data-overlay] (the watch page) hides it, and on small screens it is always hidden; in both
+   cases [data-drawer-open] shows it as a full drawer over the page. */
 .sidebar {
   position: sticky;
   top: var(--header-height);
   display: flex;
   flex: none;
   flex-direction: column;
-  gap: 4px;
   width: 72px;
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
   padding: 4px;
   background: var(--bg);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .item {
@@ -34,68 +40,141 @@
   font-weight: 600;
 }
 
-.fullLabel {
+.fullLabel,
+.signIn,
+.footer {
   display: none;
 }
 
-.sidebar[data-expanded] {
+/* The full sidebar, docked (expanded) or as a drawer. */
+.sidebar[data-expanded],
+.sidebar[data-drawer-open] {
   width: 240px;
   padding: 12px;
 }
 
-.sidebar[data-expanded] .item,
-.sidebar[data-drawer-open] .item {
+:is(.sidebar[data-expanded], .sidebar[data-drawer-open]) .item {
   flex-direction: row;
   gap: 24px;
-  padding: 0 12px;
   min-height: 40px;
+  padding: 0 12px;
   font-size: 14px;
   text-align: left;
 }
 
-.sidebar[data-expanded] .item:global(.active),
-.sidebar[data-drawer-open] .item:global(.active) {
+:is(.sidebar[data-expanded], .sidebar[data-drawer-open]) .item:global(.active) {
   background: var(--surface);
 }
 
-.sidebar[data-expanded] .fullLabel,
-.sidebar[data-drawer-open] .fullLabel {
+:is(.sidebar[data-expanded], .sidebar[data-drawer-open]) .fullLabel {
   display: inline;
 }
 
-.sidebar[data-expanded] .shortLabel,
-.sidebar[data-drawer-open] .shortLabel {
+:is(.sidebar[data-expanded], .sidebar[data-drawer-open]) .shortLabel {
   display: none;
+}
+
+:is(.sidebar[data-expanded], .sidebar[data-drawer-open]) :is(.signIn, .footer) {
+  display: block;
+}
+
+.signIn {
+  margin: 12px 0 0;
+  padding: 16px 12px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.signIn p {
+  margin: 0 0 12px;
+}
+
+.signInButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.signInButton:hover {
+  background: var(--surface);
+}
+
+.footer {
+  margin-top: auto;
+  padding: 16px 12px 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.footerLinks a:hover {
+  color: var(--ink);
+}
+
+.poweredBy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.poweredBy:hover {
+  color: var(--ink);
+}
+
+.poweredBy img {
+  display: block;
+}
+
+.tagline {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* The watch page: no sidebar until the menu button opens the drawer. */
+.sidebar[data-overlay]:not([data-drawer-open]) {
+  display: none;
+}
+
+.sidebar[data-drawer-open] {
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  height: auto;
+  box-shadow: var(--popover-shadow);
 }
 
 .backdrop {
-  display: none;
+  position: fixed;
+  inset: var(--header-height) 0 0 0;
+  z-index: 35;
+  display: block;
+  background: var(--overlay);
+}
+
+/* Docked expansion only exists on wide pages that are not the watch page. */
+.sidebar[data-expanded]:not([data-overlay]):not([data-drawer-open]) {
+  position: sticky;
 }
 
 @media (max-width: 768px) {
-  .sidebar,
-  .sidebar[data-expanded] {
+  .sidebar:not([data-drawer-open]) {
     display: none;
-  }
-
-  .sidebar[data-drawer-open] {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 40;
-    display: flex;
-    width: 240px;
-    height: auto;
-    padding: calc(var(--header-height) + 8px) 12px 12px;
-    box-shadow: var(--popover-shadow);
-  }
-
-  .backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 35;
-    display: block;
-    background: var(--overlay);
   }
 }

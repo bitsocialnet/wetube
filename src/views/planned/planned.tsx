@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { PLANNED_PAGES } from '../../data/navigation';
+import { PLANNED_PAGES, REPOSITORY_URL } from '../../data/navigation';
 import styles from './planned.module.css';
 
 /** The page behind a sidebar section that is not built yet: what it will do. */
@@ -10,11 +10,11 @@ const Planned = () => {
 
   return (
     <section className={styles.planned}>
-      <h1 className={styles.title}>{page.label}</h1>
+      <h1 className={styles.title}>{page.title}</h1>
       <p className={styles.description}>{page.description}</p>
       <p className={styles.status}>
         Not built yet. Follow progress in the{' '}
-        <a href='https://github.com/bitsocialnet/wetube/blob/master/roadmap.md' target='_blank' rel='noopener noreferrer'>
+        <a href={`${REPOSITORY_URL}/blob/master/roadmap.md`} target='_blank' rel='noopener noreferrer'>
           roadmap
         </a>
         , or go back <Link to='/'>home</Link>.

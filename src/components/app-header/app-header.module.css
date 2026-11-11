@@ -78,12 +78,14 @@
 .search {
   display: flex;
   flex: 1;
+  min-width: 0;
   max-width: 640px;
   margin: 0 auto;
 }
 
 .input {
   flex: 1;
+  width: 100%;
   min-width: 0;
   height: 40px;
   padding: 0 16px;
@@ -136,6 +138,14 @@
   }
 
   .submit {
-    width: 48px;
+    width: 44px;
+  }
+
+  .end {
+    gap: 4px;
+  }
+
+  .input {
+    padding: 0 10px;
   }
 }

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState, type ReactNode } from 'react';
-import { Route, Routes, useLocation, useParams } from 'react-router-dom';
+import { Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
 import { AppHeader } from './components/app-header';
 import { Sidebar } from './components/sidebar';
 import { PLANNED_PAGES } from './data/navigation';
@@ -38,10 +38,13 @@ const ChannelRoute = ({ children }: { children: ReactNode }) => (getChannelAddre
 const App = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(readSidebarExpanded);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  // As on YouTube, the watch page has no sidebar; the menu button opens it as a drawer.
+  const watchMatch = useMatch('/:channelHandle/v/:videoCid');
+  const onWatchPage = Boolean(getChannelAddressFromHandle(watchMatch?.params.channelHandle));
 
-  // The menu button expands the rail on wide screens and opens the drawer on small ones.
+  // The menu button expands the rail on wide screens and opens the drawer on the watch page and phones.
   const toggleSidebar = () => {
-    if (window.matchMedia(SMALL_SCREEN_QUERY).matches) {
+    if (onWatchPage || window.matchMedia(SMALL_SCREEN_QUERY).matches) {
       setDrawerOpen((open) => !open);
       return;
     }
@@ -59,7 +62,7 @@ const App = () => {
       <ScrollToTop />
       <AppHeader onToggleSidebar={toggleSidebar} />
       <div className={styles.body}>
-        <Sidebar expanded={sidebarExpanded} drawerOpen={drawerOpen} onCloseDrawer={() => setDrawerOpen(false)} />
+        <Sidebar expanded={sidebarExpanded} overlay={onWatchPage} drawerOpen={drawerOpen} onCloseDrawer={() => setDrawerOpen(false)} />
         <main className={styles.main}>
           <Routes>
             <Route path='/' element={<Home />} />
