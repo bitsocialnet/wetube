@@ -8,6 +8,9 @@ export const getChannelIdentifier = (address: string): CommunityIdentifier => {
   return address.includes('.') ? { name: address } : { publicKey: address };
 };
 
+/** The home channels as hook identifiers, for feeds across all of them. */
+export const HOME_COMMUNITIES: CommunityIdentifier[] = HOME_CHANNELS.map((channel) => getChannelIdentifier(channel.address));
+
 // Channels live at /@<address>, like YouTube's /@handle. The address is a .bso name or a public key.
 export const channelPath = (address: string) => `/@${encodeURIComponent(address)}`;
 

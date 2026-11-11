@@ -5,7 +5,7 @@ import { SlidersHorizontal, X } from 'lucide-react';
 import { VideoGrid } from '../../components/video-grid';
 import { HOME_CHANNELS, type ChannelListing } from '../../data/channels';
 import { useChannel } from '../../hooks/use-channel';
-import { getChannelIdentifier, shortAddress } from '../../lib/channels';
+import { getChannelIdentifier, HOME_COMMUNITIES, shortAddress } from '../../lib/channels';
 import {
   DATE_OPTIONS,
   FEATURE_OPTIONS,
@@ -17,8 +17,6 @@ import {
   SOURCE_OPTIONS,
 } from '../../lib/home-filters';
 import styles from './home.module.css';
-
-const HOME_COMMUNITIES = HOME_CHANNELS.map((channel) => getChannelIdentifier(channel.address));
 
 // Chips will be the categories (community lists, BSIP-15); until those exist there is one per home channel.
 const ChannelChip = ({ channel, selected, onSelect }: { channel: ChannelListing; selected: boolean; onSelect: () => void }) => {
