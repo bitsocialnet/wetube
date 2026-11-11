@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useCallback, useReducer } from 'react';
+import { useSourceAvailability } from '../../hooks/use-source-availability';
 import type { VideoSource } from '../../lib/video-sources';
+import { initialPlayerState, playerReducer } from './player-state';
 import styles from './player.module.css';
 
 interface PlayerProps {
@@ -11,26 +13,22 @@ const EMBED_SANDBOX = 'allow-scripts allow-popups allow-popups-to-escape-sandbox
 const EMBED_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
 
 /**
- * Plays one of a video's sources and lets the viewer switch between them. A file source that fails
- * to load falls through to the next one automatically; iframe embeds don't report failures to the
- * page, so for those the viewer switches by hand. Key this component by video so state resets.
+ * Plays one of a video's sources and lets the viewer switch between them. A source that fails moves the
+ * player to the next one: a file reports its own load error, and an embed is checked against its host's
+ * oEmbed or API (useSourceAvailability). Key this component by video so its state resets.
  */
 export const Player = ({ sources, title }: PlayerProps) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [failedUrls, setFailedUrls] = useState<string[]>([]);
-  const source = sources[selectedIndex];
-  const allFailed = sources.length > 0 && sources.every((candidate) => failedUrls.includes(candidate.playUrl));
-
-  const markFailed = (failed: VideoSource) => {
-    const nextFailed = [...failedUrls, failed.playUrl];
-    setFailedUrls(nextFailed);
-    const nextIndex = sources.findIndex((candidate) => !nextFailed.includes(candidate.playUrl));
-    if (nextIndex !== -1) setSelectedIndex(nextIndex);
-  };
+  const [state, dispatch] = useReducer(playerReducer, initialPlayerState);
+  const source = sources[state.selectedIndex];
+  const markFailed = useCallback((failed: VideoSource) => dispatch({ type: 'fail', playUrl: failed.playUrl, sources }), [sources]);
+  useSourceAvailability(source, markFailed);
 
   if (!source) {
     return <div className={styles.message}>This post has no source WeTube can play.</div>;
   }
+
+  const allFailed = sources.every((candidate) => state.failedUrls.includes(candidate.playUrl));
+  const skipped = sources.filter((candidate) => state.failedUrls.includes(candidate.playUrl) && candidate !== source);
 
   return (
     <div className={styles.player}>
@@ -50,34 +48,37 @@ export const Player = ({ sources, title }: PlayerProps) => {
             allow={EMBED_ALLOW}
             allowFullScreen
             sandbox={EMBED_SANDBOX}
-            // YouTube refuses to play embeds that send no referrer.
-            referrerPolicy={source.kind === 'youtube' ? 'origin' : 'no-referrer'}
+            // YouTube refuses to play an embed that sends no referrer, and PeerTube's player then fails to load
+            // its preview image ("Invalid width to find appropriate image"). Both get the origin only.
+            referrerPolicy={source.kind === 'youtube' || source.kind === 'peertube' ? 'origin' : 'no-referrer'}
           />
         )}
       </div>
+      {!allFailed && skipped.length > 0 && (
+        <p className={styles.notice} role='status'>
+          Not available on {skipped.map((candidate) => candidate.label).join(', ')}. Playing from {source.label}.
+        </p>
+      )}
       <div className={styles.sources}>
         <span className={styles.sourcesLabel} id='video-sources-label'>
           {sources.length === 1 ? 'Source' : `${sources.length} sources`}
         </span>
         <div className={styles.sourceButtons} role='group' aria-labelledby='video-sources-label'>
           {sources.map((candidate, index) => {
-            const failed = failedUrls.includes(candidate.playUrl);
+            const failed = state.failedUrls.includes(candidate.playUrl);
             return (
               <button
                 key={candidate.playUrl}
                 type='button'
                 className={styles.sourceButton}
-                aria-pressed={index === selectedIndex}
+                aria-pressed={index === state.selectedIndex}
                 data-failed={failed || undefined}
-                onClick={() => {
-                  // Choosing a failed source retries it.
-                  setFailedUrls((current) => current.filter((url) => url !== candidate.playUrl));
-                  setSelectedIndex(index);
-                }}
+                // Choosing a failed source retries it.
+                onClick={() => dispatch({ type: 'select', index, playUrl: candidate.playUrl })}
                 title={candidate.url}
               >
                 {candidate.label}
-                {failed && <span className='visually-hidden'> (failed to load)</span>}
+                {failed && <span className='visually-hidden'> (not available)</span>}
               </button>
             );
           })}

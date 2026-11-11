@@ -7,7 +7,7 @@ import type { CommentsFilter } from '@bitsocial/bitsocial-react-hooks';
 //   - post.content is the description, optionally followed by a "Mirrors:" line and one URL per
 //     line. Authors can edit content but not link, so the mirror list is the part that can rotate.
 
-export type VideoSourceKind = 'youtube' | 'vimeo' | 'odysee' | 'bitchute' | 'streamable' | 'file';
+export type VideoSourceKind = 'youtube' | 'vimeo' | 'peertube' | 'odysee' | 'bitchute' | 'streamable' | 'file';
 
 export interface VideoSource {
   /** The URL as the channel owner published it. */
@@ -18,6 +18,11 @@ export interface VideoSource {
   /** Short label for the source switcher. */
   label: string;
   thumbnailUrl?: string;
+  /**
+   * A CORS-enabled metadata URL (oEmbed or API) that answers 404 when the video is gone, so the player can
+   * skip a removed embed. Embeds do not tell the page when they fail; files do, through the video element.
+   */
+  availabilityUrl?: string;
 }
 
 export interface VideoComment {
@@ -37,7 +42,8 @@ export interface Video {
   title: string;
   description: string;
   sources: VideoSource[];
-  thumbnailUrl?: string;
+  /** Thumbnail candidates in order: the sources' own, then the one the community fetched for the link. */
+  thumbnailUrls: string[];
 }
 
 // ipfs:// sources load through a public gateway for now; verified in-browser IPFS playback comes later.
@@ -59,6 +65,10 @@ const VIMEO_HOSTS = new Set(['vimeo.com', 'www.vimeo.com', 'player.vimeo.com']);
 const ODYSEE_HOSTS = new Set(['odysee.com', 'www.odysee.com']);
 const BITCHUTE_HOSTS = new Set(['bitchute.com', 'www.bitchute.com']);
 const STREAMABLE_HOSTS = new Set(['streamable.com', 'www.streamable.com']);
+
+// PeerTube runs on many independent hosts, so it is recognized by its URL shapes: /w/<short id>,
+// /videos/watch/<uuid> and /videos/embed/<id>.
+const PEERTUBE_PATH = /^\/(?:w|videos\/watch|videos\/embed)\/([1-9A-HJ-NP-Za-km-z]{22}|[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})\/?$/i;
 
 const YOUTUBE_ID = /^[\w-]{11}$/;
 const VIDEO_FILE_EXTENSION = /\.(mp4|webm|m4v|mov|ogv)$/i;
@@ -111,8 +121,16 @@ export const parseVideoSource = (rawUrl: string, options: { linkHtmlTagName?: st
   if (YOUTUBE_HOSTS.has(host) || INVIDIOUS_HOSTS.has(host)) {
     const id = getYouTubeId(url);
     if (!id) return undefined;
-    const playUrl = INVIDIOUS_HOSTS.has(host) ? `https://${host}/embed/${id}` : `https://www.youtube-nocookie.com/embed/${id}`;
-    return { url: trimmed, kind: 'youtube', playUrl, label, thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg` };
+    const invidious = INVIDIOUS_HOSTS.has(host);
+    return {
+      url: trimmed,
+      kind: 'youtube',
+      playUrl: invidious ? `https://${host}/embed/${id}` : `https://www.youtube-nocookie.com/embed/${id}`,
+      label,
+      thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+      // Invidious instances have no common CORS-enabled check; YouTube's oEmbed answers 404 for removed videos.
+      availabilityUrl: invidious ? undefined : `https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(`https://www.youtube.com/watch?v=${id}`)}`,
+    };
   }
 
   if (VIMEO_HOSTS.has(host)) {
@@ -121,7 +139,13 @@ export const parseVideoSource = (rawUrl: string, options: { linkHtmlTagName?: st
     // dnt=1 stops the player from setting tracking cookies.
     const params = new URLSearchParams({ dnt: '1' });
     if (video.hash) params.set('h', video.hash);
-    return { url: trimmed, kind: 'vimeo', playUrl: `https://player.vimeo.com/video/${video.id}?${params}`, label: 'vimeo.com' };
+    return {
+      url: trimmed,
+      kind: 'vimeo',
+      playUrl: `https://player.vimeo.com/video/${video.id}?${params}`,
+      label: 'vimeo.com',
+      availabilityUrl: `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(trimmed)}`,
+    };
   }
 
   if (ODYSEE_HOSTS.has(host)) {
@@ -140,6 +164,18 @@ export const parseVideoSource = (rawUrl: string, options: { linkHtmlTagName?: st
     const match = url.pathname.match(/^\/(?:e\/)?([a-z0-9]+)\/?$/i);
     if (!match) return undefined;
     return { url: trimmed, kind: 'streamable', playUrl: `https://streamable.com/e/${match[1]}`, label: 'streamable.com' };
+  }
+
+  const peertube = url.pathname.match(PEERTUBE_PATH);
+  if (peertube) {
+    const origin = `https://${host}${url.port ? `:${url.port}` : ''}`;
+    return {
+      url: trimmed,
+      kind: 'peertube',
+      playUrl: `${origin}/videos/embed/${peertube[1]}`,
+      label,
+      availabilityUrl: `${origin}/api/v1/videos/${peertube[1]}`,
+    };
   }
 
   if (VIDEO_FILE_EXTENSION.test(url.pathname) || options.linkHtmlTagName === 'video') {
@@ -208,7 +244,7 @@ export const getVideo = (comment: VideoComment | undefined): Video | undefined =
     title: comment.title?.trim() || fallbackTitle || 'Untitled video',
     description,
     sources,
-    thumbnailUrl: sources.find((source) => source.thumbnailUrl)?.thumbnailUrl ?? comment.thumbnailUrl,
+    thumbnailUrls: [...sources.flatMap((source) => (source.thumbnailUrl ? [source.thumbnailUrl] : [])), ...(comment.thumbnailUrl ? [comment.thumbnailUrl] : [])],
   };
 };
 

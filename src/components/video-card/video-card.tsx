@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { useChannel } from '../../hooks/use-channel';
 import { channelPath, shortAddress, videoPath } from '../../lib/channels';
-import { plural, timeAgo } from '../../lib/format';
+import { timeAgo } from '../../lib/format';
 import { getVideo } from '../../lib/video-sources';
 import { ChannelAvatar } from '../channel-avatar';
 import styles from './video-card.module.css';
@@ -16,13 +16,29 @@ interface VideoCardProps {
   layout?: 'grid' | 'compact';
 }
 
-const Thumbnail = ({ url, frameUrl, label }: { url?: string; frameUrl?: string; label?: string }) => {
+// Tries each thumbnail in turn, then the first frame of a video file, then a placeholder with the host.
+const Thumbnail = ({ urls, frameUrl, label }: { urls: string[]; frameUrl?: string; label?: string }) => {
   const [failedUrls, setFailedUrls] = useState<string[]>([]);
   const fail = (failed: string) => setFailedUrls((current) => [...current, failed]);
-  if (url && !failedUrls.includes(url)) {
-    return <img className={styles.thumbnailImage} src={url} alt='' loading='lazy' referrerPolicy='no-referrer' onError={() => fail(url)} />;
+  const url = urls.find((candidate) => !failedUrls.includes(candidate));
+  if (url) {
+    return (
+      <img
+        key={url}
+        className={styles.thumbnailImage}
+        src={url}
+        alt=''
+        loading='lazy'
+        referrerPolicy='no-referrer'
+        onError={() => fail(url)}
+        // For a removed video YouTube answers 404 with a 120×90 gray placeholder, which browsers still display.
+        onLoad={(event) => {
+          if (url.startsWith('https://i.ytimg.com/') && event.currentTarget.naturalWidth === 120 && event.currentTarget.naturalHeight === 90) fail(url);
+        }}
+      />
+    );
   }
-  // A video file with no thumbnail shows its first frame; preload='metadata' fetches only the start of the file.
+  // preload='metadata' fetches only the start of the file.
   if (frameUrl && !failedUrls.includes(frameUrl)) {
     return <video className={styles.thumbnailImage} src={`${frameUrl}#t=0.1`} preload='metadata' muted playsInline tabIndex={-1} onError={() => fail(frameUrl)} />;
   }
@@ -49,7 +65,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
     <article className={layout === 'compact' ? styles.compact : styles.card}>
       {/* The title link is the accessible one; the thumbnail repeats it for pointer users. */}
       <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true'>
-        <Thumbnail url={video.thumbnailUrl} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
+        <Thumbnail urls={video.thumbnailUrls} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
       </Link>
       <div className={styles.details}>
         {showChannel && layout === 'grid' && (
@@ -67,7 +83,8 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
             </Link>
           )}
           <p className={styles.stats}>
-            {plural(post.upvoteCount, 'like')} · {plural(post.replyCount, 'comment')}
+            {/* View counts come from view providers, which are not built yet (views.md). */}
+            <span title='View counts are not available yet'>? views</span>
             {post.timestamp ? ` · ${timeAgo(post.timestamp)}` : ''}
           </p>
         </div>

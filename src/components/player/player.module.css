@@ -32,6 +32,12 @@
   text-align: center;
 }
 
+.notice {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .sources {
   display: flex;
   flex-wrap: wrap;

@@ -32,6 +32,27 @@ describe('parseVideoSource', () => {
     expect(parseVideoSource('https://vimeo.com/76979871/abc123')?.playUrl).toBe('https://player.vimeo.com/video/76979871?dnt=1&h=abc123');
   });
 
+  it('embeds PeerTube from any host by its URL shapes, with an API availability check', () => {
+    expect(parseVideoSource('https://video.blender.org/w/2PcJe5aZqozRvH7MJ8BTmC')).toMatchObject({
+      kind: 'peertube',
+      label: 'video.blender.org',
+      playUrl: 'https://video.blender.org/videos/embed/2PcJe5aZqozRvH7MJ8BTmC',
+      availabilityUrl: 'https://video.blender.org/api/v1/videos/2PcJe5aZqozRvH7MJ8BTmC',
+    });
+    expect(parseVideoSource('https://tube.example/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d')?.playUrl).toBe(
+      'https://tube.example/videos/embed/9c9de5e8-0a1e-484a-b099-e80766180a6d',
+    );
+    expect(parseVideoSource('https://example.org/w/too-short')).toBeUndefined();
+  });
+
+  it('checks YouTube and Vimeo availability through their oEmbed endpoints, but not Invidious', () => {
+    expect(parseVideoSource('https://youtu.be/dQw4w9WgXcQ')?.availabilityUrl).toBe(
+      'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ',
+    );
+    expect(parseVideoSource('https://vimeo.com/1084537')?.availabilityUrl).toBe('https://vimeo.com/api/oembed.json?url=https%3A%2F%2Fvimeo.com%2F1084537');
+    expect(parseVideoSource('https://yewtu.be/watch?v=dQw4w9WgXcQ')?.availabilityUrl).toBeUndefined();
+  });
+
   it('embeds Odysee, Bitchute and Streamable', () => {
     expect(parseVideoSource('https://odysee.com/@chan:1/my-video:2')?.playUrl).toBe('https://odysee.com/$/embed/@chan:1/my-video:2');
     expect(parseVideoSource('https://www.bitchute.com/video/AbC123/')?.playUrl).toBe('https://www.bitchute.com/embed/AbC123/');
@@ -93,8 +114,12 @@ describe('getVideoSources and getVideo', () => {
     expect(getVideoSources(post).map((source) => source.label)).toEqual(['youtube.com', 'vimeo.com']);
   });
 
-  it('builds the video with a trimmed title and a thumbnail from the first source that has one', () => {
-    expect(getVideo(post)).toMatchObject({ title: 'Redundant embeds', description: 'Description', thumbnailUrl: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg' });
+  it('builds the video with a trimmed title and thumbnail candidates from its sources, then the community', () => {
+    expect(getVideo({ ...post, thumbnailUrl: 'https://cdn.example/thumb.jpg' })).toMatchObject({
+      title: 'Redundant embeds',
+      description: 'Description',
+      thumbnailUrls: ['https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg', 'https://cdn.example/thumb.jpg'],
+    });
   });
 
   it('falls back to the first description line for the title', () => {
