@@ -2,9 +2,10 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { useChannel } from '../../hooks/use-channel';
+import { useHoverPreview } from '../../hooks/use-hover-preview';
 import { channelPath, shortAddress, videoPath } from '../../lib/channels';
 import { timeAgo } from '../../lib/format';
-import { getVideo } from '../../lib/video-sources';
+import { getPreviewSource, getVideo, type PreviewSource } from '../../lib/video-sources';
 import { ChannelAvatar } from '../channel-avatar';
 import styles from './video-card.module.css';
 
@@ -52,10 +53,45 @@ const Thumbnail = ({ urls, frameUrl, label }: { urls: string[]; frameUrl?: strin
   );
 };
 
+// Plays over the thumbnail, muted, once it has a frame to show, so the thumbnail never flashes black.
+const Preview = ({ source, title }: { source: PreviewSource; title: string }) => {
+  const [ready, setReady] = useState(false);
+  return source.kind === 'video' ? (
+    <video
+      className={styles.preview}
+      data-ready={ready || undefined}
+      src={source.url}
+      muted
+      autoPlay
+      loop
+      playsInline
+      tabIndex={-1}
+      aria-hidden='true'
+      onPlaying={() => setReady(true)}
+    />
+  ) : (
+    <iframe
+      className={styles.preview}
+      data-ready={ready || undefined}
+      src={source.url}
+      title={`Preview of ${title}`}
+      allow='autoplay; encrypted-media'
+      sandbox='allow-scripts allow-same-origin'
+      referrerPolicy={source.referrerPolicy}
+      tabIndex={-1}
+      aria-hidden='true'
+      onLoad={() => setReady(true)}
+    />
+  );
+};
+
 export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCardProps) => {
   const video = useMemo(() => getVideo(post), [post]);
   const channelAddress: string = post.communityAddress;
   const channel = useChannel(showChannel ? channelAddress : undefined, { onlyIfCached: true });
+  // Grid cards preview on hover, as YouTube's home page does; the watch page's compact list does not.
+  const previewSource = useMemo(() => (video && layout === 'grid' ? getPreviewSource(video) : undefined), [video, layout]);
+  const preview = useHoverPreview(Boolean(previewSource));
   if (!video || !post.cid || !channelAddress) return null;
 
   const href = videoPath(channelAddress, post.cid);
@@ -64,8 +100,9 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
   return (
     <article className={layout === 'compact' ? styles.compact : styles.card}>
       {/* The title link is the accessible one; the thumbnail repeats it for pointer users. */}
-      <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true'>
+      <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true' onPointerEnter={preview.onPointerEnter} onPointerLeave={preview.onPointerLeave}>
         <Thumbnail urls={video.thumbnailUrls} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
+        {preview.active && previewSource && <Preview source={previewSource} title={video.title} />}
       </Link>
       <div className={styles.details}>
         {showChannel && layout === 'grid' && (

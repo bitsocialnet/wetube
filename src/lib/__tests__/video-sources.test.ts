@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getVideo, getVideoSources, isPlayableVideoPost, parseVideoSource, splitVideoContent } from '../video-sources';
+import { getPreviewSource, getVideo, getVideoSources, isPlayableVideoPost, parseVideoSource, splitVideoContent, type VideoSource } from '../video-sources';
 
 describe('parseVideoSource', () => {
   it('embeds YouTube watch, short, shorts and live links through youtube-nocookie', () => {
@@ -131,5 +131,40 @@ describe('getVideoSources and getVideo', () => {
     expect(isPlayableVideoPost({ ...post, removed: true })).toBe(false);
     expect(isPlayableVideoPost({ ...post, deleted: true })).toBe(false);
     expect(isPlayableVideoPost({ title: 'Text post', content: 'No video here' })).toBe(false);
+  });
+});
+
+describe('getPreviewSource', () => {
+  const sources = (...urls: string[]) => ({ sources: urls.map((url) => parseVideoSource(url) as VideoSource) });
+
+  it('prefers a direct file, skipping IPFS', () => {
+    expect(
+      getPreviewSource(
+        sources(
+          'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          'ipfs://bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi',
+          'https://archive.org/download/x/clip.mp4',
+        ),
+      ),
+    ).toEqual({
+      kind: 'video',
+      url: 'https://archive.org/download/x/clip.mp4',
+    });
+  });
+
+  it('falls back to a muted YouTube embed, then Vimeo in background mode', () => {
+    const youtube = getPreviewSource(sources('https://video.blender.org/w/2PcJe5aZqozRvH7MJ8BTmC', 'https://youtu.be/dQw4w9WgXcQ'));
+    expect(youtube).toMatchObject({ kind: 'iframe', referrerPolicy: 'origin' });
+    expect(youtube?.kind === 'iframe' && new URL(youtube.url).searchParams.get('mute')).toBe('1');
+    expect(getPreviewSource(sources('https://vimeo.com/1084537'))).toEqual({
+      kind: 'iframe',
+      url: 'https://player.vimeo.com/video/1084537?dnt=1&background=1',
+      referrerPolicy: 'no-referrer',
+    });
+  });
+
+  it('has no preview for PeerTube-only or Odysee-only videos', () => {
+    expect(getPreviewSource(sources('https://video.blender.org/w/2PcJe5aZqozRvH7MJ8BTmC'))).toBeUndefined();
+    expect(getPreviewSource(sources('https://odysee.com/@chan:1/my-video:2'))).toBeUndefined();
   });
 });

@@ -252,3 +252,36 @@ export const isPlayableVideoPost = (comment: VideoComment | undefined) => Boolea
 
 // Change the key whenever the filter's rules change, so cached feeds are rebuilt.
 export const videoPostsFilter: CommentsFilter = { key: 'wetube-playable-video-v1', filter: (comment) => isPlayableVideoPost(comment) };
+
+export type PreviewSource = { kind: 'video'; url: string } | { kind: 'iframe'; url: string; referrerPolicy: 'origin' | 'no-referrer' };
+
+/**
+ * What a card plays, muted, while the pointer rests on its thumbnail. A direct file is preferred: it
+ * needs no third-party player. Then a YouTube or Vimeo embed in its muted, controls-free mode. IPFS
+ * files are skipped (a public gateway may not find them) and so are PeerTube embeds (some instances
+ * fail at small widths).
+ */
+export const getPreviewSource = (video: Pick<Video, 'sources'>): PreviewSource | undefined => {
+  const file = video.sources.find((source) => source.kind === 'file' && !source.label.startsWith('IPFS'));
+  if (file) return { kind: 'video', url: file.playUrl };
+  const youtube = video.sources.find((source) => source.kind === 'youtube');
+  const youtubeId = youtube?.playUrl.match(/\/embed\/([\w-]{11})$/)?.[1];
+  if (youtube && youtubeId) {
+    const params = new URLSearchParams({
+      autoplay: '1',
+      mute: '1',
+      controls: '0',
+      playsinline: '1',
+      rel: '0',
+      disablekb: '1',
+      iv_load_policy: '3',
+      loop: '1',
+      playlist: youtubeId,
+    });
+    return { kind: 'iframe', url: `${youtube.playUrl}?${params}`, referrerPolicy: 'origin' };
+  }
+  const vimeo = video.sources.find((source) => source.kind === 'vimeo');
+  // background=1 is Vimeo's muted, looping, controls-free mode.
+  if (vimeo) return { kind: 'iframe', url: `${vimeo.playUrl}&background=1`, referrerPolicy: 'no-referrer' };
+  return undefined;
+};
