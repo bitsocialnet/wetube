@@ -13,7 +13,7 @@ What is built, what is next, and where each decision is written down. Update thi
 - [x] Watch page laid out like YouTube's: channel row with Subscribe, like/dislike, Share (copies the link) and Watch later, a description that expands to the video's sources and when the owner last changed them, and a related column with "All" and "From <channel>" chips (2026-11-11).
 - [x] Header and sidebar like YouTube's: no sidebar on the watch page (the menu button opens it as a drawer), like/dislike and Watch later buttons, comment sort (top, newest) and a comment box, a notification bell fed by `useNotifications()`, and a sign-in section and footer in the full sidebar (2026-11-11). Watch later works, kept in the browser; liking, commenting and signing in open a sign-in prompt until sign-in exists.
 - [x] Channel page laid out like YouTube's: a banner (or a plain block in the theme's color), avatar, name, address, "? subscribers", the video count when it is known, a one-line description that opens an About dialog, Subscribe with a separate bell, and Home, Videos, Playlists and Posts tabs with an in-channel search. Posts are the channel's non-video posts and open on a page of their own with comments. Subscribing saves to the browser's Bitsocial account; the bell is kept in the browser and sends nothing yet (2026-11-11).
-- [x] Interface in 35 languages, the same set as 5chan and Seedit: i18next with English bundled and the other locales in `public/translations/`, the browser's language by default and a Language menu in the account menu; relative times and counts use the browser's `Intl` data. Translations go through the `translate` skill (2026-11-11).
+- [x] Interface in 35 languages, the same set as 5chan and Seedit: i18next with English bundled and the other locales in `public/translations/`, the browser's language by default and a Language menu in the account menu; relative times and counts use the browser's `Intl` data, and Arabic, Persian, Hebrew and Urdu get a right-to-left layout. Translations go through the `translate` skill (2026-11-11).
 
 ## Next
 
@@ -30,7 +30,6 @@ What is built, what is next, and where each decision is written down. Update thi
 - [ ] **Provider settings.** Search, recommendation and view providers as separate lists with on/off and custom entries; a Forge "For you" feed as the default recommendation provider, each item showing why it was recommended.
 - [ ] **Seeding.** Add WeTube channels to the Bitsocial seeder's list so their posts stay available when the owner's node is offline.
 - [ ] **Durations** on cards and the duration filter, once video posts carry a duration.
-- [ ] **Right-to-left layout.** Arabic, Persian, Hebrew and Urdu are translated, but the layout stays left-to-right: set `<html dir>` from the language and move the CSS to logical properties (`margin-inline-start`, `inset-inline-end`, `text-align: start`), mirroring direction icons.
 
 ## Later
 

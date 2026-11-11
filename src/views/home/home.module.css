@@ -103,7 +103,7 @@
   border: 0;
   color: var(--muted);
   font-size: 14px;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
 }
 

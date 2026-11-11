@@ -94,8 +94,10 @@
   padding: 0 16px;
   background: var(--field);
   border: 1px solid var(--field-line);
-  border-right: 0;
-  border-radius: 999px 0 0 999px;
+  border-inline-end: 0;
+  border-radius: 0;
+  border-start-start-radius: 999px;
+  border-end-start-radius: 999px;
   outline: none;
 }
 
@@ -122,7 +124,9 @@
   height: 40px;
   background: var(--field-button);
   border: 1px solid var(--field-line);
-  border-radius: 0 999px 999px 0;
+  border-radius: 0;
+  border-start-end-radius: 999px;
+  border-end-end-radius: 999px;
   cursor: pointer;
 }
 

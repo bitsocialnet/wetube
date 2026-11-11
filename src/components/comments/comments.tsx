@@ -34,7 +34,11 @@ const CommentItem = ({ comment }: { comment: Comment }) => {
           </span>
           {comment.timestamp && <span>{timeAgo(comment.timestamp)}</span>}
         </p>
-        {comment.content && <p className={styles.content}>{comment.content}</p>}
+        {comment.content && (
+          <p className={styles.content} dir='auto'>
+            {comment.content}
+          </p>
+        )}
         <div className={styles.stats}>
           <SignInPrompt
             className={styles.voteButton}

@@ -153,7 +153,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
           </Link>
         )}
         <div className={styles.text}>
-          <h3 className={styles.title}>
+          <h3 className={styles.title} dir='auto'>
             <Link to={href}>{title}</Link>
           </h3>
           {showChannel && (

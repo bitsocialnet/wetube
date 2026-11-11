@@ -82,7 +82,7 @@ export const AccountMenu = () => {
           <MenuSubTrigger className={styles.item}>
             <Moon size={20} aria-hidden='true' />
             <span className={styles.label}>{t('appearance_value', { theme: themeLabels[preference] })}</span>
-            <ChevronRight size={18} aria-hidden='true' />
+            <ChevronRight className={styles.directional} size={18} aria-hidden='true' />
           </MenuSubTrigger>
           <MenuSubContent className={styles.menu} aria-label={t('appearance')}>
             <MenuRadioGroup name='theme' value={preference} onValueChange={setThemePreference}>
@@ -101,7 +101,7 @@ export const AccountMenu = () => {
           <MenuSubTrigger className={styles.item}>
             <Languages size={20} aria-hidden='true' />
             <span className={styles.label}>{t('language_value', { language: getLanguageName(i18n.language) })}</span>
-            <ChevronRight size={18} aria-hidden='true' />
+            <ChevronRight className={styles.directional} size={18} aria-hidden='true' />
           </MenuSubTrigger>
           <MenuSubContent className={styles.menu} aria-label={t('language')}>
             <MenuRadioGroup

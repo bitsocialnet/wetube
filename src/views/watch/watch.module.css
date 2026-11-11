@@ -114,11 +114,15 @@
 }
 
 .votes > :first-child .voteButton {
-  border-radius: 999px 0 0 999px;
+  border-radius: 0;
+  border-start-start-radius: 999px;
+  border-end-start-radius: 999px;
 }
 
 .votes > :last-child .voteButton {
-  border-radius: 0 999px 999px 0;
+  border-radius: 0;
+  border-start-end-radius: 999px;
+  border-end-end-radius: 999px;
 }
 
 .voteDivider {
@@ -195,7 +199,7 @@
   flex-direction: column;
   gap: 6px;
   margin: 0;
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 
 .mirrorsList li {
@@ -203,7 +207,7 @@
 }
 
 .mirrorHost {
-  margin-right: 8px;
+  margin-inline-end: 8px;
   font-weight: 600;
 }
 

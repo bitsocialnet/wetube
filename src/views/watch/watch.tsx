@@ -61,7 +61,9 @@ const Watch = () => {
         )}
         {loaded && video && (
           <>
-            <h1 className={styles.title}>{video.title || t('untitled_video')}</h1>
+            <h1 className={styles.title} dir='auto'>
+              {video.title || t('untitled_video')}
+            </h1>
             <div className={styles.ownerRow}>
               <div className={styles.owner}>
                 <Link to={channelPath(channelAddress)} className={styles.ownerLink}>

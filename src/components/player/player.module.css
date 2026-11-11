@@ -80,7 +80,7 @@
 }
 
 .openLink {
-  margin-left: auto;
+  margin-inline-start: auto;
   color: var(--muted);
 }
 

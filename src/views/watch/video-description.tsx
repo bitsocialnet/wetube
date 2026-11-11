@@ -26,7 +26,7 @@ export const VideoDescription = ({ post, video }: VideoDescriptionProps) => {
         {video.sources.length > 1 && <span>{t('mirrored_on_hosts', { number: count(video.sources.length) })}</span>}
       </p>
       {video.description && (
-        <p className={styles.descriptionText} data-clamped={!expanded || undefined}>
+        <p className={styles.descriptionText} data-clamped={!expanded || undefined} dir='auto'>
           {video.description}
         </p>
       )}

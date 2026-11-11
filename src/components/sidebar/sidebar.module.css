@@ -67,7 +67,7 @@
   min-height: 40px;
   padding: 0 12px;
   font-size: 14px;
-  text-align: left;
+  text-align: start;
 }
 
 :is(.sidebar[data-expanded], .sidebar[data-drawer-open]) .item:global(.active) {
@@ -163,7 +163,7 @@
   position: fixed;
   top: var(--header-height);
   bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   z-index: 40;
   height: auto;
   box-shadow: var(--popover-shadow);
