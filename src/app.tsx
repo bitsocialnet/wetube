@@ -9,6 +9,7 @@ import Home from './views/home';
 import NotFound from './views/not-found';
 import Planned from './views/planned';
 import Watch from './views/watch';
+import WatchLater from './views/watch-later';
 import styles from './app.module.css';
 
 const SIDEBAR_EXPANDED_KEY = 'wetube:sidebar-expanded';
@@ -66,6 +67,7 @@ const App = () => {
         <main className={styles.main}>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/feed/watch-later' element={<WatchLater />} />
             {PLANNED_PAGES.map((page) => (
               <Route key={page.path} path={page.path} element={<Planned />} />
             ))}

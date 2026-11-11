@@ -1,0 +1,23 @@
+.title {
+  margin: 20px 0 4px;
+  font-size: 24px;
+}
+
+.note,
+.empty {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 32px 16px;
+}
+
+.loading {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
