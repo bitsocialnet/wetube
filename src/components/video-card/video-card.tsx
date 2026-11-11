@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { useChannel } from '../../hooks/use-channel';
 import { useHoverPreview } from '../../hooks/use-hover-preview';
 import { channelPath, shortAddress, videoPath } from '../../lib/channels';
 import { timeAgo } from '../../lib/format';
+import { preconnect } from '../../lib/preconnect';
 import { getPreviewSource, getVideo, type PreviewSource } from '../../lib/video-sources';
 import { ChannelAvatar } from '../channel-avatar';
 import styles from './video-card.module.css';
@@ -53,18 +54,30 @@ const Thumbnail = ({ urls, frameUrl, label }: { urls: string[]; frameUrl?: strin
   );
 };
 
-// Plays over the thumbnail, muted, once it has a frame to show, so the thumbnail never flashes black.
-const Preview = ({ source, title }: { source: PreviewSource; title: string }) => {
+// An embed reports its page loaded before its player shows a frame; this covers the player's start-up.
+const EMBED_START_MS = 1200;
+
+// Loads muted over the thumbnail while hidden, and shows once `visible` and it has a frame, so the
+// thumbnail never flashes black.
+const Preview = ({ source, title, visible }: { source: PreviewSource; title: string; visible: boolean }) => {
   const [ready, setReady] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
+  useEffect(() => {
+    if (!embedLoaded) return;
+    const timer = window.setTimeout(() => setReady(true), EMBED_START_MS);
+    return () => window.clearTimeout(timer);
+  }, [embedLoaded]);
+  const shown = (visible && ready) || undefined;
   return source.kind === 'video' ? (
     <video
       className={styles.preview}
-      data-ready={ready || undefined}
+      data-shown={shown}
       src={source.url}
       muted
       autoPlay
       loop
       playsInline
+      preload='auto'
       tabIndex={-1}
       aria-hidden='true'
       onPlaying={() => setReady(true)}
@@ -72,7 +85,7 @@ const Preview = ({ source, title }: { source: PreviewSource; title: string }) =>
   ) : (
     <iframe
       className={styles.preview}
-      data-ready={ready || undefined}
+      data-shown={shown}
       src={source.url}
       title={`Preview of ${title}`}
       allow='autoplay; encrypted-media'
@@ -80,7 +93,7 @@ const Preview = ({ source, title }: { source: PreviewSource; title: string }) =>
       referrerPolicy={source.referrerPolicy}
       tabIndex={-1}
       aria-hidden='true'
-      onLoad={() => setReady(true)}
+      onLoad={() => setEmbedLoaded(true)}
     />
   );
 };
@@ -92,6 +105,12 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
   // Grid cards preview on hover, as YouTube's home page does; the watch page's compact list does not.
   const previewSource = useMemo(() => (video && layout === 'grid' ? getPreviewSource(video) : undefined), [video, layout]);
   const preview = useHoverPreview(Boolean(previewSource));
+  // Connect to the preview's host while the card is on screen, so a hover starts with the connection open.
+  useEffect(() => {
+    if (!previewSource) return;
+    preconnect(previewSource.url);
+    if (previewSource.kind === 'iframe' && previewSource.url.includes('youtube-nocookie.com')) preconnect('https://www.youtube.com');
+  }, [previewSource]);
   if (!video || !post.cid || !channelAddress) return null;
 
   const href = videoPath(channelAddress, post.cid);
@@ -102,7 +121,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
       {/* The title link is the accessible one; the thumbnail repeats it for pointer users. */}
       <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true' onPointerEnter={preview.onPointerEnter} onPointerLeave={preview.onPointerLeave}>
         <Thumbnail urls={video.thumbnailUrls} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
-        {preview.active && previewSource && <Preview source={previewSource} title={video.title} />}
+        {preview.loading && previewSource && <Preview source={previewSource} title={video.title} visible={preview.visible} />}
       </Link>
       <div className={styles.details}>
         {showChannel && layout === 'grid' && (

@@ -37,13 +37,9 @@
   pointer-events: none;
 }
 
-.preview[data-ready] {
+.preview[data-shown] {
   opacity: 1;
-}
-
-/* An embed reports its page loaded well before its player shows a frame; keep the thumbnail meanwhile. */
-iframe.preview[data-ready] {
-  transition: opacity 0.2s ease 1.2s;
+  transition: opacity 0.2s ease;
 }
 
 .compact .thumbnail {
