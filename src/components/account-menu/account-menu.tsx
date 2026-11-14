@@ -1,9 +1,20 @@
-import { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAccount } from '@bitsocial/bitsocial-react-hooks';
-import { ArrowLeft, Check, ChevronRight, Clapperboard, Code, MessageSquareWarning, Moon, Settings, UserRound } from 'lucide-react';
+import {
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuItemIndicator,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuSub,
+  MenuSubContent,
+  MenuSubTrigger,
+  MenuTrigger,
+} from '@ui-sdk/react/menu';
+import { Check, ChevronRight, Clapperboard, Code, MessageSquareWarning, Moon, Settings, UserRound } from 'lucide-react';
 import { REPOSITORY_URL } from '../../data/navigation';
-import { useDismiss } from '../../hooks/use-dismiss';
 import { useTheme } from '../../hooks/use-theme';
 import { channelHue, shortAddress } from '../../lib/channels';
 import { setThemePreference, type ThemePreference } from '../../lib/theme';
@@ -17,26 +28,9 @@ const commitRef = import.meta.env.VITE_COMMIT_REF;
 export const AccountMenu = () => {
   const account = useAccount();
   const { preference } = useTheme();
-  const [open, setOpen] = useState(false);
-  const [view, setView] = useState<'main' | 'appearance'>('main');
-  const rootRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const address: string = account?.author?.address ?? '';
   const name: string = account?.author?.displayName || 'Anonymous';
-
-  const close = () => {
-    setOpen(false);
-    setView('main');
-  };
-
-  // Close on a click outside the menu or on Escape, which also returns focus to the button.
-  const dismiss = useCallback((reason: 'outside' | 'escape') => {
-    setOpen(false);
-    setView('main');
-    if (reason === 'escape') buttonRef.current?.focus();
-  }, []);
-  useDismiss(open, rootRef, dismiss);
 
   const avatar = (size: number) => (
     <span
@@ -49,97 +43,79 @@ export const AccountMenu = () => {
   );
 
   return (
-    <div className={styles.root} ref={rootRef}>
-      <button
-        ref={buttonRef}
-        type='button'
-        className={styles.trigger}
-        aria-label='Account menu'
-        aria-haspopup='menu'
-        aria-expanded={open}
-        onClick={() => (open ? close() : setOpen(true))}
-      >
+    <Menu presentation='auto'>
+      <MenuTrigger className={styles.trigger} aria-label='Account menu'>
         {avatar(32)}
-      </button>
-      {open && view === 'main' && (
-        <div className={styles.menu} role='menu' aria-label='Account'>
-          <div className={styles.identity}>
-            {avatar(40)}
-            <div className={styles.identityText}>
-              <span className={styles.name}>{name}</span>
-              <span className={styles.address} title={address}>
-                {shortAddress(address) || 'Creating your account…'}
-              </span>
-            </div>
-          </div>
-          <hr className={styles.divider} />
-          {/* Profiles are author communities (BSIP-14); channels are hosted through Forge RPC, on by default. */}
-          <div className={styles.item} role='menuitem' aria-disabled='true'>
-            <UserRound size={20} aria-hidden='true' />
-            <span className={styles.label}>
-              Your profile<span className={styles.hint}>Coming soon</span>
+      </MenuTrigger>
+      <MenuContent className={styles.menu} aria-label='Account' align='end' sideOffset={6}>
+        <div className={styles.identity}>
+          {avatar(40)}
+          <div className={styles.identityText}>
+            <span className={styles.name}>{name}</span>
+            <span className={styles.address} title={address}>
+              {shortAddress(address) || 'Creating your account…'}
             </span>
           </div>
-          <div className={styles.item} role='menuitem' aria-disabled='true'>
-            <Clapperboard size={20} aria-hidden='true' />
-            <span className={styles.label}>
-              Create a channel<span className={styles.hint}>Coming soon, hosted free through Forge RPC</span>
-            </span>
-          </div>
-          <hr className={styles.divider} />
-          <button type='button' className={styles.item} role='menuitem' aria-haspopup='menu' onClick={() => setView('appearance')}>
+        </div>
+        <MenuSeparator className={styles.divider} />
+        {/* Profiles are author communities (BSIP-14); channels are hosted through Forge RPC, on by default. */}
+        <MenuItem className={styles.item} label='Your profile' disabled>
+          <UserRound size={20} aria-hidden='true' />
+          <span className={styles.label}>
+            Your profile<span className={styles.hint}>Coming soon</span>
+          </span>
+        </MenuItem>
+        <MenuItem className={styles.item} label='Create a channel' disabled>
+          <Clapperboard size={20} aria-hidden='true' />
+          <span className={styles.label}>
+            Create a channel<span className={styles.hint}>Coming soon, hosted free through Forge RPC</span>
+          </span>
+        </MenuItem>
+        <MenuSeparator className={styles.divider} />
+        <MenuSub>
+          <MenuSubTrigger className={styles.item}>
             <Moon size={20} aria-hidden='true' />
             <span className={styles.label}>Appearance: {THEME_LABELS[preference]}</span>
             <ChevronRight size={18} aria-hidden='true' />
-          </button>
-          <Link to='/settings' className={styles.item} role='menuitem' onClick={close}>
-            <Settings size={20} aria-hidden='true' />
-            <span className={styles.label}>Settings</span>
-          </Link>
-          <hr className={styles.divider} />
-          <a className={styles.item} role='menuitem' href={`${REPOSITORY_URL}/issues/new`} target='_blank' rel='noopener noreferrer' onClick={close}>
-            <MessageSquareWarning size={20} aria-hidden='true' />
-            <span className={styles.label}>Send feedback</span>
-          </a>
-          <a className={styles.item} role='menuitem' href={REPOSITORY_URL} target='_blank' rel='noopener noreferrer' onClick={close}>
-            <Code size={20} aria-hidden='true' />
-            <span className={styles.label}>Source code</span>
-          </a>
-          <p className={styles.version}>
-            WeTube v{version}
-            {commitRef && (
-              <>
-                {' · '}
-                <a href={`${REPOSITORY_URL}/commit/${commitRef}`} target='_blank' rel='noopener noreferrer'>
-                  {commitRef.slice(0, 7)}
-                </a>
-              </>
-            )}
-          </p>
-        </div>
-      )}
-      {open && view === 'appearance' && (
-        <div className={styles.menu} role='menu' aria-label='Appearance'>
-          <button type='button' className={styles.back} onClick={() => setView('main')}>
-            <ArrowLeft size={20} aria-hidden='true' />
-            Appearance
-          </button>
-          <hr className={styles.divider} />
-          {(Object.keys(THEME_LABELS) as ThemePreference[]).map((option) => (
-            <button
-              key={option}
-              type='button'
-              className={styles.item}
-              role='menuitemradio'
-              aria-checked={preference === option}
-              onClick={() => setThemePreference(option)}
-            >
-              <span className={styles.check}>{preference === option && <Check size={18} aria-hidden='true' />}</span>
-              <span className={styles.label}>{option === 'system' ? 'Use device theme' : THEME_LABELS[option]}</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+          </MenuSubTrigger>
+          <MenuSubContent className={styles.menu} aria-label='Appearance'>
+            <MenuRadioGroup name='theme' value={preference} onValueChange={setThemePreference}>
+              {(Object.keys(THEME_LABELS) as ThemePreference[]).map((option) => (
+                <MenuRadioItem key={option} className={styles.item} value={option}>
+                  <MenuItemIndicator className={styles.check} keepMounted>
+                    <Check size={18} aria-hidden='true' />
+                  </MenuItemIndicator>
+                  <span className={styles.label}>{option === 'system' ? 'Use device theme' : THEME_LABELS[option]}</span>
+                </MenuRadioItem>
+              ))}
+            </MenuRadioGroup>
+          </MenuSubContent>
+        </MenuSub>
+        <MenuItem className={styles.item} render={<Link to='/settings' />}>
+          <Settings size={20} aria-hidden='true' />
+          <span className={styles.label}>Settings</span>
+        </MenuItem>
+        <MenuSeparator className={styles.divider} />
+        <MenuItem className={styles.item} render={<a href={`${REPOSITORY_URL}/issues/new`} target='_blank' rel='noopener noreferrer' />}>
+          <MessageSquareWarning size={20} aria-hidden='true' />
+          <span className={styles.label}>Send feedback</span>
+        </MenuItem>
+        <MenuItem className={styles.item} render={<a href={REPOSITORY_URL} target='_blank' rel='noopener noreferrer' />}>
+          <Code size={20} aria-hidden='true' />
+          <span className={styles.label}>Source code</span>
+        </MenuItem>
+        <p className={styles.version}>
+          WeTube v{version}
+          {commitRef && (
+            <>
+              {' · '}
+              <a href={`${REPOSITORY_URL}/commit/${commitRef}`} target='_blank' rel='noopener noreferrer'>
+                {commitRef.slice(0, 7)}
+              </a>
+            </>
+          )}
+        </p>
+      </MenuContent>
+    </Menu>
   );
 };
