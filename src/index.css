@@ -1,3 +1,6 @@
+/* UI SDK injects a little behavior CSS into this layer; declared first so the app's styles win over it. */
+@layer ui-sdk;
+
 /* Neutrals and the header glass match YouTube's own values (read from youtube.com, 2026-11-11), so WeTube
    feels like the same kind of app; the reds are WeTube's (design/logo/README.md). src/lib/theme.ts sets
    <html data-theme> from the viewer's choice or the device; the media query only covers a page whose

@@ -53,6 +53,7 @@ For an unexpected repo-specific issue, tell the contributor and continue indepen
 - Use Bitsocial hooks for protocol data access. Do not fetch data in effects or synchronize derived state with effects; derive values during render.
 - Use React Router for navigation, not manual history manipulation. Channels live at `/@<address>` and videos at `/@<address>/v/<cid>`; build both with the helpers in `src/lib/channels.ts`. Links use the community's exact address, never a directory code.
 - The UI follows the WeTube website mockups in `design/logo/showcase/`: a YouTube-like layout, dark by default with a light theme from `prefers-color-scheme`, brand red `#ed004a`, rounded thumbnails. Colors come from the tokens in `src/index.css`.
+- Build new interactive components (menus, dialogs, popovers, selects, comboboxes, tabs, tooltips, drag and drop) on UI SDK (`@ui-sdk/react`, a beta): follow the `ui-sdk` skill and read `node_modules/@ui-sdk/react/docs/llms.txt`, then only the component pages the task needs. Do not hand-roll focus, keyboard, dismissal or ARIA handling for them. Its parts are unstyled; style them with CSS modules and the tokens in `src/index.css`. Leave existing hand-rolled components alone unless the task is to move them. `src/components/account-menu` is the reference.
 - Add comments for non-obvious constraints or logic, not for obvious code.
 
 ## Git and ownership

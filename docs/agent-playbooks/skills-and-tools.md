@@ -38,6 +38,7 @@ The AI directories use LF line endings through `.gitattributes` so generated tex
 | `implement-plan` | Execute a plan with optional bounded delegation |
 | `readme` | Maintain verified project documentation |
 | `context7` | Retrieve version-appropriate library documentation |
+| `ui-sdk` | Build interactive components on UI SDK; copied from `vercel-labs/ui` `packages/core/skills/ui-sdk` at `220c1a0`, refresh it when bumping `@ui-sdk/*` |
 | `find-skills` | Find additional skills when explicitly requested |
 
 ## Roles and models
