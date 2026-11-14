@@ -85,7 +85,7 @@ The entries below were observed in the 5chan client, whose agent workflow, dev l
 - **Date:** 2026-04-08
 - **Updated:** 2026-07-10
 - **Observed by:** contributor + Codex
-- **Context:** Reviewing repo-managed agent configs under `.codex/agents`, `.cursor/agents`, and `.claude/agents`.
+- **Context:** Reviewing repo-managed agent configs under `.codex/agents` and `.claude/agents`.
 - **What was surprising:** Model names remain harness-specific, while Codex custom-agent `model` and `model_reasoning_effort` settings are optional and inherit from the parent when omitted; Codex does not document a `latest` alias for these files.
 - **Impact:** Hard-coded model or reasoning-effort settings can become stale or unsupported and prevent subagents from following the contributor's current parent configuration.
 - **Mitigation:** Omit model and reasoning fields from `.agents/roles` and committed skills; `yarn ai-workflow:check` rejects them so generated agents keep inheriting parent settings.

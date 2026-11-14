@@ -15,7 +15,6 @@ const workflowPaths = [
   '.agents/',
   '.claude/',
   '.codex/',
-  '.cursor/',
   'scripts/agent-hooks/',
   'scripts/ai-workflow-files.mjs',
   'scripts/sync-ai-workflow.mjs',
