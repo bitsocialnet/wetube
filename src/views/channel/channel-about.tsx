@@ -1,7 +1,9 @@
 import { useId, useState, type RefObject } from 'react';
 import { AtSign, CalendarDays, Check, Copy, PlaySquare, UsersRound, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useFormat } from '../../hooks/use-format';
 import { copyText } from '../../lib/clipboard';
-import { formatDate, plural } from '../../lib/format';
+import { formatDate } from '../../lib/format';
 import styles from './channel.module.css';
 
 interface ChannelAboutProps {
@@ -15,6 +17,7 @@ interface ChannelAboutProps {
 }
 
 const CopyAddressButton = ({ address }: { address: string }) => {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const copy = () => {
     void copyText(address).then((done) => {
@@ -24,7 +27,7 @@ const CopyAddressButton = ({ address }: { address: string }) => {
     });
   };
   return (
-    <button type='button' className={styles.aboutIconButton} aria-label={copied ? 'Address copied' : 'Copy address'} title='Copy address' onClick={copy}>
+    <button type='button' className={styles.aboutIconButton} aria-label={copied ? t('address_copied') : t('copy_address')} title={t('copy_address')} onClick={copy}>
       {copied ? <Check size={18} aria-hidden='true' /> : <Copy size={18} aria-hidden='true' />}
     </button>
   );
@@ -32,6 +35,7 @@ const CopyAddressButton = ({ address }: { address: string }) => {
 
 /** YouTube's About dialog, opened by "…more": the whole description and the channel's details. */
 export const ChannelAbout = ({ dialogRef, channelAddress, title, description, createdAt, videoCount }: ChannelAboutProps) => {
+  const { t, language, count } = useFormat();
   const headingId = useId();
   const close = () => dialogRef.current?.close();
 
@@ -48,14 +52,18 @@ export const ChannelAbout = ({ dialogRef, channelAddress, title, description, cr
       <div className={styles.aboutBody}>
         <div className={styles.aboutTop}>
           <h2 id={headingId} className={styles.aboutTitle}>
-            About {title}
+            {t('about_channel', { channel: title })}
           </h2>
-          <button type='button' className={styles.aboutIconButton} aria-label='Close' onClick={close}>
+          <button type='button' className={styles.aboutIconButton} aria-label={t('close')} onClick={close}>
             <X size={22} aria-hidden='true' />
           </button>
         </div>
-        {description && <p className={styles.aboutDescription}>{description}</p>}
-        <h3 className={styles.aboutHeading}>Channel details</h3>
+        {description && (
+          <p className={styles.aboutDescription} dir='auto'>
+            {description}
+          </p>
+        )}
+        <h3 className={styles.aboutHeading}>{t('channel_details')}</h3>
         <ul className={styles.aboutDetails}>
           <li>
             <AtSign size={20} aria-hidden='true' />
@@ -64,16 +72,16 @@ export const ChannelAbout = ({ dialogRef, channelAddress, title, description, cr
           </li>
           <li>
             <UsersRound size={20} aria-hidden='true' />
-            <span title='Subscriber counts are not available yet'>? subscribers</span>
+            <span title={t('subscribers_unavailable')}>{t('unknown_subscribers')}</span>
           </li>
           <li>
             <PlaySquare size={20} aria-hidden='true' />
-            <span>{videoCount === undefined ? '? videos' : plural(videoCount, 'video')}</span>
+            <span>{videoCount === undefined ? t('unknown_videos') : videoCount === 1 ? t('one_video') : t('x_videos', { number: count(videoCount) })}</span>
           </li>
           {createdAt ? (
             <li>
               <CalendarDays size={20} aria-hidden='true' />
-              <span>Joined {formatDate(createdAt)}</span>
+              <span>{t('joined_date', { date: formatDate(createdAt, language) })}</span>
             </li>
           ) : null}
         </ul>

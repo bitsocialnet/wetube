@@ -38,5 +38,4 @@ export const timeAgo = (timestampSeconds: number | undefined, { language, justNo
 export const formatCount = (count: number | undefined, language: string) => compactNumberFormat(language).format(count ?? 0);
 
 /** "Nov 11, 2026" from a Bitsocial timestamp in seconds. */
-export const formatDate = (timestampSeconds: number | undefined, language: string) =>
-  timestampSeconds ? dateFormat(language).format(timestampSeconds * 1000) : '';
+export const formatDate = (timestampSeconds: number | undefined, language: string) => (timestampSeconds ? dateFormat(language).format(timestampSeconds * 1000) : '');

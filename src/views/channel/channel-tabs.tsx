@@ -1,15 +1,11 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Search } from 'lucide-react';
 import { channelSearchPath, channelSectionPath, type ChannelSection } from '../../lib/channels';
 import styles from './channel.module.css';
 
-const TABS = [
-  { section: 'home', label: 'Home' },
-  { section: 'videos', label: 'Videos' },
-  { section: 'playlists', label: 'Playlists' },
-  { section: 'posts', label: 'Posts' },
-] as const;
+const TABS = ['home', 'videos', 'playlists', 'posts'] as const;
 
 interface ChannelTabsProps {
   channelAddress: string;
@@ -19,6 +15,8 @@ interface ChannelTabsProps {
 
 /** The tab bar, and YouTube's search button that opens a field for searching this channel. */
 export const ChannelTabs = ({ channelAddress, section, query }: ChannelTabsProps) => {
+  const { t } = useTranslation();
+  const labels: Record<(typeof TABS)[number], string> = { home: t('home'), videos: t('videos'), playlists: t('playlists'), posts: t('posts') };
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,10 +46,10 @@ export const ChannelTabs = ({ channelAddress, section, query }: ChannelTabsProps
 
   return (
     <div className={styles.tabBar}>
-      <nav className={styles.tabs} aria-label='Channel'>
+      <nav className={styles.tabs} aria-label={t('channel_tabs')}>
         {TABS.map((tab) => (
-          <Link key={tab.section} to={channelSectionPath(channelAddress, tab.section)} className={styles.tab} aria-current={section === tab.section ? 'page' : undefined}>
-            {tab.label}
+          <Link key={tab} to={channelSectionPath(channelAddress, tab)} className={styles.tab} aria-current={section === tab ? 'page' : undefined}>
+            {labels[tab]}
           </Link>
         ))}
       </nav>
@@ -61,7 +59,7 @@ export const ChannelTabs = ({ channelAddress, section, query }: ChannelTabsProps
           ref={buttonRef}
           type={open ? 'submit' : 'button'}
           className={styles.searchButton}
-          aria-label='Search this channel'
+          aria-label={t('search_channel')}
           aria-expanded={open}
           onClick={open ? undefined : () => setOpenedOn(page)}
         >
@@ -75,8 +73,8 @@ export const ChannelTabs = ({ channelAddress, section, query }: ChannelTabsProps
             type='search'
             value={value}
             onChange={(event) => setDraft({ query, value: event.target.value })}
-            placeholder='Search'
-            aria-label='Search this channel'
+            placeholder={t('search')}
+            aria-label={t('search_channel')}
             autoComplete='off'
             autoFocus={opened}
             onKeyDown={(event) => {

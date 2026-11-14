@@ -1,5 +1,6 @@
 import { useCallback, useId, useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useHorizontalOverflow } from '../../hooks/use-horizontal-overflow';
 import styles from './channel.module.css';
@@ -14,6 +15,7 @@ interface ShelfProps {
 
 /** One row of a channel's Home tab, scrolled sideways with YouTube's round arrow buttons. */
 export const Shelf = ({ title, to, variant, children }: ShelfProps) => {
+  const { t } = useTranslation();
   const headingId = useId();
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const { ref: measureRef, start: overflowsStart, end: overflowsEnd } = useHorizontalOverflow<HTMLDivElement>();
@@ -26,7 +28,10 @@ export const Shelf = ({ title, to, variant, children }: ShelfProps) => {
   );
   const scroll = (direction: 1 | -1) => {
     const node = scrollerRef.current;
-    node?.scrollBy({ left: direction * node.clientWidth * 0.9, behavior: 'smooth' });
+    if (!node) return;
+    // Forward is to the left in right-to-left languages.
+    const sign = getComputedStyle(node).direction === 'rtl' ? -1 : 1;
+    node.scrollBy({ left: sign * direction * node.clientWidth * 0.9, behavior: 'smooth' });
   };
 
   return (
@@ -39,12 +44,12 @@ export const Shelf = ({ title, to, variant, children }: ShelfProps) => {
           {children}
         </div>
         {overflowsStart && (
-          <button type='button' className={styles.shelfArrow} data-side='start' aria-label={`Scroll ${title} back`} onClick={() => scroll(-1)}>
+          <button type='button' className={styles.shelfArrow} data-side='start' aria-label={t('scroll_back', { title })} onClick={() => scroll(-1)}>
             <ChevronLeft size={24} aria-hidden='true' />
           </button>
         )}
         {overflowsEnd && (
-          <button type='button' className={styles.shelfArrow} data-side='end' aria-label={`Scroll ${title} forward`} onClick={() => scroll(1)}>
+          <button type='button' className={styles.shelfArrow} data-side='end' aria-label={t('scroll_forward', { title })} onClick={() => scroll(1)}>
             <ChevronRight size={24} aria-hidden='true' />
           </button>
         )}

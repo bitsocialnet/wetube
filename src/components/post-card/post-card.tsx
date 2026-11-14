@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import type { Comment } from '@bitsocial/bitsocial-react-hooks';
 import { MessageSquare, ThumbsDown, ThumbsUp } from 'lucide-react';
 import { useChannel } from '../../hooks/use-channel';
+import { useFormat } from '../../hooks/use-format';
 import { getFeedPostMedia, type FeedPostMedia } from '../../lib/channel-posts';
 import { channelPath, postPath, shortAddress } from '../../lib/channels';
-import { formatCount, plural, timeAgo } from '../../lib/format';
 import { ChannelAvatar } from '../channel-avatar';
 import { SignInPrompt } from '../sign-in-prompt';
 import styles from './post-card.module.css';
@@ -36,10 +36,11 @@ const LinkCard = ({ media }: { media: FeedPostMedia }) => {
 };
 
 const Media = ({ media }: { media: FeedPostMedia }) => {
+  const { t } = useFormat();
   const [imageFailed, setImageFailed] = useState(false);
   if (media.kind === 'image' && !imageFailed) {
     return (
-      <a className={styles.image} href={media.url} target='_blank' rel='noopener noreferrer' aria-label={`Open the image on ${media.host}`}>
+      <a className={styles.image} href={media.url} target='_blank' rel='noopener noreferrer' aria-label={t('open_image_on', { host: media.host })}>
         <img src={media.url} alt='' loading='lazy' referrerPolicy='no-referrer' onError={() => setImageFailed(true)} />
       </a>
     );
@@ -50,6 +51,7 @@ const Media = ({ media }: { media: FeedPostMedia }) => {
 
 /** A channel's feed post, as YouTube shows a post: the channel, the text, an image or link, and its votes. */
 export const PostCard = ({ post, layout = 'list' }: PostCardProps) => {
+  const { t, timeAgo, count } = useFormat();
   const [expanded, setExpanded] = useState(false);
   const channelAddress: string = post.communityAddress;
   const channel = useChannel(channelAddress, { onlyIfCached: true });
@@ -76,37 +78,50 @@ export const PostCard = ({ post, layout = 'list' }: PostCardProps) => {
             {channelTitle}
           </Link>
           {layout === 'page' ? <span>{timeAgo(post.timestamp)}</span> : <Link to={href}>{timeAgo(post.timestamp)}</Link>}
-          {edited && <span>(edited)</span>}
+          {edited && <span>{t('edited')}</span>}
         </p>
-        {post.title && <Title className={styles.title}>{post.title}</Title>}
+        {post.title && (
+          <Title className={styles.title} dir='auto'>
+            {post.title}
+          </Title>
+        )}
         {content && (
-          <p className={styles.content} data-clamped={clamped || undefined}>
+          <p className={styles.content} data-clamped={clamped || undefined} dir='auto'>
             {content}
           </p>
         )}
         {long && (
           <button type='button' className={styles.readMore} aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>
-            {expanded ? 'Show less' : 'Read more'}
+            {expanded ? t('show_less') : t('read_more')}
           </button>
         )}
         {media && <Media media={media} />}
         <div className={styles.actions}>
-          <SignInPrompt className={styles.action} label={`Like (${plural(post.upvoteCount, 'like')})`} title='Like this post?' text='Sign in to make your opinion count.'>
+          <SignInPrompt
+            className={styles.action}
+            label={t('like_label', { likes: post.upvoteCount === 1 ? t('one_like') : t('x_likes', { number: count(post.upvoteCount) }) })}
+            title={t('like_post_title')}
+            text={t('sign_in_to_vote')}
+          >
             <ThumbsUp size={18} aria-hidden='true' />
-            {formatCount(post.upvoteCount)}
+            {count(post.upvoteCount)}
           </SignInPrompt>
           <SignInPrompt
             className={styles.action}
-            label={`Dislike (${plural(post.downvoteCount, 'dislike')})`}
-            title="Don't like this post?"
-            text='Sign in to make your opinion count.'
+            label={t('dislike_label', { dislikes: post.downvoteCount === 1 ? t('one_dislike') : t('x_dislikes', { number: count(post.downvoteCount) }) })}
+            title={t('dislike_post_title')}
+            text={t('sign_in_to_vote')}
           >
             <ThumbsDown size={18} aria-hidden='true' />
           </SignInPrompt>
           {layout !== 'page' && (
-            <Link to={href} className={styles.action} aria-label={`Comments (${plural(post.replyCount, 'comment')})`}>
+            <Link
+              to={href}
+              className={styles.action}
+              aria-label={t('comments_label', { comments: post.replyCount === 1 ? t('one_comment') : t('x_comments', { number: count(post.replyCount) }) })}
+            >
               <MessageSquare size={18} aria-hidden='true' />
-              {formatCount(post.replyCount)}
+              {count(post.replyCount)}
             </Link>
           )}
         </div>

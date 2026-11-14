@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { useFeed, type CommunityIdentifier } from '@bitsocial/bitsocial-react-hooks';
+import { useTranslation } from 'react-i18next';
 import { VideoGrid } from '../../components/video-grid';
 import { videoPostsFilter } from '../../lib/video-sources';
 import styles from './channel.module.css';
 
 // YouTube's Latest and Popular. Popular ranks by likes until view counts exist; pkc-js has no oldest-first
 // post sort, so YouTube's Oldest is left out.
-const SORTS = [
-  { value: 'new', label: 'Latest' },
-  { value: 'topAll', label: 'Popular' },
-] as const;
-type Sort = (typeof SORTS)[number]['value'];
+const SORTS = ['new', 'topAll'] as const;
+type Sort = (typeof SORTS)[number];
 
 interface ChannelVideosProps {
   channelAddress: string;
@@ -19,26 +17,21 @@ interface ChannelVideosProps {
 
 /** The Videos tab: every video of the channel, and nothing else it posts. */
 export const ChannelVideos = ({ channelAddress, communities }: ChannelVideosProps) => {
+  const { t } = useTranslation();
+  const labels: Record<Sort, string> = { new: t('latest'), topAll: t('popular') };
   const [sort, setSort] = useState<Sort>('new');
   const { feed, hasMore, loadMore } = useFeed({ communities, sortType: sort, postsPerPage: 24, filter: videoPostsFilter });
 
   return (
     <>
-      <div className={styles.chips} role='group' aria-label='Sort videos'>
+      <div className={styles.chips} role='group' aria-label={t('sort_videos')}>
         {SORTS.map((option) => (
-          <button key={option.value} type='button' className={styles.chip} aria-pressed={sort === option.value} onClick={() => setSort(option.value)}>
-            {option.label}
+          <button key={option} type='button' className={styles.chip} aria-pressed={sort === option} onClick={() => setSort(option)}>
+            {labels[option]}
           </button>
         ))}
       </div>
-      <VideoGrid
-        key={`${channelAddress}:${sort}`}
-        posts={feed}
-        hasMore={hasMore}
-        loadMore={loadMore}
-        showChannel={false}
-        emptyMessage='This channel has no videos yet.'
-      />
+      <VideoGrid key={`${channelAddress}:${sort}`} posts={feed} hasMore={hasMore} loadMore={loadMore} showChannel={false} emptyMessage={t('channel_no_videos')} />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { useSubscribe } from '@bitsocial/bitsocial-react-hooks';
+import { useTranslation } from 'react-i18next';
 import { Bell, BellOff } from 'lucide-react';
 import { useChannelBell } from '../../hooks/use-channel-bell';
 import { setChannelBell } from '../../lib/channel-notifications';
@@ -16,6 +17,7 @@ interface SubscribeButtonsProps {
  * (useSubscribe), kept by this browser's Bitsocial account; nothing is published.
  */
 export const SubscribeButtons = ({ channelAddress, size = 'medium' }: SubscribeButtonsProps) => {
+  const { t } = useTranslation();
   const { subscribed, subscribe, unsubscribe, state } = useSubscribe({ communityAddress: channelAddress });
   const bellOn = useChannelBell(channelAddress);
 
@@ -28,15 +30,15 @@ export const SubscribeButtons = ({ channelAddress, size = 'medium' }: SubscribeB
         disabled={state !== 'ready'}
         onClick={() => void (subscribed ? unsubscribe() : subscribe())}
       >
-        {subscribed ? 'Subscribed' : 'Subscribe'}
+        {subscribed ? t('subscribed') : t('subscribe')}
       </button>
       {subscribed && (
         <button
           type='button'
           className={styles.bell}
-          aria-label='Channel notifications'
+          aria-label={t('channel_notifications')}
           aria-pressed={bellOn}
-          title={bellOn ? 'Turn off notifications' : 'Turn on notifications'}
+          title={bellOn ? t('turn_off_notifications') : t('turn_on_notifications')}
           onClick={() => setChannelBell(channelAddress, !bellOn)}
         >
           {bellOn ? <Bell size={20} aria-hidden='true' /> : <BellOff size={20} aria-hidden='true' />}

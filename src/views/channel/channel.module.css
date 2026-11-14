@@ -83,6 +83,10 @@
   mask-image: linear-gradient(to right, #000000 calc(100% - 70px), transparent);
 }
 
+.descriptionText[data-faded]:dir(rtl) {
+  mask-image: linear-gradient(to left, #000000 calc(100% - 70px), transparent);
+}
+
 .descriptionMore {
   flex: none;
   padding: 0;
@@ -159,7 +163,7 @@
   display: flex;
   flex: none;
   align-items: center;
-  margin-left: 12px;
+  margin-inline-start: 12px;
 }
 
 .searchButton {
@@ -337,11 +341,16 @@
 }
 
 .shelfArrow[data-side='start'] {
-  left: -16px;
+  inset-inline-start: -16px;
 }
 
 .shelfArrow[data-side='end'] {
-  right: -16px;
+  inset-inline-end: -16px;
+}
+
+/* The arrows point the way the shelf scrolls, so they mirror in right-to-left languages. */
+.shelfArrow:dir(rtl) svg {
+  transform: scaleX(-1);
 }
 
 .skeletonThumbnail {

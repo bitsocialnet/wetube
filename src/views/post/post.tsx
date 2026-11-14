@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useComment } from '@bitsocial/bitsocial-react-hooks';
+import { useTranslation } from 'react-i18next';
 import { Comments } from '../../components/comments';
 import { PostCard } from '../../components/post-card';
 import { getChannelAddressFromHandle, getChannelIdentifier, videoPath } from '../../lib/channels';
@@ -9,6 +10,7 @@ import styles from './post.module.css';
 
 /** A channel's feed post on its own page, with its comments, like YouTube's /post pages. */
 const Post = () => {
+  const { t } = useTranslation();
   const { channelHandle, postCid = '' } = useParams();
   const channelAddress = getChannelAddressFromHandle(channelHandle) ?? '';
   const community = useMemo(() => getChannelIdentifier(channelAddress), [channelAddress]);
@@ -27,7 +29,7 @@ const Post = () => {
         </>
       ) : (
         <p className={styles.status} role='status'>
-          {post.error ? `Could not load this post: ${post.error.message}` : 'Loading the post from peers…'}
+          {post.error ? t('could_not_load_post', { error: post.error.message }) : t('loading_post')}
         </p>
       )}
     </div>
