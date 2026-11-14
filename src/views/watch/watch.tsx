@@ -6,6 +6,7 @@ import { ChannelAvatar } from '../../components/channel-avatar';
 import { Comments } from '../../components/comments';
 import { Player } from '../../components/player';
 import { SignInPrompt } from '../../components/sign-in-prompt';
+import { SubscribeButtons } from '../../components/subscribe-buttons';
 import { useChannel } from '../../hooks/use-channel';
 import { useWatchLater } from '../../hooks/use-watch-later';
 import { channelPath, getChannelAddressFromHandle, getChannelIdentifier, shortAddress } from '../../lib/channels';
@@ -69,9 +70,7 @@ const Watch = () => {
                     </span>
                   </span>
                 </Link>
-                <SignInPrompt className={styles.subscribeButton} title='Want to subscribe to this channel?' text='Sign in to subscribe to this channel.'>
-                  Subscribe
-                </SignInPrompt>
+                <SubscribeButtons channelAddress={channelAddress} />
               </div>
               <div className={styles.actions}>
                 <div className={styles.votes}>

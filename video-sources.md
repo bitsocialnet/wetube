@@ -56,6 +56,10 @@ Why not the fields pkc-js already has:
 - **`comment.gallery`** (pkcprotocol/pkc-js#436) holds media files only: the community rejects any item whose URL path lacks a media file extension, so YouTube, Vimeo, PeerTube and Odysee pages fail, and `ipfs://` fails because items must be `https`. Galleries are also off unless a community enables them, and they cannot be edited. A gallery is several different media; sources are one video in several places.
 - **`comment.links`**, proposed in the same issue, was a replacement for `link`, could not be edited either, and was dropped in favor of `link` plus `gallery`.
 
+## Videos and Feed Posts
+
+A channel posts videos and feed posts, as a YouTube channel has videos and posts. Until the BSIP, the kind is derived: a post with at least one playable source is a video (the Videos tab and the watch page), and any other post is a feed post: text, an image or a link (the Posts tab, and a page of its own with comments). The rule lives in [src/lib/channel-posts.ts](src/lib/channel-posts.ts). Its limit: a feed post that only shares a playable link shows as a video. A post that carries `comment.sources` could make the kind explicit ([open-questions.md](open-questions.md#channel-posts-and-playlists)).
+
 ## Source Types and Availability
 
 The client plays YouTube and Invidious, Vimeo, PeerTube (any instance, recognized by its URL shapes), Odysee, Bitchute and Streamable embeds, direct video files, and `ipfs://` links. A file reports its own load error. Embeds show their errors inside the iframe without telling the page, so before playing a YouTube, Vimeo or PeerTube source the client asks the host's oEmbed or API whether the video still exists; a 404 skips it. A check that cannot answer (network error, rate limit) lets the source play.

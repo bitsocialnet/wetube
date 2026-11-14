@@ -23,3 +23,8 @@ export const timeAgo = (timestampSeconds: number | undefined, nowMs = Date.now()
 export const formatCount = (count: number | undefined) => compactNumber.format(count ?? 0);
 
 export const plural = (count: number | undefined, singular: string, pluralForm = `${singular}s`) => `${formatCount(count)} ${(count ?? 0) === 1 ? singular : pluralForm}`;
+
+const dateFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' });
+
+/** "Nov 11, 2026" from a Bitsocial timestamp in seconds. */
+export const formatDate = (timestampSeconds: number | undefined) => (timestampSeconds ? dateFormat.format(timestampSeconds * 1000) : '');

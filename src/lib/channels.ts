@@ -19,6 +19,29 @@ export const getChannelAddressFromHandle = (handle: string | undefined) => (hand
 
 export const videoPath = (channelAddress: string, cid: string) => `${channelPath(channelAddress)}/v/${encodeURIComponent(cid)}`;
 
+/** A feed post's own page, with its comments; videos open on the watch page instead. */
+export const postPath = (channelAddress: string, cid: string) => `${channelPath(channelAddress)}/post/${encodeURIComponent(cid)}`;
+
+// A channel page's tabs, as on YouTube: Home is the channel's own path, the others a segment after it.
+// Search has no tab; it opens from the search button in the tab bar.
+const CHANNEL_SECTIONS = ['videos', 'playlists', 'posts', 'search'] as const;
+export type ChannelSection = 'home' | (typeof CHANNEL_SECTIONS)[number];
+
+/** The section a /@<address>/<segment> route shows, or undefined when the segment is not one. */
+export const getChannelSection = (segment: string | undefined): ChannelSection | undefined =>
+  segment === undefined ? 'home' : CHANNEL_SECTIONS.find((section) => section === segment);
+
+export const channelSectionPath = (address: string, section: Exclude<ChannelSection, 'search'>) =>
+  section === 'home' ? channelPath(address) : `${channelPath(address)}/${section}`;
+
+export const channelSearchPath = (address: string, query: string) => `${channelPath(address)}/search?${new URLSearchParams({ query })}`;
+
+/** The page a pathname scrolls as: a channel's tabs are one page, so switching tabs keeps the scroll position. */
+export const getScrollPage = (pathname: string) => {
+  const [, handle, section, ...rest] = pathname.split('/');
+  return getChannelAddressFromHandle(handle) && rest.length === 0 && getChannelSection(section) ? `/${handle}` : pathname;
+};
+
 /** 12D3KooW… public keys are 52 characters; show the start and the end. */
 export const shortAddress = (address: string | undefined) => {
   if (!address) return '';

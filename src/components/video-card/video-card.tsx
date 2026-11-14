@@ -16,8 +16,8 @@ interface VideoCardProps {
   post: Comment;
   /** Show the channel name and avatar; off on a channel's own page. */
   showChannel?: boolean;
-  /** Compact cards sit in the watch page's side column. */
-  layout?: 'grid' | 'compact';
+  /** Compact cards sit in the watch page's side column; list rows, with a description, in search results. */
+  layout?: 'grid' | 'compact' | 'list';
 }
 
 // Tries each thumbnail in turn, then the first frame of a video file, then a placeholder with the host.
@@ -121,8 +121,8 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
   const video = useMemo(() => getVideo(post), [post]);
   const channelAddress: string = post.communityAddress;
   const channel = useChannel(showChannel ? channelAddress : undefined, { onlyIfCached: true });
-  // Grid cards preview on hover, as YouTube's home page does; the watch page's compact list does not.
-  const previewSource = useMemo(() => (video && layout === 'grid' ? getPreviewSource(video) : undefined), [video, layout]);
+  // Grid and list cards preview on hover, as YouTube's home page does; the watch page's compact list does not.
+  const previewSource = useMemo(() => (video && layout !== 'compact' ? getPreviewSource(video) : undefined), [video, layout]);
   const preview = useHoverPreview(Boolean(previewSource));
   // Connect to the preview's host while the card is on screen, so a hover starts with the connection open.
   useEffect(() => {
@@ -136,7 +136,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
   const channelTitle = channel.title || shortAddress(channelAddress);
 
   return (
-    <article className={layout === 'compact' ? styles.compact : styles.card}>
+    <article className={styles[layout === 'grid' ? 'card' : layout]}>
       {/* The title link is the accessible one; the thumbnail repeats it for pointer users. */}
       <Link to={href} className={styles.thumbnail} tabIndex={-1} aria-hidden='true' onPointerEnter={preview.onPointerEnter} onPointerLeave={preview.onPointerLeave}>
         <Thumbnail urls={video.thumbnailUrls} frameUrl={video.sources.find((source) => source.kind === 'file')?.playUrl} label={video.sources[0]?.label} />
@@ -162,6 +162,7 @@ export const VideoCard = ({ post, showChannel = true, layout = 'grid' }: VideoCa
             <span title='View counts are not available yet'>? views</span>
             {post.timestamp ? ` · ${timeAgo(post.timestamp)}` : ''}
           </p>
+          {layout === 'list' && video.description && <p className={styles.description}>{video.description}</p>}
         </div>
       </div>
     </article>

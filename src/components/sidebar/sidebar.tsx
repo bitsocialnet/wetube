@@ -65,7 +65,7 @@ export const Sidebar = ({ expanded, overlay, drawerOpen, onCloseDrawer }: Sideba
       </div>
       {/* Signed-in viewers will see their subscriptions here instead (BSIP-14 profiles through Forge RPC). */}
       <section className={styles.signIn} aria-label='Sign in'>
-        <p>Sign in to like videos, comment, and subscribe.</p>
+        <p>Sign in to like videos and comment.</p>
         <Link to='/signin' className={styles.signInButton} onClick={onCloseDrawer}>
           <CircleUserRound size={20} aria-hidden='true' />
           Sign in

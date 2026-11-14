@@ -1,5 +1,8 @@
 .avatar {
   display: inline-flex;
+  width: var(--avatar-size, 36px);
+  height: var(--avatar-size, 36px);
+  font-size: calc(var(--avatar-size, 36px) * 0.42);
   align-items: center;
   justify-content: center;
   flex: none;

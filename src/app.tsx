@@ -3,11 +3,12 @@ import { Route, Routes, useLocation, useMatch, useParams } from 'react-router-do
 import { AppHeader } from './components/app-header';
 import { Sidebar } from './components/sidebar';
 import { PLANNED_PAGES } from './data/navigation';
-import { getChannelAddressFromHandle } from './lib/channels';
+import { getChannelAddressFromHandle, getChannelSection, getScrollPage } from './lib/channels';
 import Channel from './views/channel';
 import Home from './views/home';
 import NotFound from './views/not-found';
 import Planned from './views/planned';
+import Post from './views/post';
 import Watch from './views/watch';
 import WatchLater from './views/watch-later';
 import styles from './app.module.css';
@@ -23,18 +24,21 @@ const readSidebarExpanded = () => {
   }
 };
 
-// HashRouter has no scroll restoration; start each page at the top.
+// HashRouter has no scroll restoration; start each page at the top. A channel's tabs count as one page.
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const page = getScrollPage(useLocation().pathname);
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [page]);
   return null;
 };
 
 // React Router matches whole segments only, so /@:address can't be a route pattern. Channel routes
-// match any segment and render only when it starts with @.
-const ChannelRoute = ({ children }: { children: ReactNode }) => (getChannelAddressFromHandle(useParams().channelHandle) ? children : <NotFound />);
+// match any segment and render only when it starts with @, and a channel tab only when it is one.
+const ChannelRoute = ({ children }: { children: ReactNode }) => {
+  const { channelHandle, channelSection } = useParams();
+  return getChannelAddressFromHandle(channelHandle) && getChannelSection(channelSection) ? children : <NotFound />;
+};
 
 const App = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(readSidebarExpanded);
@@ -72,7 +76,7 @@ const App = () => {
               <Route key={page.path} path={page.path} element={<Planned />} />
             ))}
             <Route
-              path='/:channelHandle'
+              path='/:channelHandle/:channelSection?'
               element={
                 <ChannelRoute>
                   <Channel />
@@ -84,6 +88,14 @@ const App = () => {
               element={
                 <ChannelRoute>
                   <Watch />
+                </ChannelRoute>
+              }
+            />
+            <Route
+              path='/:channelHandle/post/:postCid'
+              element={
+                <ChannelRoute>
+                  <Post />
                 </ChannelRoute>
               }
             />

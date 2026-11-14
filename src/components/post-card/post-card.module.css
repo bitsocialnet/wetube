@@ -1,0 +1,166 @@
+/* YouTube's post card: an outlined box with the channel's avatar beside the post. */
+.card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 16px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.card[data-layout='shelf'] {
+  height: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meta a:hover {
+  color: var(--ink);
+}
+
+.channelName {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.content {
+  margin: 0;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.content[data-clamped] {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMore {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.readMore:hover {
+  color: var(--ink);
+}
+
+.image {
+  display: block;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  object-fit: contain;
+}
+
+.card[data-layout='shelf'] .image img {
+  max-height: 180px;
+  object-fit: cover;
+}
+
+.linkCard {
+  display: flex;
+  margin-top: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--radius-small);
+}
+
+.linkCard:hover {
+  background: var(--surface-hover);
+}
+
+.linkThumbnail {
+  flex: none;
+  width: 120px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.linkText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 8px 12px;
+}
+
+.linkHost {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.linkUrl {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.action:hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.actions > :first-child .action {
+  margin-left: -10px;
+}

@@ -1,0 +1,12 @@
+.page {
+  max-width: 852px;
+  margin: 0 auto;
+  padding-top: 24px;
+}
+
+.status {
+  margin: 0;
+  padding: 48px 16px;
+  color: var(--muted);
+  text-align: center;
+}

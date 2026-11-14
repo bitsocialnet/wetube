@@ -16,7 +16,7 @@ Because channels are ordinary communities, they carry across clients. A WeTube c
 
 This is the main difference from clients like 5chan, where anyone passing the challenge can post to a board. In a WeTube channel:
 
-- **Only the channel owner can create posts.** A post is a video (see [video-sources.md](video-sources.md) for what a video post contains).
+- **Only the channel owner can create posts.** A post is a video (see [video-sources.md](video-sources.md) for what a video post contains) or a feed post: text, an image or a link, shown in the channel's Posts tab ([video-sources.md](video-sources.md#videos-and-feed-posts)).
 - **Anyone can comment** underneath a video, subject to the channel's anti-spam challenge, exactly like replying in any Bitsocial community.
 - **Anyone can like or dislike** videos and comments using Bitsocial's native community votes — tallied by the owner's node and seeded with the post. (Pubsub voting is a separate system, used only to rank channels in categories.)
 
@@ -56,6 +56,8 @@ A WeTube channel uses the "reply-able profile" configuration of [BSIP-14](https:
 | owner, anything | excluded by role | excluded by role | accepted |
 | anyone else, video post | fails | | rejected with the channel's message |
 | anyone else, comment, vote or edit | excluded by publication type | applies | challenged like any community |
+
+`requirePostLink` makes every post carry a link, so the owner can post videos, images and links but not text alone ([open-questions.md](open-questions.md#channel-posts-and-playlists)).
 
 The Open Movies demo channel runs this configuration, and a fresh signer's video post was rejected while its comment got the spam-blocker challenge (2026-11-11). Each Bitsocial client has community defaults that fit its UX, and Forge RPC will apply this one to channels created from WeTube, the way it applies board defaults for 5chan.
 

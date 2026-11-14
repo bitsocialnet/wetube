@@ -1,40 +1,107 @@
-.header {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 24px 0;
+/* YouTube's channel page, measured on youtube.com (2026-11-11): a 1284px column, a 16px-radius banner, a
+   160px avatar, a 36px name and 48px tabs underlined in the text color. */
+.page {
+  max-width: 1284px;
+  margin: 0 auto;
 }
 
-.text {
+.banner {
+  aspect-ratio: 1284 / 207;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 16px;
+  align-items: center;
+  padding: 16px 0 4px;
+}
+
+.avatar {
+  --avatar-size: 160px;
+}
+
+.info {
   min-width: 0;
 }
 
 .title {
   margin: 0;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 50px;
   overflow-wrap: anywhere;
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.metadata > span + span::before {
+  content: '•';
+  margin: 0 4px;
 }
 
 .address {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .description {
-  max-width: 72ch;
-  margin: 10px 0 0;
+  display: flex;
+  align-items: baseline;
+  max-width: 600px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.descriptionText {
+  min-width: 0;
+  overflow: hidden;
   color: var(--muted);
-  white-space: pre-wrap;
+  white-space: nowrap;
+}
+
+/* The end of a description too long for its line fades out, as on YouTube. */
+.descriptionText[data-faded] {
+  mask-image: linear-gradient(to right, #000000 calc(100% - 70px), transparent);
+}
+
+.descriptionMore {
+  flex: none;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.headerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
 }
 
 .status,
 .error {
-  margin: 10px 0 0;
+  margin: 0 0 8px;
   font-size: 14px;
 }
 
@@ -46,10 +113,410 @@
   color: var(--accent);
 }
 
-.sectionHeading {
-  margin: 0 0 16px;
-  padding-bottom: 10px;
+/* Tabs */
+
+.tabBar {
+  display: flex;
+  align-items: center;
+  height: 48px;
   border-bottom: 1px solid var(--line);
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
   font-size: 16px;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  border-bottom-color: var(--muted);
+}
+
+.tab[aria-current='page'] {
+  border-bottom-color: var(--ink);
+  color: var(--ink);
+}
+
+.search {
+  display: flex;
+  flex: none;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.searchButton:hover,
+.search[data-open] .searchButton {
+  color: var(--ink);
+}
+
+.searchButton:hover {
+  background: var(--surface);
+}
+
+.searchInput {
+  width: min(220px, 40vw);
+  height: 32px;
+  padding: 0 2px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.searchInput:focus-visible {
+  outline: none;
+  border-bottom: 2px solid var(--focus);
+}
+
+/* Sections */
+
+.section {
+  padding-top: 24px;
+}
+
+.empty,
+.loading {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.empty {
+  padding: 48px 16px;
+}
+
+.loading {
+  padding: 24px 16px;
+}
+
+.sentinel {
+  height: 1px;
+}
+
+.chips {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.chip {
+  height: 32px;
+  padding: 0 12px;
+  background: var(--surface);
+  border: 0;
+  border-radius: var(--radius-small);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: var(--surface-hover);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.postList,
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.postList {
+  max-width: 680px;
+}
+
+.results {
+  max-width: 852px;
+}
+
+/* Home shelves */
+
+.shelf {
+  padding-bottom: 24px;
+}
+
+.shelf + .shelf {
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.shelfTitle {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.shelfViewport {
+  position: relative;
+}
+
+/* The padding keeps a hovered thumbnail's ring inside the scroller, which clips; the scroll padding stops
+   snapping from scrolling past it. */
+.shelfItems {
+  display: flex;
+  gap: 16px;
+  margin: -2px;
+  padding: 2px;
+  overflow-x: auto;
+  scroll-padding-inline: 2px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.shelfItems::-webkit-scrollbar {
+  display: none;
+}
+
+.shelfItem {
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.shelfItems[data-variant='videos'] .shelfItem {
+  width: max(210px, calc((100% - 3 * 16px) / 4));
+}
+
+.shelfItems[data-variant='posts'] .shelfItem {
+  width: max(280px, calc((100% - 2 * 16px) / 3));
+}
+
+.shelfArrow {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--raised);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: var(--popover-shadow);
+  cursor: pointer;
+  translate: 0 -50%;
+}
+
+.shelfArrow[data-side='start'] {
+  left: -16px;
+}
+
+.shelfArrow[data-side='end'] {
+  right: -16px;
+}
+
+.skeletonThumbnail {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: var(--surface);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* About dialog */
+
+.about {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  padding: 0;
+  background: var(--raised);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+  color: var(--ink);
+}
+
+.about::backdrop {
+  background: var(--overlay, rgb(0 0 0 / 0.55));
+}
+
+.aboutBody {
+  padding: 16px 16px 24px 24px;
+}
+
+.aboutTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.aboutTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.aboutIconButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.aboutIconButton:hover {
+  background: var(--surface);
+}
+
+.aboutDescription {
+  margin: 0 8px 24px 0;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.aboutHeading {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.aboutDetails {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.aboutDetails li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 40px;
+}
+
+.aboutDetails svg {
+  flex: none;
+}
+
+.aboutAddress {
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1000px) {
+  .avatar {
+    --avatar-size: 120px;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
+/* Phones: YouTube's mobile header, the avatar beside the name and counts, the rest below at full width. */
+@media (max-width: 640px) {
+  .banner {
+    border-radius: var(--radius);
+  }
+
+  .identity {
+    column-gap: 12px;
+    padding-top: 12px;
+  }
+
+  .avatar {
+    --avatar-size: 72px;
+    grid-row: 1 / span 2;
+  }
+
+  .info {
+    display: contents;
+  }
+
+  .title {
+    align-self: end;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .metadata {
+    align-self: start;
+  }
+
+  /* The address gets its own line, so the counts never wrap behind a separator. */
+  .address {
+    flex-basis: 100%;
+  }
+
+  .address + span::before {
+    content: none;
+  }
+
+  .description,
+  .headerActions,
+  .status,
+  .error {
+    grid-column: 1 / -1;
+  }
+
+  .shelfItems[data-variant='videos'] .shelfItem {
+    width: 70%;
+  }
+
+  .shelfItems[data-variant='posts'] .shelfItem {
+    width: 85%;
+  }
+
+  .shelfArrow {
+    display: none;
+  }
 }

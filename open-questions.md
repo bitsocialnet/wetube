@@ -31,9 +31,20 @@ Design decisions not yet made. These are the questions to answer before WeTube m
 
 ## Subscriptions and Feeds
 
-- Subscriptions are presumably local/account state (a list of channel addresses in the user's Bitsocial account), synced the way other Bitsocial clients sync account data — confirm.
+- **Confirmed 2026-11-11:** a subscription is a channel address in the account's `subscriptions` list (`useSubscribe` in bitsocial-react-hooks), kept by the browser's Bitsocial account; subscribing publishes nothing, so it works before sign-in.
+- The bell next to Subscribed (notify me of this channel's new posts) is an on/off per channel, kept in the browser for now. It belongs in the account next to `subscriptions`, which is a bitsocial-react-hooks change.
 - What does the default "subscriptions feed" aggregation look like purely peer-to-peer, and at what channel count does it need an RPC or indexer to stay fast?
 - Notifications for new uploads: pubsub subscription per channel, polling, RPC push?
+
+## Channel Posts and Playlists
+
+**Decided 2026-11-11, for now:** a channel post with a playable source is a video and any other post is a feed post, shown in the Posts tab ([video-sources.md](video-sources.md#videos-and-feed-posts)). Remaining:
+
+- Should the video post BSIP mark videos explicitly, so that a post is a video when it carries `comment.sources`, and a feed post can share a video link without becoming one? Existing posts with only a playable `link` would need to stay videos.
+- The WeTube channel configuration sets `requirePostLink`, which rejects text-only posts. Drop it so owners can post text, as on YouTube, or keep it and allow only image and link posts?
+- Channel playlists: a post that lists video CIDs (a third kind of post), metadata the owner edits on the community, or something else? The Playlists tab is empty until this is decided.
+- Subscriber counts: Bitsocial has no count of a channel's subscribers, since subscribing is local. Does one come from the WeTube index, from opt-in pubsub announcements, or not at all? The channel page shows "? subscribers".
+- Video counts: the channel page counts videos only when the community's preloaded page holds every post. Larger channels need a count from the index, or a per-kind count in community stats once videos are marked explicitly.
 
 ## Discovery Beyond Categories
 
