@@ -192,5 +192,12 @@
   "notifications_none": "Egyik sem",
   "unsubscribe": "Leiratkozás",
   "unsubscribe_from": "Leiratkozol erről: {{channel}}?",
-  "cancel": "Mégse"
+  "cancel": "Mégse",
+  "create": "Létrehozás",
+  "upload_video": "Videó feltöltése",
+  "create_post": "Bejegyzés létrehozása",
+  "upload_video_description": "Tegyél közzé egy videót a csatornádon: egy címet, egy leírást és a helyeket, ahonnan lejátszható, például YouTube, PeerTube, videofájl vagy IPFS. A WeTube soha nem tárolja magát a videót, és a forrásait később is módosíthatod anélkül, hogy elveszítenéd a hozzászólásokat és kedveléseket.",
+  "create_post_description": "Ossz meg szöveget, képet vagy linket a feliratkozóiddal a csatornád Bejegyzések lapján. A csatornádon csak te tehetsz közzé bejegyzést; a nézők hozzászólásokban válaszolnak.",
+  "search_with_voice": "Keresés hanggal",
+  "voice_search_unavailable": "A hangalapú keresés még nem érhető el."
 }

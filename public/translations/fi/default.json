@@ -192,5 +192,12 @@
   "notifications_none": "Ei mitään",
   "unsubscribe": "Peru tilaus",
   "unsubscribe_from": "Perutaanko kanavan {{channel}} tilaus?",
-  "cancel": "Peruuta"
+  "cancel": "Peruuta",
+  "create": "Luo",
+  "upload_video": "Lataa video",
+  "create_post": "Luo julkaisu",
+  "upload_video_description": "Julkaise video kanavallasi: otsikko, kuvaus ja paikat, joista se toistetaan, kuten YouTube, PeerTube, videotiedosto tai IPFS. WeTube ei koskaan isännöi itse videota, ja voit myöhemmin vaihtaa sen lähteitä menettämättä kommentteja ja tykkäyksiä.",
+  "create_post_description": "Jaa tekstiä, kuva tai linkki tilaajillesi kanavasi Julkaisut-välilehdellä. Vain sinä voit julkaista kanavallasi; katsojat vastaavat kommenteissa.",
+  "search_with_voice": "Hae puheella",
+  "voice_search_unavailable": "Puhehaku ei ole vielä käytettävissä."
 }

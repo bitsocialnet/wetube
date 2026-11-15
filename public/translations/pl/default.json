@@ -192,5 +192,12 @@
   "notifications_none": "Brak",
   "unsubscribe": "Anuluj subskrypcję",
   "unsubscribe_from": "Anulować subskrypcję kanału {{channel}}?",
-  "cancel": "Anuluj"
+  "cancel": "Anuluj",
+  "create": "Utwórz",
+  "upload_video": "Prześlij film",
+  "create_post": "Utwórz post",
+  "upload_video_description": "Opublikuj film na swoim kanale: tytuł, opis i miejsca, z których jest odtwarzany, takie jak YouTube, PeerTube, plik wideo lub IPFS. WeTube nigdy nie hostuje samego filmu, a jego źródła możesz później zmienić bez utraty komentarzy i polubień.",
+  "create_post_description": "Udostępniaj subskrybentom tekst, obraz lub link na karcie Posty swojego kanału. Tylko Ty możesz publikować na swoim kanale; widzowie odpowiadają w komentarzach.",
+  "search_with_voice": "Szukaj głosem",
+  "voice_search_unavailable": "Wyszukiwanie głosowe nie jest jeszcze dostępne."
 }

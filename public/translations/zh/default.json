@@ -192,5 +192,12 @@
   "notifications_none": "无",
   "unsubscribe": "取消订阅",
   "unsubscribe_from": "要取消订阅 {{channel}} 吗？",
-  "cancel": "取消"
+  "cancel": "取消",
+  "create": "创建",
+  "upload_video": "上传视频",
+  "create_post": "发布帖子",
+  "upload_video_description": "在你的频道发布视频：填写标题、说明，以及视频的播放来源，例如 YouTube、PeerTube、视频文件或 IPFS。WeTube 从不托管视频本身，之后你可以更改视频来源，而不会丢失评论和点赞。",
+  "create_post_description": "在频道的“帖子”标签页中与订阅者分享文字、图片或链接。只有你可以在自己的频道发帖，观众在评论中回复。",
+  "search_with_voice": "语音搜索",
+  "voice_search_unavailable": "语音搜索暂不可用。"
 }

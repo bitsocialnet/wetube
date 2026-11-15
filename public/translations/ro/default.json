@@ -192,5 +192,12 @@
   "notifications_none": "Niciuna",
   "unsubscribe": "Dezabonează-te",
   "unsubscribe_from": "Te dezabonezi de la {{channel}}?",
-  "cancel": "Anulează"
+  "cancel": "Anulează",
+  "create": "Creează",
+  "upload_video": "Încarcă un videoclip",
+  "create_post": "Creează o postare",
+  "upload_video_description": "Publică un videoclip pe canalul tău: un titlu, o descriere și locurile de unde se redă, cum ar fi YouTube, PeerTube, un fișier video sau IPFS. WeTube nu găzduiește niciodată videoclipul în sine și îi poți schimba sursele mai târziu fără să pierzi comentariile și aprecierile.",
+  "create_post_description": "Distribuie text, o imagine sau un link abonaților tăi în fila Postări a canalului. Numai tu poți posta pe canalul tău; spectatorii răspund în comentarii.",
+  "search_with_voice": "Caută cu vocea",
+  "voice_search_unavailable": "Căutarea vocală nu este încă disponibilă."
 }

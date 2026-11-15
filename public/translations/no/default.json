@@ -192,5 +192,12 @@
   "notifications_none": "Ingen",
   "unsubscribe": "Avslutt abonnementet",
   "unsubscribe_from": "Vil du avslutte abonnementet på {{channel}}?",
-  "cancel": "Avbryt"
+  "cancel": "Avbryt",
+  "create": "Opprett",
+  "upload_video": "Last opp video",
+  "create_post": "Opprett innlegg",
+  "upload_video_description": "Publiser en video på kanalen din: en tittel, en beskrivelse og stedene den spilles av fra, for eksempel YouTube, PeerTube, en videofil eller IPFS. WeTube er aldri vert for selve videoen, og du kan endre kildene senere uten å miste kommentarene og liker-merkene.",
+  "create_post_description": "Del tekst, et bilde eller en lenke med abonnentene dine i Innlegg-fanen på kanalen din. Bare du kan publisere på kanalen din; seerne svarer i kommentarene.",
+  "search_with_voice": "Søk med stemmen",
+  "voice_search_unavailable": "Talesøk er ikke tilgjengelig ennå."
 }

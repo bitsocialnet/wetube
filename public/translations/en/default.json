@@ -192,5 +192,12 @@
   "notifications_none": "None",
   "unsubscribe": "Unsubscribe",
   "unsubscribe_from": "Unsubscribe from {{channel}}?",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "create": "Create",
+  "upload_video": "Upload video",
+  "create_post": "Create post",
+  "upload_video_description": "Publish a video to your channel: a title, a description and the places it plays from, such as YouTube, PeerTube, a video file or IPFS. WeTube never hosts the video itself, and you can change its sources later without losing its comments and likes.",
+  "create_post_description": "Share text, an image or a link with your subscribers in your channel’s Posts tab. Only you can post in your channel; viewers reply in the comments.",
+  "search_with_voice": "Search with your voice",
+  "voice_search_unavailable": "Voice search isn’t available yet."
 }

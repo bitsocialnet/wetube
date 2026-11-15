@@ -192,5 +192,12 @@
   "notifications_none": "Tidak ada",
   "unsubscribe": "Berhenti subscribe",
   "unsubscribe_from": "Berhenti subscribe dari {{channel}}?",
-  "cancel": "Batal"
+  "cancel": "Batal",
+  "create": "Buat",
+  "upload_video": "Upload video",
+  "create_post": "Buat postingan",
+  "upload_video_description": "Publikasikan video ke channel Anda: judul, deskripsi, dan tempat video diputar, seperti YouTube, PeerTube, file video, atau IPFS. WeTube tidak pernah menghosting video itu sendiri, dan Anda dapat mengubah sumbernya nanti tanpa kehilangan komentar dan suka.",
+  "create_post_description": "Bagikan teks, gambar, atau link kepada subscriber Anda di tab Postingan channel Anda. Hanya Anda yang dapat memposting di channel Anda; penonton membalas di komentar.",
+  "search_with_voice": "Telusuri dengan suara",
+  "voice_search_unavailable": "Penelusuran suara belum tersedia."
 }

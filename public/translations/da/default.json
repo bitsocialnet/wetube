@@ -192,5 +192,12 @@
   "notifications_none": "Ingen",
   "unsubscribe": "Opsig abonnement",
   "unsubscribe_from": "Vil du opsige dit abonnement på {{channel}}?",
-  "cancel": "Annuller"
+  "cancel": "Annuller",
+  "create": "Opret",
+  "upload_video": "Upload video",
+  "create_post": "Opret opslag",
+  "upload_video_description": "Udgiv en video på din kanal: en titel, en beskrivelse og de steder, den afspilles fra, f.eks. YouTube, PeerTube, en videofil eller IPFS. WeTube hoster aldrig selve videoen, og du kan senere ændre dens kilder uden at miste kommentarer og likes.",
+  "create_post_description": "Del tekst, et billede eller et link med dine abonnenter under fanen Opslag på din kanal. Kun du kan slå op på din kanal; seerne svarer i kommentarerne.",
+  "search_with_voice": "Søg med din stemme",
+  "voice_search_unavailable": "Stemmesøgning er ikke tilgængelig endnu."
 }

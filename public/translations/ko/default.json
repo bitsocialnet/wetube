@@ -192,5 +192,12 @@
   "notifications_none": "없음",
   "unsubscribe": "구독 취소",
   "unsubscribe_from": "{{channel}} 구독을 취소하시겠습니까?",
-  "cancel": "취소"
+  "cancel": "취소",
+  "create": "만들기",
+  "upload_video": "동영상 업로드",
+  "create_post": "게시물 만들기",
+  "upload_video_description": "채널에 동영상을 게시하세요. 제목, 설명, 그리고 YouTube, PeerTube, 동영상 파일, IPFS 등 재생되는 위치를 입력합니다. WeTube는 동영상 자체를 호스팅하지 않으며, 나중에 댓글과 좋아요를 잃지 않고 소스를 변경할 수 있습니다.",
+  "create_post_description": "채널의 게시물 탭에서 구독자와 텍스트, 이미지, 링크를 공유하세요. 내 채널에는 나만 게시할 수 있으며 시청자는 댓글로 답합니다.",
+  "search_with_voice": "음성으로 검색",
+  "voice_search_unavailable": "음성 검색은 아직 사용할 수 없습니다."
 }

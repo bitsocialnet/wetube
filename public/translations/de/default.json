@@ -192,5 +192,12 @@
   "notifications_none": "Keine",
   "unsubscribe": "Abo beenden",
   "unsubscribe_from": "Abo von {{channel}} beenden?",
-  "cancel": "Abbrechen"
+  "cancel": "Abbrechen",
+  "create": "Erstellen",
+  "upload_video": "Video hochladen",
+  "create_post": "Beitrag erstellen",
+  "upload_video_description": "Veröffentliche ein Video auf deinem Kanal: einen Titel, eine Beschreibung und die Orte, von denen es abgespielt wird, etwa YouTube, PeerTube, eine Videodatei oder IPFS. WeTube hostet das Video selbst nie, und du kannst seine Quellen später ändern, ohne Kommentare und Likes zu verlieren.",
+  "create_post_description": "Teile Text, ein Bild oder einen Link mit deinen Abonnenten im Tab „Beiträge“ deines Kanals. Nur du kannst auf deinem Kanal posten; Zuschauer antworten in den Kommentaren.",
+  "search_with_voice": "Mit deiner Stimme suchen",
+  "voice_search_unavailable": "Die Sprachsuche ist noch nicht verfügbar."
 }

@@ -192,5 +192,12 @@
   "notifications_none": "Inga",
   "unsubscribe": "Säg upp prenumeration",
   "unsubscribe_from": "Vill du säga upp prenumerationen på {{channel}}?",
-  "cancel": "Avbryt"
+  "cancel": "Avbryt",
+  "create": "Skapa",
+  "upload_video": "Ladda upp video",
+  "create_post": "Skapa inlägg",
+  "upload_video_description": "Publicera en video på din kanal: en titel, en beskrivning och de platser den spelas upp från, till exempel YouTube, PeerTube, en videofil eller IPFS. WeTube är aldrig värd för själva videon, och du kan ändra dess källor senare utan att förlora kommentarer och gilla-markeringar.",
+  "create_post_description": "Dela text, en bild eller en länk med dina prenumeranter på fliken Inlägg på din kanal. Bara du kan publicera på din kanal; tittarna svarar i kommentarerna.",
+  "search_with_voice": "Sök med rösten",
+  "voice_search_unavailable": "Röstsökning är inte tillgänglig ännu."
 }

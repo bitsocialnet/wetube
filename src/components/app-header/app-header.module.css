@@ -84,12 +84,21 @@
   text-transform: uppercase;
 }
 
+/* The search box and the microphone beside it, centered as on YouTube. */
+.center {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 692px;
+  margin: 0 auto;
+}
+
 .search {
   display: flex;
   flex: 1;
   min-width: 0;
-  max-width: 640px;
-  margin: 0 auto;
 }
 
 .input {
@@ -140,6 +149,49 @@
   background: var(--surface-hover);
 }
 
+.voiceButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--surface);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.voiceButton:hover,
+.voiceButton[data-open] {
+  background: var(--surface-hover);
+}
+
+/* UI SDK places the popover in the top layer under its trigger; only its size and look are set here. */
+.voicePopover {
+  width: 260px;
+  margin: 0;
+  padding: 14px 16px;
+  background: var(--raised);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+  color: var(--ink);
+}
+
+.voiceTitle {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.voiceText {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 @media (max-width: 640px) {
   .header {
     gap: 8px;
@@ -147,6 +199,10 @@
   }
 
   .previewTag {
+    display: none;
+  }
+
+  .voiceButton {
     display: none;
   }
 

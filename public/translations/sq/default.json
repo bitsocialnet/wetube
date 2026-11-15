@@ -192,5 +192,12 @@
   "notifications_none": "Asnjë",
   "unsubscribe": "Çabonohu",
   "unsubscribe_from": "Të çabonohesh nga {{channel}}?",
-  "cancel": "Anulo"
+  "cancel": "Anulo",
+  "create": "Krijo",
+  "upload_video": "Ngarko video",
+  "create_post": "Krijo postim",
+  "upload_video_description": "Publiko një video në kanalin tënd: një titull, një përshkrim dhe vendet nga luhet, si YouTube, PeerTube, një skedar video ose IPFS. WeTube nuk e strehon kurrë vetë videon dhe mund t’i ndryshosh burimet më vonë pa humbur komentet dhe pëlqimet.",
+  "create_post_description": "Ndaj tekst, një imazh ose një lidhje me abonentët e tu te skeda Postimet e kanalit tënd. Vetëm ti mund të postosh në kanalin tënd; shikuesit përgjigjen te komentet.",
+  "search_with_voice": "Kërko me zë",
+  "voice_search_unavailable": "Kërkimi me zë nuk është ende i disponueshëm."
 }

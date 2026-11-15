@@ -192,5 +192,12 @@
   "notifications_none": "Hiçbiri",
   "unsubscribe": "Abonelikten çık",
   "unsubscribe_from": "{{channel}} kanalının aboneliğinden çıkılsın mı?",
-  "cancel": "İptal"
+  "cancel": "İptal",
+  "create": "Oluştur",
+  "upload_video": "Video yükle",
+  "create_post": "Gönderi oluştur",
+  "upload_video_description": "Kanalınızda bir video yayınlayın: bir başlık, bir açıklama ve oynatıldığı yerler; örneğin YouTube, PeerTube, bir video dosyası veya IPFS. WeTube videonun kendisini asla barındırmaz ve kaynaklarını daha sonra yorumlarını ve beğenilerini kaybetmeden değiştirebilirsiniz.",
+  "create_post_description": "Kanalınızın Gönderiler sekmesinde abonelerinizle metin, resim veya bağlantı paylaşın. Kanalınızda yalnızca siz paylaşım yapabilirsiniz; izleyiciler yorumlarda yanıt verir.",
+  "search_with_voice": "Sesinizle arayın",
+  "voice_search_unavailable": "Sesli arama henüz kullanılamıyor."
 }

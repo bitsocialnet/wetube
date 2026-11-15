@@ -192,5 +192,12 @@
   "notifications_none": "なし",
   "unsubscribe": "登録解除",
   "unsubscribe_from": "{{channel}} のチャンネル登録を解除しますか？",
-  "cancel": "キャンセル"
+  "cancel": "キャンセル",
+  "create": "作成",
+  "upload_video": "動画をアップロード",
+  "create_post": "投稿を作成",
+  "upload_video_description": "チャンネルに動画を公開します。タイトル、説明、そして YouTube、PeerTube、動画ファイル、IPFS など再生元の場所を指定します。WeTube が動画そのものをホストすることはなく、あとからコメントや高評価を失わずにソースを変更できます。",
+  "create_post_description": "チャンネルの［投稿］タブで、テキスト、画像、リンクを登録者と共有します。チャンネルに投稿できるのはあなただけで、視聴者はコメントで返信します。",
+  "search_with_voice": "音声で検索",
+  "voice_search_unavailable": "音声検索はまだ利用できません。"
 }

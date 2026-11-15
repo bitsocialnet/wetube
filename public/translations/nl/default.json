@@ -192,5 +192,12 @@
   "notifications_none": "Geen",
   "unsubscribe": "Abonnement opzeggen",
   "unsubscribe_from": "Abonnement op {{channel}} opzeggen?",
-  "cancel": "Annuleren"
+  "cancel": "Annuleren",
+  "create": "Maken",
+  "upload_video": "Video uploaden",
+  "create_post": "Post maken",
+  "upload_video_description": "Publiceer een video op je kanaal: een titel, een beschrijving en de plekken waarvandaan hij wordt afgespeeld, zoals YouTube, PeerTube, een videobestand of IPFS. WeTube host de video zelf nooit, en je kunt de bronnen later wijzigen zonder de reacties en likes kwijt te raken.",
+  "create_post_description": "Deel tekst, een afbeelding of een link met je abonnees op het tabblad Posts van je kanaal. Alleen jij kunt op je kanaal posten; kijkers reageren in de reacties.",
+  "search_with_voice": "Zoeken met je stem",
+  "voice_search_unavailable": "Gesproken zoeken is nog niet beschikbaar."
 }

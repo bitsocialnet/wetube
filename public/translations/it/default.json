@@ -192,5 +192,12 @@
   "notifications_none": "Nessuna",
   "unsubscribe": "Annulla iscrizione",
   "unsubscribe_from": "Annullare l’iscrizione a {{channel}}?",
-  "cancel": "Annulla"
+  "cancel": "Annulla",
+  "create": "Crea",
+  "upload_video": "Carica video",
+  "create_post": "Crea post",
+  "upload_video_description": "Pubblica un video sul tuo canale: un titolo, una descrizione e i luoghi da cui viene riprodotto, come YouTube, PeerTube, un file video o IPFS. WeTube non ospita mai il video in sé e puoi cambiarne le fonti in seguito senza perdere commenti e Mi piace.",
+  "create_post_description": "Condividi testo, un’immagine o un link con i tuoi iscritti nella scheda Post del tuo canale. Solo tu puoi pubblicare sul tuo canale; gli spettatori rispondono nei commenti.",
+  "search_with_voice": "Cerca con la voce",
+  "voice_search_unavailable": "La ricerca vocale non è ancora disponibile."
 }

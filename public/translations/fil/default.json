@@ -192,5 +192,12 @@
   "notifications_none": "Wala",
   "unsubscribe": "Mag-unsubscribe",
   "unsubscribe_from": "Mag-unsubscribe sa {{channel}}?",
-  "cancel": "Kanselahin"
+  "cancel": "Kanselahin",
+  "create": "Gumawa",
+  "upload_video": "Mag-upload ng video",
+  "create_post": "Gumawa ng post",
+  "upload_video_description": "Mag-publish ng video sa iyong channel: isang pamagat, isang paglalarawan at ang mga lugar kung saan ito nagpe-play, gaya ng YouTube, PeerTube, isang video file o IPFS. Hindi kailanman hino-host ng WeTube ang video mismo, at puwede mong palitan ang mga source nito sa ibang pagkakataon nang hindi nawawala ang mga komento at like nito.",
+  "create_post_description": "Magbahagi ng text, larawan o link sa iyong mga subscriber sa tab na Mga Post ng iyong channel. Ikaw lang ang puwedeng mag-post sa iyong channel; sumasagot ang mga manonood sa mga komento.",
+  "search_with_voice": "Maghanap gamit ang iyong boses",
+  "voice_search_unavailable": "Hindi pa available ang paghahanap gamit ang boses."
 }
