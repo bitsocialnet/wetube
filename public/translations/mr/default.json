@@ -99,7 +99,6 @@
   "playing_from": "{{failed}} वर उपलब्ध नाही. {{source}} वरून प्ले करत आहे.",
   "source": "स्रोत",
   "x_sources": "{{number}} स्रोत",
-  "not_available": "(उपलब्ध नाही)",
   "open_on": "{{source}} वर उघडा",
   "search_results_for": "{{query}} साठी शोध परिणाम",
   "filters": "फिल्टर",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? सदस्य",
   "unknown_videos": "? व्हिडिओ",
   "video_count_unavailable": "व्हिडिओंची संख्या अद्याप उपलब्ध नाही",
-  "x_videos": "{{number}} व्हिडिओ"
+  "x_videos": "{{number}} व्हिडिओ",
+  "playing": "सुरू आहे",
+  "online": "ऑनलाइन",
+  "offline": "ऑफलाइन",
+  "not_checked": "तपासलेले नाही",
+  "source_type_embed": "एम्बेड",
+  "source_type_file": "व्हिडिओ फाइल",
+  "source_type_ipfs": "पीअर-टू-पीअर (IPFS)",
+  "play": "चालवा",
+  "play_from": "{{source}} वरून चालवा"
 }

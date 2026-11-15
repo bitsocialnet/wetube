@@ -53,7 +53,11 @@ const Watch = () => {
     <div className={styles.layout}>
       <div className={styles.primary}>
         {loaded && video ? (
-          <Player key={videoCid} sources={video.sources} title={video.title || t('untitled_video')} />
+          <Player key={videoCid} sources={video.sources} title={video.title || t('untitled_video')}>
+            <h1 className={styles.title} dir='auto'>
+              {video.title || t('untitled_video')}
+            </h1>
+          </Player>
         ) : (
           <div className={styles.playerPlaceholder} role='status'>
             {post.error ? t('could_not_load_video', { error: post.error.message }) : t('loading_video_post')}
@@ -61,9 +65,6 @@ const Watch = () => {
         )}
         {loaded && video && (
           <>
-            <h1 className={styles.title} dir='auto'>
-              {video.title || t('untitled_video')}
-            </h1>
             <div className={styles.ownerRow}>
               <div className={styles.owner}>
                 <Link to={channelPath(channelAddress)} className={styles.ownerLink}>

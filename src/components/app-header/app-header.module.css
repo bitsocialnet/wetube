@@ -13,6 +13,12 @@
   backdrop-filter: var(--glass-blur);
 }
 
+.header[data-solid] {
+  background: var(--bg);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
 .start,
 .end {
   display: flex;

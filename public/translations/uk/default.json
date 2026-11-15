@@ -99,7 +99,6 @@
   "playing_from": "Недоступно на {{failed}}. Відтворення з {{source}}.",
   "source": "Джерело",
   "x_sources": "Джерела: {{number}}",
-  "not_available": "(недоступно)",
   "open_on": "Відкрити на {{source}}",
   "search_results_for": "Результати пошуку за запитом {{query}}",
   "filters": "Фільтри",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? підписників",
   "unknown_videos": "? відео",
   "video_count_unavailable": "Кількість відео поки недоступна",
-  "x_videos": "Відео: {{number}}"
+  "x_videos": "Відео: {{number}}",
+  "playing": "Відтворюється",
+  "online": "У мережі",
+  "offline": "Не в мережі",
+  "not_checked": "Не перевірено",
+  "source_type_embed": "Вбудоване",
+  "source_type_file": "Відеофайл",
+  "source_type_ipfs": "Однорангова мережа (IPFS)",
+  "play": "Дивитися",
+  "play_from": "Дивитися з {{source}}"
 }

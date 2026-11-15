@@ -99,7 +99,6 @@
   "playing_from": "{{failed}} では利用できません。{{source}} から再生しています。",
   "source": "ソース",
   "x_sources": "ソース {{number}} 件",
-  "not_available": "（利用不可）",
   "open_on": "{{source}} で開く",
   "search_results_for": "{{query}} の検索結果",
   "filters": "フィルタ",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "チャンネル登録者数 ? 人",
   "unknown_videos": "? 本の動画",
   "video_count_unavailable": "動画数はまだ取得できません",
-  "x_videos": "動画 {{number}}本"
+  "x_videos": "動画 {{number}}本",
+  "playing": "再生中",
+  "online": "オンライン",
+  "offline": "オフライン",
+  "not_checked": "未確認",
+  "source_type_embed": "埋め込み",
+  "source_type_file": "動画ファイル",
+  "source_type_ipfs": "ピアツーピア（IPFS）",
+  "play": "再生",
+  "play_from": "{{source}} から再生"
 }

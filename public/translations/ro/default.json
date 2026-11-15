@@ -99,7 +99,6 @@
   "playing_from": "Indisponibil pe {{failed}}. Se redă de pe {{source}}.",
   "source": "Sursă",
   "x_sources": "{{number}} surse",
-  "not_available": "(indisponibil)",
   "open_on": "Deschideți pe {{source}}",
   "search_results_for": "Rezultatele căutării pentru {{query}}",
   "filters": "Filtre",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abonați",
   "unknown_videos": "? videoclipuri",
   "video_count_unavailable": "Numărul de videoclipuri nu este încă disponibil",
-  "x_videos": "{{number}} videoclipuri"
+  "x_videos": "{{number}} videoclipuri",
+  "playing": "Se redă",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Neverificat",
+  "source_type_embed": "Încorporat",
+  "source_type_file": "Fișier video",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Redă",
+  "play_from": "Redă de pe {{source}}"
 }

@@ -99,7 +99,6 @@
   "playing_from": "Hindi available sa {{failed}}. Pine-play mula sa {{source}}.",
   "source": "Pinagmulan",
   "x_sources": "{{number}} pinagmulan",
-  "not_available": "(hindi available)",
   "open_on": "Buksan sa {{source}}",
   "search_results_for": "Mga resulta ng paghahanap para sa {{query}}",
   "filters": "Mga Filter",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? subscriber",
   "unknown_videos": "? video",
   "video_count_unavailable": "Hindi pa available ang bilang ng video",
-  "x_videos": "{{number}} video"
+  "x_videos": "{{number}} video",
+  "playing": "Nagpe-play",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Hindi pa nasusuri",
+  "source_type_embed": "Embed",
+  "source_type_file": "Video file",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "I-play",
+  "play_from": "I-play mula sa {{source}}"
 }

@@ -99,7 +99,6 @@
   "playing_from": "{{failed}} üzerinde kullanılamıyor. {{source}} üzerinden oynatılıyor.",
   "source": "Kaynak",
   "x_sources": "{{number}} kaynak",
-  "not_available": "(kullanılamıyor)",
   "open_on": "{{source}} üzerinde aç",
   "search_results_for": "{{query}} için arama sonuçları",
   "filters": "Filtreler",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abone",
   "unknown_videos": "? video",
   "video_count_unavailable": "Video sayısı henüz mevcut değil",
-  "x_videos": "{{number}} video"
+  "x_videos": "{{number}} video",
+  "playing": "Oynatılıyor",
+  "online": "Çevrimiçi",
+  "offline": "Çevrimdışı",
+  "not_checked": "Kontrol edilmedi",
+  "source_type_embed": "Yerleştirme",
+  "source_type_file": "Video dosyası",
+  "source_type_ipfs": "Eşler arası (IPFS)",
+  "play": "Oynat",
+  "play_from": "{{source}} üzerinden oynat"
 }

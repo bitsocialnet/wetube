@@ -99,7 +99,6 @@
   "playing_from": "{{failed}} پر دستیاب نہیں ہے۔ {{source}} سے چلائی جا رہی ہے۔",
   "source": "ذریعہ",
   "x_sources": "{{number}} ذرائع",
-  "not_available": "(دستیاب نہیں)",
   "open_on": "{{source}} پر کھولیں",
   "search_results_for": "{{query}} کے لیے تلاش کے نتائج",
   "filters": "فلٹرز",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "؟ سبسکرائبرز",
   "unknown_videos": "? ویڈیوز",
   "video_count_unavailable": "ویڈیوز کی تعداد ابھی دستیاب نہیں ہے",
-  "x_videos": "{{number}} ویڈیوز"
+  "x_videos": "{{number}} ویڈیوز",
+  "playing": "چل رہا ہے",
+  "online": "آن لائن",
+  "offline": "آف لائن",
+  "not_checked": "جانچ نہیں ہوئی",
+  "source_type_embed": "ایمبیڈ",
+  "source_type_file": "ویڈیو فائل",
+  "source_type_ipfs": "پیئر ٹو پیئر (IPFS)",
+  "play": "چلائیں",
+  "play_from": "{{source}} سے چلائیں"
 }

@@ -14,3 +14,9 @@
   margin: 0 auto;
   padding: 0 var(--page-gutter) 48px;
 }
+
+/* YouTube's watch page spans the window with a 24px margin; the watch layout caps and centers itself. */
+.main[data-watch] {
+  max-width: none;
+  padding-inline: min(var(--page-gutter), 24px);
+}

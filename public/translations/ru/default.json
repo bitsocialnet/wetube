@@ -99,7 +99,6 @@
   "playing_from": "Недоступно на {{failed}}. Воспроизведение с {{source}}.",
   "source": "Источник",
   "x_sources": "Источники: {{number}}",
-  "not_available": "(недоступно)",
   "open_on": "Открыть на {{source}}",
   "search_results_for": "Результаты поиска по запросу {{query}}",
   "filters": "Фильтры",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? подписчиков",
   "unknown_videos": "? видео",
   "video_count_unavailable": "Количество видео пока недоступно",
-  "x_videos": "Видео: {{number}}"
+  "x_videos": "Видео: {{number}}",
+  "playing": "Воспроизводится",
+  "online": "В сети",
+  "offline": "Не в сети",
+  "not_checked": "Не проверено",
+  "source_type_embed": "Встраивание",
+  "source_type_file": "Видеофайл",
+  "source_type_ipfs": "Одноранговая сеть (IPFS)",
+  "play": "Смотреть",
+  "play_from": "Смотреть с {{source}}"
 }

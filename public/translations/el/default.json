@@ -99,7 +99,6 @@
   "playing_from": "Μη διαθέσιμο στο {{failed}}. Αναπαραγωγή από {{source}}.",
   "source": "Πηγή",
   "x_sources": "{{number}} πηγές",
-  "not_available": "(μη διαθέσιμο)",
   "open_on": "Άνοιγμα στο {{source}}",
   "search_results_for": "Αποτελέσματα αναζήτησης για {{query}}",
   "filters": "Φίλτρα",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? συνδρομητές",
   "unknown_videos": "? βίντεο",
   "video_count_unavailable": "Ο αριθμός βίντεο δεν είναι ακόμα διαθέσιμος",
-  "x_videos": "{{number}} βίντεο"
+  "x_videos": "{{number}} βίντεο",
+  "playing": "Αναπαράγεται",
+  "online": "Διαθέσιμο",
+  "offline": "Μη διαθέσιμο",
+  "not_checked": "Δεν ελέγχθηκε",
+  "source_type_embed": "Ενσωμάτωση",
+  "source_type_file": "Αρχείο βίντεο",
+  "source_type_ipfs": "Ομότιμο δίκτυο (IPFS)",
+  "play": "Αναπαραγωγή",
+  "play_from": "Αναπαραγωγή από {{source}}"
 }

@@ -99,7 +99,6 @@
   "playing_from": "{{failed}}లో అందుబాటులో లేదు. {{source}} నుండి ప్లే అవుతోంది.",
   "source": "మూలం",
   "x_sources": "{{number}} మూలాలు",
-  "not_available": "(అందుబాటులో లేదు)",
   "open_on": "{{source}}లో తెరవండి",
   "search_results_for": "{{query}} కోసం సెర్చ్ ఫలితాలు",
   "filters": "ఫిల్టర్‌లు",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? సబ్‌స్క్రైబర్‌లు",
   "unknown_videos": "? వీడియోలు",
   "video_count_unavailable": "వీడియోల సంఖ్య ఇంకా అందుబాటులో లేదు",
-  "x_videos": "{{number}} వీడియోలు"
+  "x_videos": "{{number}} వీడియోలు",
+  "playing": "ప్లే అవుతోంది",
+  "online": "ఆన్‌లైన్",
+  "offline": "ఆఫ్‌లైన్",
+  "not_checked": "తనిఖీ చేయలేదు",
+  "source_type_embed": "ఎంబెడ్",
+  "source_type_file": "వీడియో ఫైల్",
+  "source_type_ipfs": "పీర్-టు-పీర్ (IPFS)",
+  "play": "ప్లే చేయండి",
+  "play_from": "{{source}} నుండి ప్లే చేయండి"
 }

@@ -99,7 +99,6 @@
   "playing_from": "غير متاح على {{failed}}. يتم التشغيل من {{source}}.",
   "source": "المصدر",
   "x_sources": "{{number}} مصادر",
-  "not_available": "(غير متاح)",
   "open_on": "فتح على {{source}}",
   "search_results_for": "نتائج البحث عن {{query}}",
   "filters": "عوامل التصفية",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "؟ مشترك",
   "unknown_videos": "? فيديو",
   "video_count_unavailable": "عدد الفيديوهات غير متاح بعد",
-  "x_videos": "{{number}} فيديو"
+  "x_videos": "{{number}} فيديو",
+  "playing": "قيد التشغيل",
+  "online": "متاح",
+  "offline": "غير متاح",
+  "not_checked": "لم يُفحص",
+  "source_type_embed": "تضمين",
+  "source_type_file": "ملف فيديو",
+  "source_type_ipfs": "نظير إلى نظير (IPFS)",
+  "play": "تشغيل",
+  "play_from": "التشغيل من {{source}}"
 }

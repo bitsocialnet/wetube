@@ -99,7 +99,6 @@
   "playing_from": "ไม่พร้อมใช้งานบน {{failed}} กำลังเล่นจาก {{source}}",
   "source": "แหล่งที่มา",
   "x_sources": "แหล่งที่มา {{number}} แหล่ง",
-  "not_available": "(ไม่พร้อมใช้งาน)",
   "open_on": "เปิดใน {{source}}",
   "search_results_for": "ผลการค้นหาสำหรับ {{query}}",
   "filters": "ตัวกรอง",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "ผู้ติดตาม ? คน",
   "unknown_videos": "? วิดีโอ",
   "video_count_unavailable": "ยังไม่มีจำนวนวิดีโอ",
-  "x_videos": "{{number}} วิดีโอ"
+  "x_videos": "{{number}} วิดีโอ",
+  "playing": "กำลังเล่น",
+  "online": "ออนไลน์",
+  "offline": "ออฟไลน์",
+  "not_checked": "ยังไม่ได้ตรวจสอบ",
+  "source_type_embed": "ฝัง",
+  "source_type_file": "ไฟล์วิดีโอ",
+  "source_type_ipfs": "เพียร์ทูเพียร์ (IPFS)",
+  "play": "เล่น",
+  "play_from": "เล่นจาก {{source}}"
 }

@@ -99,7 +99,6 @@
   "playing_from": "Tidak tersedia di {{failed}}. Memutar dari {{source}}.",
   "source": "Sumber",
   "x_sources": "{{number}} sumber",
-  "not_available": "(tidak tersedia)",
   "open_on": "Buka di {{source}}",
   "search_results_for": "Hasil penelusuran untuk {{query}}",
   "filters": "Filter",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? subscriber",
   "unknown_videos": "? video",
   "video_count_unavailable": "Jumlah video belum tersedia",
-  "x_videos": "{{number}} video"
+  "x_videos": "{{number}} video",
+  "playing": "Sedang diputar",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Belum diperiksa",
+  "source_type_embed": "Sematan",
+  "source_type_file": "File video",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Putar",
+  "play_from": "Putar dari {{source}}"
 }

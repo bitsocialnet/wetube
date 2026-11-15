@@ -99,7 +99,6 @@
   "playing_from": "Niet beschikbaar op {{failed}}. Wordt afgespeeld via {{source}}.",
   "source": "Bron",
   "x_sources": "{{number}} bronnen",
-  "not_available": "(niet beschikbaar)",
   "open_on": "Openen op {{source}}",
   "search_results_for": "Zoekresultaten voor {{query}}",
   "filters": "Filters",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abonnees",
   "unknown_videos": "? video's",
   "video_count_unavailable": "Het aantal video's is nog niet beschikbaar",
-  "x_videos": "{{number}} video's"
+  "x_videos": "{{number}} video's",
+  "playing": "Wordt afgespeeld",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Niet gecontroleerd",
+  "source_type_embed": "Ingesloten",
+  "source_type_file": "Videobestand",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Afspelen",
+  "play_from": "Afspelen vanaf {{source}}"
 }

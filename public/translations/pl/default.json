@@ -99,7 +99,6 @@
   "playing_from": "Niedostępne w {{failed}}. Odtwarzanie z {{source}}.",
   "source": "Źródło",
   "x_sources": "Źródła: {{number}}",
-  "not_available": "(niedostępne)",
   "open_on": "Otwórz w {{source}}",
   "search_results_for": "Wyniki wyszukiwania dla: {{query}}",
   "filters": "Filtry",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? subskrybentów",
   "unknown_videos": "? filmów",
   "video_count_unavailable": "Liczba filmów nie jest jeszcze dostępna",
-  "x_videos": "Filmy: {{number}}"
+  "x_videos": "Filmy: {{number}}",
+  "playing": "Odtwarzanie",
+  "online": "Dostępne",
+  "offline": "Niedostępne",
+  "not_checked": "Niesprawdzone",
+  "source_type_embed": "Osadzone",
+  "source_type_file": "Plik wideo",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Odtwórz",
+  "play_from": "Odtwórz z {{source}}"
 }

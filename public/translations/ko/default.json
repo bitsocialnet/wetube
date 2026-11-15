@@ -99,7 +99,6 @@
   "playing_from": "{{failed}}에서 사용할 수 없습니다. {{source}}에서 재생 중입니다.",
   "source": "소스",
   "x_sources": "소스 {{number}}개",
-  "not_available": "(사용할 수 없음)",
   "open_on": "{{source}}에서 열기",
   "search_results_for": "{{query}} 검색결과",
   "filters": "필터",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "구독자 ?명",
   "unknown_videos": "동영상 ?개",
   "video_count_unavailable": "동영상 수를 아직 확인할 수 없습니다",
-  "x_videos": "동영상 {{number}}개"
+  "x_videos": "동영상 {{number}}개",
+  "playing": "재생 중",
+  "online": "온라인",
+  "offline": "오프라인",
+  "not_checked": "확인 안 됨",
+  "source_type_embed": "임베드",
+  "source_type_file": "동영상 파일",
+  "source_type_ipfs": "P2P (IPFS)",
+  "play": "재생",
+  "play_from": "{{source}}에서 재생"
 }

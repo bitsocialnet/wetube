@@ -99,7 +99,6 @@
   "playing_from": "Inte tillgänglig på {{failed}}. Spelas upp från {{source}}.",
   "source": "Källa",
   "x_sources": "{{number}} källor",
-  "not_available": "(inte tillgänglig)",
   "open_on": "Öppna på {{source}}",
   "search_results_for": "Sökresultat för {{query}}",
   "filters": "Filter",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? prenumeranter",
   "unknown_videos": "? videor",
   "video_count_unavailable": "Antalet videor är inte tillgängligt än",
-  "x_videos": "{{number}} videor"
+  "x_videos": "{{number}} videor",
+  "playing": "Spelas upp",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Inte kontrollerad",
+  "source_type_embed": "Inbäddad",
+  "source_type_file": "Videofil",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Spela upp",
+  "play_from": "Spela upp från {{source}}"
 }

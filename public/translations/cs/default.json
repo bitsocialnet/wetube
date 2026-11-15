@@ -99,7 +99,6 @@
   "playing_from": "Není k dispozici na {{failed}}. Přehrává se z {{source}}.",
   "source": "Zdroj",
   "x_sources": "Zdroje: {{number}}",
-  "not_available": "(není k dispozici)",
   "open_on": "Otevřít na {{source}}",
   "search_results_for": "Výsledky vyhledávání pro {{query}}",
   "filters": "Filtry",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? odběratelů",
   "unknown_videos": "? videí",
   "video_count_unavailable": "Počet videí zatím není k dispozici",
-  "x_videos": "Videa: {{number}}"
+  "x_videos": "Videa: {{number}}",
+  "playing": "Přehrává se",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Neověřeno",
+  "source_type_embed": "Vložené video",
+  "source_type_file": "Videosoubor",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Přehrát",
+  "play_from": "Přehrát z {{source}}"
 }

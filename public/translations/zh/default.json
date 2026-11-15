@@ -99,7 +99,6 @@
   "playing_from": "在 {{failed}} 上不可用。正在从 {{source}} 播放。",
   "source": "来源",
   "x_sources": "{{number}} 个来源",
-  "not_available": "（不可用）",
   "open_on": "在 {{source}} 上打开",
   "search_results_for": "{{query}} 的搜索结果",
   "filters": "筛选",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? 位订阅者",
   "unknown_videos": "? 个视频",
   "video_count_unavailable": "视频数量暂不可用",
-  "x_videos": "{{number}} 个视频"
+  "x_videos": "{{number}} 个视频",
+  "playing": "正在播放",
+  "online": "在线",
+  "offline": "离线",
+  "not_checked": "未检查",
+  "source_type_embed": "嵌入",
+  "source_type_file": "视频文件",
+  "source_type_ipfs": "点对点（IPFS）",
+  "play": "播放",
+  "play_from": "从 {{source}} 播放"
 }

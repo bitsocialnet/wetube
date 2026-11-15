@@ -99,7 +99,6 @@
   "playing_from": "در {{failed}} دردسترس نیست. درحال پخش از {{source}}.",
   "source": "منبع",
   "x_sources": "{{number}} منبع",
-  "not_available": "(دردسترس نیست)",
   "open_on": "باز کردن در {{source}}",
   "search_results_for": "نتایج جستجو برای {{query}}",
   "filters": "فیلترها",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "؟ مشترک",
   "unknown_videos": "? ویدیو",
   "video_count_unavailable": "تعداد ویدیوها هنوز در دسترس نیست",
-  "x_videos": "{{number}} ویدیو"
+  "x_videos": "{{number}} ویدیو",
+  "playing": "در حال پخش",
+  "online": "در دسترس",
+  "offline": "خارج از دسترس",
+  "not_checked": "بررسی‌نشده",
+  "source_type_embed": "جاسازی‌شده",
+  "source_type_file": "فایل ویدیو",
+  "source_type_ipfs": "همتا‌به‌همتا (IPFS)",
+  "play": "پخش",
+  "play_from": "پخش از {{source}}"
 }

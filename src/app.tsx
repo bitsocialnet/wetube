@@ -65,10 +65,10 @@ const App = () => {
   return (
     <div className={styles.app}>
       <ScrollToTop />
-      <AppHeader onToggleSidebar={toggleSidebar} />
+      <AppHeader onToggleSidebar={toggleSidebar} solid={onWatchPage} />
       <div className={styles.body}>
         <Sidebar expanded={sidebarExpanded} overlay={onWatchPage} drawerOpen={drawerOpen} onCloseDrawer={() => setDrawerOpen(false)} />
-        <main className={styles.main}>
+        <main className={styles.main} data-watch={onWatchPage || undefined}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/feed/watch-later' element={<WatchLater />} />

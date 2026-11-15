@@ -99,7 +99,6 @@
   "playing_from": "Không có trên {{failed}}. Đang phát từ {{source}}.",
   "source": "Nguồn",
   "x_sources": "{{number}} nguồn",
-  "not_available": "(không có sẵn)",
   "open_on": "Mở trên {{source}}",
   "search_results_for": "Kết quả tìm kiếm cho {{query}}",
   "filters": "Bộ lọc",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? người đăng ký",
   "unknown_videos": "? video",
   "video_count_unavailable": "Chưa có số lượng video",
-  "x_videos": "{{number}} video"
+  "x_videos": "{{number}} video",
+  "playing": "Đang phát",
+  "online": "Trực tuyến",
+  "offline": "Ngoại tuyến",
+  "not_checked": "Chưa kiểm tra",
+  "source_type_embed": "Nhúng",
+  "source_type_file": "Tệp video",
+  "source_type_ipfs": "Ngang hàng (IPFS)",
+  "play": "Phát",
+  "play_from": "Phát từ {{source}}"
 }

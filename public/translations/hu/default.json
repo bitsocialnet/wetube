@@ -99,7 +99,6 @@
   "playing_from": "Nem érhető el itt: {{failed}}. Lejátszás innen: {{source}}.",
   "source": "Forrás",
   "x_sources": "{{number}} forrás",
-  "not_available": "(nem érhető el)",
   "open_on": "Megnyitás itt: {{source}}",
   "search_results_for": "Keresési találatok: {{query}}",
   "filters": "Szűrők",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? feliratkozó",
   "unknown_videos": "? videó",
   "video_count_unavailable": "A videók száma még nem érhető el",
-  "x_videos": "{{number}} videó"
+  "x_videos": "{{number}} videó",
+  "playing": "Lejátszás folyamatban",
+  "online": "Elérhető",
+  "offline": "Nem elérhető",
+  "not_checked": "Nincs ellenőrizve",
+  "source_type_embed": "Beágyazás",
+  "source_type_file": "Videofájl",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Lejátszás",
+  "play_from": "Lejátszás innen: {{source}}"
 }

@@ -100,7 +100,6 @@
   "playing_from": "Not available on {{failed}}. Playing from {{source}}.",
   "source": "Source",
   "x_sources": "{{number}} sources",
-  "not_available": "(not available)",
   "open_on": "Open on {{source}}",
   "search_results_for": "Search results for {{query}}",
   "filters": "Filters",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? subscribers",
   "unknown_videos": "? videos",
   "video_count_unavailable": "The video count is not available yet",
-  "x_videos": "{{number}} videos"
+  "x_videos": "{{number}} videos",
+  "playing": "Playing",
+  "online": "Online",
+  "offline": "Offline",
+  "not_checked": "Not checked",
+  "source_type_embed": "Embed",
+  "source_type_file": "Video file",
+  "source_type_ipfs": "Peer-to-peer (IPFS)",
+  "play": "Play",
+  "play_from": "Play from {{source}}"
 }

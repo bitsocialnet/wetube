@@ -12,9 +12,11 @@ import styles from './app-header.module.css';
 
 interface AppHeaderProps {
   onToggleSidebar: () => void;
+  /** An opaque header, as on YouTube's watch page, instead of frosted glass. */
+  solid?: boolean;
 }
 
-export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
+export const AppHeader = ({ onToggleSidebar, solid = false }: AppHeaderProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') ?? '');
@@ -35,7 +37,7 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-solid={solid || undefined}>
       <div className={styles.start}>
         <button type='button' className={styles.iconButton} onClick={onToggleSidebar} aria-label={t('menu')}>
           <Menu size={22} aria-hidden='true' />

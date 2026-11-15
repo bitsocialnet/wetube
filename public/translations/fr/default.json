@@ -99,7 +99,6 @@
   "playing_from": "Non disponible sur {{failed}}. Lecture depuis {{source}}.",
   "source": "Source",
   "x_sources": "{{number}} sources",
-  "not_available": "(non disponible)",
   "open_on": "Ouvrir sur {{source}}",
   "search_results_for": "Résultats de recherche pour {{query}}",
   "filters": "Filtres",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abonnés",
   "unknown_videos": "? vidéos",
   "video_count_unavailable": "Le nombre de vidéos n’est pas encore disponible",
-  "x_videos": "{{number}} vidéos"
+  "x_videos": "{{number}} vidéos",
+  "playing": "En lecture",
+  "online": "En ligne",
+  "offline": "Hors ligne",
+  "not_checked": "Non vérifié",
+  "source_type_embed": "Intégration",
+  "source_type_file": "Fichier vidéo",
+  "source_type_ipfs": "Pair à pair (IPFS)",
+  "play": "Lire",
+  "play_from": "Lire depuis {{source}}"
 }

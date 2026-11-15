@@ -99,7 +99,6 @@
   "playing_from": "לא זמין ב-{{failed}}. מופעל מ-{{source}}.",
   "source": "מקור",
   "x_sources": "{{number}} מקורות",
-  "not_available": "(לא זמין)",
   "open_on": "פתיחה ב-{{source}}",
   "search_results_for": "תוצאות חיפוש עבור {{query}}",
   "filters": "מסננים",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? מנויים",
   "unknown_videos": "? סרטונים",
   "video_count_unavailable": "מספר הסרטונים עדיין לא זמין",
-  "x_videos": "{{number}} סרטונים"
+  "x_videos": "{{number}} סרטונים",
+  "playing": "מתנגן",
+  "online": "זמין",
+  "offline": "לא זמין",
+  "not_checked": "לא נבדק",
+  "source_type_embed": "הטמעה",
+  "source_type_file": "קובץ וידאו",
+  "source_type_ipfs": "עמית לעמית (IPFS)",
+  "play": "הפעלה",
+  "play_from": "הפעלה מ־{{source}}"
 }

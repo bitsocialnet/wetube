@@ -99,7 +99,6 @@
   "playing_from": "Nuk ofrohet në {{failed}}. Po luhet nga {{source}}.",
   "source": "Burimi",
   "x_sources": "{{number}} burime",
-  "not_available": "(nuk ofrohet)",
   "open_on": "Hape në {{source}}",
   "search_results_for": "Rezultatet e kërkimit për {{query}}",
   "filters": "Filtrat",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abonentë",
   "unknown_videos": "? video",
   "video_count_unavailable": "Numri i videove nuk është ende i disponueshëm",
-  "x_videos": "{{number}} video"
+  "x_videos": "{{number}} video",
+  "playing": "Po luhet",
+  "online": "Në linjë",
+  "offline": "Jashtë linje",
+  "not_checked": "I pakontrolluar",
+  "source_type_embed": "I ngulitur",
+  "source_type_file": "Skedar video",
+  "source_type_ipfs": "Nga pari te pari (IPFS)",
+  "play": "Luaj",
+  "play_from": "Luaj nga {{source}}"
 }

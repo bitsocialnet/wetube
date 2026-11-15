@@ -99,7 +99,6 @@
   "playing_from": "Ikke tilgjengelig på {{failed}}. Spiller av fra {{source}}.",
   "source": "Kilde",
   "x_sources": "{{number}} kilder",
-  "not_available": "(ikke tilgjengelig)",
   "open_on": "Åpne på {{source}}",
   "search_results_for": "Søkeresultater for {{query}}",
   "filters": "Filtre",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? abonnenter",
   "unknown_videos": "? videoer",
   "video_count_unavailable": "Antall videoer er ikke tilgjengelig ennå",
-  "x_videos": "{{number}} videoer"
+  "x_videos": "{{number}} videoer",
+  "playing": "Spilles av",
+  "online": "Tilgjengelig",
+  "offline": "Utilgjengelig",
+  "not_checked": "Ikke sjekket",
+  "source_type_embed": "Innebygd",
+  "source_type_file": "Videofil",
+  "source_type_ipfs": "Node-til-node (IPFS)",
+  "play": "Spill av",
+  "play_from": "Spill av fra {{source}}"
 }

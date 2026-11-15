@@ -99,7 +99,6 @@
   "playing_from": "Ei saatavilla: {{failed}}. Toistetaan lähteestä {{source}}.",
   "source": "Lähde",
   "x_sources": "{{number}} lähdettä",
-  "not_available": "(ei saatavilla)",
   "open_on": "Avaa palvelussa {{source}}",
   "search_results_for": "Hakutulokset: {{query}}",
   "filters": "Suodattimet",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? tilaajaa",
   "unknown_videos": "? videota",
   "video_count_unavailable": "Videoiden määrä ei ole vielä saatavilla",
-  "x_videos": "{{number}} videota"
+  "x_videos": "{{number}} videota",
+  "playing": "Toistetaan",
+  "online": "Saatavilla",
+  "offline": "Ei saatavilla",
+  "not_checked": "Ei tarkistettu",
+  "source_type_embed": "Upotus",
+  "source_type_file": "Videotiedosto",
+  "source_type_ipfs": "Vertaisverkko (IPFS)",
+  "play": "Toista",
+  "play_from": "Toista lähteestä {{source}}"
 }

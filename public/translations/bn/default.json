@@ -99,7 +99,6 @@
   "playing_from": "{{failed}}-এ উপলভ্য নয়। {{source}} থেকে চালানো হচ্ছে।",
   "source": "উৎস",
   "x_sources": "{{number}}টি উৎস",
-  "not_available": "(উপলভ্য নয়)",
   "open_on": "{{source}}-এ খুলুন",
   "search_results_for": "{{query}}-এর সার্চ ফলাফল",
   "filters": "ফিল্টার",
@@ -181,5 +180,14 @@
   "unknown_subscribers": "? সাবস্ক্রাইবার",
   "unknown_videos": "? টি ভিডিও",
   "video_count_unavailable": "ভিডিওর সংখ্যা এখনও পাওয়া যায়নি",
-  "x_videos": "{{number}}টি ভিডিও"
+  "x_videos": "{{number}}টি ভিডিও",
+  "playing": "চলছে",
+  "online": "অনলাইন",
+  "offline": "অফলাইন",
+  "not_checked": "যাচাই করা হয়নি",
+  "source_type_embed": "এমবেড",
+  "source_type_file": "ভিডিও ফাইল",
+  "source_type_ipfs": "পিয়ার-টু-পিয়ার (IPFS)",
+  "play": "চালান",
+  "play_from": "{{source}} থেকে চালান"
 }
