@@ -175,8 +175,6 @@
   "sort_videos": "Sorter videoer",
   "subscribed": "Abonnert",
   "subscribers_unavailable": "Antall abonnenter er ikke tilgjengelig ennå",
-  "turn_off_notifications": "Slå av varsler",
-  "turn_on_notifications": "Slå på varsler",
   "unknown_subscribers": "? abonnenter",
   "unknown_videos": "? videoer",
   "video_count_unavailable": "Antall videoer er ikke tilgjengelig ennå",
@@ -189,5 +187,10 @@
   "source_type_file": "Videofil",
   "source_type_ipfs": "Node-til-node (IPFS)",
   "play": "Spill av",
-  "play_from": "Spill av fra {{source}}"
+  "play_from": "Spill av fra {{source}}",
+  "notifications_all": "Alle",
+  "notifications_none": "Ingen",
+  "unsubscribe": "Avslutt abonnementet",
+  "unsubscribe_from": "Vil du avslutte abonnementet på {{channel}}?",
+  "cancel": "Avbryt"
 }

@@ -175,8 +175,6 @@
   "sort_videos": "Ταξινόμηση βίντεο",
   "subscribed": "Εγγεγραμμένοι",
   "subscribers_unavailable": "Οι αριθμοί συνδρομητών δεν είναι διαθέσιμοι ακόμα",
-  "turn_off_notifications": "Απενεργοποίηση ειδοποιήσεων",
-  "turn_on_notifications": "Ενεργοποίηση ειδοποιήσεων",
   "unknown_subscribers": "? συνδρομητές",
   "unknown_videos": "? βίντεο",
   "video_count_unavailable": "Ο αριθμός βίντεο δεν είναι ακόμα διαθέσιμος",
@@ -189,5 +187,10 @@
   "source_type_file": "Αρχείο βίντεο",
   "source_type_ipfs": "Ομότιμο δίκτυο (IPFS)",
   "play": "Αναπαραγωγή",
-  "play_from": "Αναπαραγωγή από {{source}}"
+  "play_from": "Αναπαραγωγή από {{source}}",
+  "notifications_all": "Όλες",
+  "notifications_none": "Καμία",
+  "unsubscribe": "Απεγγραφή",
+  "unsubscribe_from": "Απεγγραφή από το κανάλι {{channel}};",
+  "cancel": "Ακύρωση"
 }

@@ -175,8 +175,6 @@
   "sort_videos": "व्हिडिओ क्रमवारी लावा",
   "subscribed": "सदस्यत्व घेतले",
   "subscribers_unavailable": "सदस्यांची संख्या अद्याप उपलब्ध नाही",
-  "turn_off_notifications": "सूचना बंद करा",
-  "turn_on_notifications": "सूचना चालू करा",
   "unknown_subscribers": "? सदस्य",
   "unknown_videos": "? व्हिडिओ",
   "video_count_unavailable": "व्हिडिओंची संख्या अद्याप उपलब्ध नाही",
@@ -189,5 +187,10 @@
   "source_type_file": "व्हिडिओ फाइल",
   "source_type_ipfs": "पीअर-टू-पीअर (IPFS)",
   "play": "चालवा",
-  "play_from": "{{source}} वरून चालवा"
+  "play_from": "{{source}} वरून चालवा",
+  "notifications_all": "सर्व",
+  "notifications_none": "काहीही नाही",
+  "unsubscribe": "सदस्यत्व रद्द करा",
+  "unsubscribe_from": "{{channel}} चे सदस्यत्व रद्द करायचे?",
+  "cancel": "रद्द करा"
 }

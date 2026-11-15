@@ -175,8 +175,6 @@
   "sort_videos": "Videók rendezése",
   "subscribed": "Feliratkozott",
   "subscribers_unavailable": "Az feliratkozók száma még nem érhető el",
-  "turn_off_notifications": "Értesítések kikapcsolása",
-  "turn_on_notifications": "Értesítések bekapcsolása",
   "unknown_subscribers": "? feliratkozó",
   "unknown_videos": "? videó",
   "video_count_unavailable": "A videók száma még nem érhető el",
@@ -189,5 +187,10 @@
   "source_type_file": "Videofájl",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Lejátszás",
-  "play_from": "Lejátszás innen: {{source}}"
+  "play_from": "Lejátszás innen: {{source}}",
+  "notifications_all": "Összes",
+  "notifications_none": "Egyik sem",
+  "unsubscribe": "Leiratkozás",
+  "unsubscribe_from": "Leiratkozol erről: {{channel}}?",
+  "cancel": "Mégse"
 }

@@ -7,7 +7,7 @@ import { ChannelAvatar } from '../../components/channel-avatar';
 import { Comments } from '../../components/comments';
 import { Player } from '../../components/player';
 import { SignInPrompt } from '../../components/sign-in-prompt';
-import { SubscribeButtons } from '../../components/subscribe-buttons';
+import { SubscribeButton } from '../../components/subscribe-button';
 import { useChannel } from '../../hooks/use-channel';
 import { useFormat } from '../../hooks/use-format';
 import { useWatchLater } from '../../hooks/use-watch-later';
@@ -70,13 +70,16 @@ const Watch = () => {
                 <Link to={channelPath(channelAddress)} className={styles.ownerLink}>
                   <ChannelAvatar address={channelAddress} title={channel.title} avatarUrl={channel.suggested?.avatarUrl} size={40} />
                   <span className={styles.ownerText}>
-                    <span className={styles.ownerName}>{channelTitle}</span>
-                    <span className={styles.ownerAddress} title={channelAddress}>
-                      {shortAddress(channelAddress)}
+                    <span className={styles.ownerName} title={channelAddress}>
+                      {channelTitle}
+                    </span>
+                    {/* Bitsocial has no subscriber count yet: a subscription is a list kept by each account. */}
+                    <span className={styles.ownerSubscribers} title={t('subscribers_unavailable')}>
+                      {t('unknown_subscribers')}
                     </span>
                   </span>
                 </Link>
-                <SubscribeButtons channelAddress={channelAddress} />
+                <SubscribeButton channelAddress={channelAddress} channelTitle={channelTitle} />
               </div>
               <div className={styles.actions}>
                 <div className={styles.votes}>

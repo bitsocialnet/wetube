@@ -175,8 +175,6 @@
   "sort_videos": "ویڈیوز ترتیب دیں",
   "subscribed": "سبسکرائب کر لیا",
   "subscribers_unavailable": "سبسکرائبرز کی تعداد ابھی دستیاب نہیں ہے",
-  "turn_off_notifications": "اطلاعات بند کریں",
-  "turn_on_notifications": "اطلاعات آن کریں",
   "unknown_subscribers": "؟ سبسکرائبرز",
   "unknown_videos": "? ویڈیوز",
   "video_count_unavailable": "ویڈیوز کی تعداد ابھی دستیاب نہیں ہے",
@@ -189,5 +187,10 @@
   "source_type_file": "ویڈیو فائل",
   "source_type_ipfs": "پیئر ٹو پیئر (IPFS)",
   "play": "چلائیں",
-  "play_from": "{{source}} سے چلائیں"
+  "play_from": "{{source}} سے چلائیں",
+  "notifications_all": "سبھی",
+  "notifications_none": "کوئی نہیں",
+  "unsubscribe": "سبسکرائب ختم کریں",
+  "unsubscribe_from": "{{channel}} کو سبسکرائب کرنا ختم کریں؟",
+  "cancel": "منسوخ کریں"
 }

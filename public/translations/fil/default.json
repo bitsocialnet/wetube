@@ -175,8 +175,6 @@
   "sort_videos": "I-sort ang mga video",
   "subscribed": "Naka-subscribe",
   "subscribers_unavailable": "Hindi pa available ang bilang ng subscriber",
-  "turn_off_notifications": "I-off ang mga notification",
-  "turn_on_notifications": "I-on ang mga notification",
   "unknown_subscribers": "? subscriber",
   "unknown_videos": "? video",
   "video_count_unavailable": "Hindi pa available ang bilang ng video",
@@ -189,5 +187,10 @@
   "source_type_file": "Video file",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "I-play",
-  "play_from": "I-play mula sa {{source}}"
+  "play_from": "I-play mula sa {{source}}",
+  "notifications_all": "Lahat",
+  "notifications_none": "Wala",
+  "unsubscribe": "Mag-unsubscribe",
+  "unsubscribe_from": "Mag-unsubscribe sa {{channel}}?",
+  "cancel": "Kanselahin"
 }

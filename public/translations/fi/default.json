@@ -175,8 +175,6 @@
   "sort_videos": "Lajittele videot",
   "subscribed": "Tilattu",
   "subscribers_unavailable": "Tilaajamääriä ei ole vielä saatavilla",
-  "turn_off_notifications": "Poista ilmoitukset käytöstä",
-  "turn_on_notifications": "Ota ilmoitukset käyttöön",
   "unknown_subscribers": "? tilaajaa",
   "unknown_videos": "? videota",
   "video_count_unavailable": "Videoiden määrä ei ole vielä saatavilla",
@@ -189,5 +187,10 @@
   "source_type_file": "Videotiedosto",
   "source_type_ipfs": "Vertaisverkko (IPFS)",
   "play": "Toista",
-  "play_from": "Toista lähteestä {{source}}"
+  "play_from": "Toista lähteestä {{source}}",
+  "notifications_all": "Kaikki",
+  "notifications_none": "Ei mitään",
+  "unsubscribe": "Peru tilaus",
+  "unsubscribe_from": "Perutaanko kanavan {{channel}} tilaus?",
+  "cancel": "Peruuta"
 }

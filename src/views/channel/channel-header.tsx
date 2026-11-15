@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { ChannelAvatar } from '../../components/channel-avatar';
-import { SubscribeButtons } from '../../components/subscribe-buttons';
+import { SubscribeButton } from '../../components/subscribe-button';
 import type { useChannel } from '../../hooks/use-channel';
 import { useFormat } from '../../hooks/use-format';
 import { useHorizontalOverflow } from '../../hooks/use-horizontal-overflow';
@@ -67,7 +67,7 @@ export const ChannelHeader = ({ channelAddress, channel }: ChannelHeaderProps) =
             </button>
           </div>
           <div className={styles.headerActions}>
-            <SubscribeButtons channelAddress={channelAddress} size='large' />
+            <SubscribeButton channelAddress={channelAddress} channelTitle={title} size='large' />
           </div>
           {!loaded && !channel.error && (
             <p className={styles.status} role='status'>

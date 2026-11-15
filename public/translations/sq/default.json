@@ -175,8 +175,6 @@
   "sort_videos": "Rendit videot",
   "subscribed": "I abonuar",
   "subscribers_unavailable": "Numri i abonuesve nuk është ende i disponueshëm",
-  "turn_off_notifications": "Çaktivizo njoftimet",
-  "turn_on_notifications": "Aktivizo njoftimet",
   "unknown_subscribers": "? abonentë",
   "unknown_videos": "? video",
   "video_count_unavailable": "Numri i videove nuk është ende i disponueshëm",
@@ -189,5 +187,10 @@
   "source_type_file": "Skedar video",
   "source_type_ipfs": "Nga pari te pari (IPFS)",
   "play": "Luaj",
-  "play_from": "Luaj nga {{source}}"
+  "play_from": "Luaj nga {{source}}",
+  "notifications_all": "Të gjitha",
+  "notifications_none": "Asnjë",
+  "unsubscribe": "Çabonohu",
+  "unsubscribe_from": "Të çabonohesh nga {{channel}}?",
+  "cancel": "Anulo"
 }

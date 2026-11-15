@@ -175,8 +175,6 @@
   "sort_videos": "Сортировка видео",
   "subscribed": "Вы подписаны",
   "subscribers_unavailable": "Число подписчиков пока недоступно",
-  "turn_off_notifications": "Отключить уведомления",
-  "turn_on_notifications": "Включить уведомления",
   "unknown_subscribers": "? подписчиков",
   "unknown_videos": "? видео",
   "video_count_unavailable": "Количество видео пока недоступно",
@@ -189,5 +187,10 @@
   "source_type_file": "Видеофайл",
   "source_type_ipfs": "Одноранговая сеть (IPFS)",
   "play": "Смотреть",
-  "play_from": "Смотреть с {{source}}"
+  "play_from": "Смотреть с {{source}}",
+  "notifications_all": "Все",
+  "notifications_none": "Нет",
+  "unsubscribe": "Отписаться",
+  "unsubscribe_from": "Отписаться от канала {{channel}}?",
+  "cancel": "Отмена"
 }

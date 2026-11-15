@@ -175,8 +175,6 @@
   "sort_videos": "動画を並べ替え",
   "subscribed": "登録済み",
   "subscribers_unavailable": "チャンネル登録者数はまだ利用できません",
-  "turn_off_notifications": "通知をオフにする",
-  "turn_on_notifications": "通知を有効にする",
   "unknown_subscribers": "チャンネル登録者数 ? 人",
   "unknown_videos": "? 本の動画",
   "video_count_unavailable": "動画数はまだ取得できません",
@@ -189,5 +187,10 @@
   "source_type_file": "動画ファイル",
   "source_type_ipfs": "ピアツーピア（IPFS）",
   "play": "再生",
-  "play_from": "{{source}} から再生"
+  "play_from": "{{source}} から再生",
+  "notifications_all": "すべて",
+  "notifications_none": "なし",
+  "unsubscribe": "登録解除",
+  "unsubscribe_from": "{{channel}} のチャンネル登録を解除しますか？",
+  "cancel": "キャンセル"
 }

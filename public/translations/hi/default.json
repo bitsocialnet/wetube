@@ -175,8 +175,6 @@
   "sort_videos": "वीडियो को क्रम से लगाएं",
   "subscribed": "सदस्यता ली गई",
   "subscribers_unavailable": "सदस्यों की संख्या अभी उपलब्ध नहीं है",
-  "turn_off_notifications": "सूचनाएं बंद करें",
-  "turn_on_notifications": "सूचनाएं चालू करें",
   "unknown_subscribers": "? सदस्य",
   "unknown_videos": "? वीडियो",
   "video_count_unavailable": "वीडियो की संख्या अभी उपलब्ध नहीं है",
@@ -189,5 +187,10 @@
   "source_type_file": "वीडियो फ़ाइल",
   "source_type_ipfs": "पीयर-टू-पीयर (IPFS)",
   "play": "चलाएँ",
-  "play_from": "{{source}} से चलाएँ"
+  "play_from": "{{source}} से चलाएँ",
+  "notifications_all": "सभी",
+  "notifications_none": "कोई नहीं",
+  "unsubscribe": "सदस्यता छोड़ें",
+  "unsubscribe_from": "{{channel}} की सदस्यता छोड़ें?",
+  "cancel": "रद्द करें"
 }

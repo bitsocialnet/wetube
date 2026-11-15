@@ -175,8 +175,6 @@
   "sort_videos": "Videoları sırala",
   "subscribed": "Abone olundu",
   "subscribers_unavailable": "Abone sayıları henüz mevcut değil",
-  "turn_off_notifications": "Bildirimleri kapat",
-  "turn_on_notifications": "Bildirimleri aç",
   "unknown_subscribers": "? abone",
   "unknown_videos": "? video",
   "video_count_unavailable": "Video sayısı henüz mevcut değil",
@@ -189,5 +187,10 @@
   "source_type_file": "Video dosyası",
   "source_type_ipfs": "Eşler arası (IPFS)",
   "play": "Oynat",
-  "play_from": "{{source}} üzerinden oynat"
+  "play_from": "{{source}} üzerinden oynat",
+  "notifications_all": "Tümü",
+  "notifications_none": "Hiçbiri",
+  "unsubscribe": "Abonelikten çık",
+  "unsubscribe_from": "{{channel}} kanalının aboneliğinden çıkılsın mı?",
+  "cancel": "İptal"
 }

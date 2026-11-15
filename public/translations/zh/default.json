@@ -175,8 +175,6 @@
   "sort_videos": "对视频排序",
   "subscribed": "已订阅",
   "subscribers_unavailable": "暂时无法获取订阅者数量",
-  "turn_off_notifications": "关闭通知",
-  "turn_on_notifications": "开启通知",
   "unknown_subscribers": "? 位订阅者",
   "unknown_videos": "? 个视频",
   "video_count_unavailable": "视频数量暂不可用",
@@ -189,5 +187,10 @@
   "source_type_file": "视频文件",
   "source_type_ipfs": "点对点（IPFS）",
   "play": "播放",
-  "play_from": "从 {{source}} 播放"
+  "play_from": "从 {{source}} 播放",
+  "notifications_all": "全部",
+  "notifications_none": "无",
+  "unsubscribe": "取消订阅",
+  "unsubscribe_from": "要取消订阅 {{channel}} 吗？",
+  "cancel": "取消"
 }

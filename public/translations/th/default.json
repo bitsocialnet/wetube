@@ -175,8 +175,6 @@
   "sort_videos": "จัดเรียงวิดีโอ",
   "subscribed": "ติดตามแล้ว",
   "subscribers_unavailable": "ยังไม่มีจำนวนผู้ติดตาม",
-  "turn_off_notifications": "ปิดการแจ้งเตือน",
-  "turn_on_notifications": "เปิดการแจ้งเตือน",
   "unknown_subscribers": "ผู้ติดตาม ? คน",
   "unknown_videos": "? วิดีโอ",
   "video_count_unavailable": "ยังไม่มีจำนวนวิดีโอ",
@@ -189,5 +187,10 @@
   "source_type_file": "ไฟล์วิดีโอ",
   "source_type_ipfs": "เพียร์ทูเพียร์ (IPFS)",
   "play": "เล่น",
-  "play_from": "เล่นจาก {{source}}"
+  "play_from": "เล่นจาก {{source}}",
+  "notifications_all": "ทั้งหมด",
+  "notifications_none": "ไม่มี",
+  "unsubscribe": "ยกเลิกการติดตาม",
+  "unsubscribe_from": "ยกเลิกการติดตาม {{channel}} ใช่ไหม",
+  "cancel": "ยกเลิก"
 }

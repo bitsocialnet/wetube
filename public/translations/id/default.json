@@ -175,8 +175,6 @@
   "sort_videos": "Urutkan video",
   "subscribed": "Subscribed",
   "subscribers_unavailable": "Jumlah subscriber belum tersedia",
-  "turn_off_notifications": "Nonaktifkan notifikasi",
-  "turn_on_notifications": "Aktifkan notifikasi",
   "unknown_subscribers": "? subscriber",
   "unknown_videos": "? video",
   "video_count_unavailable": "Jumlah video belum tersedia",
@@ -189,5 +187,10 @@
   "source_type_file": "File video",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Putar",
-  "play_from": "Putar dari {{source}}"
+  "play_from": "Putar dari {{source}}",
+  "notifications_all": "Semua",
+  "notifications_none": "Tidak ada",
+  "unsubscribe": "Berhenti subscribe",
+  "unsubscribe_from": "Berhenti subscribe dari {{channel}}?",
+  "cancel": "Batal"
 }

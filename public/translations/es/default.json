@@ -175,8 +175,6 @@
   "sort_videos": "Ordenar vídeos",
   "subscribed": "Suscrito",
   "subscribers_unavailable": "El número de suscriptores aún no está disponible",
-  "turn_off_notifications": "Desactivar notificaciones",
-  "turn_on_notifications": "Activar notificaciones",
   "unknown_subscribers": "? suscriptores",
   "unknown_videos": "? vídeos",
   "video_count_unavailable": "El número de vídeos aún no está disponible",
@@ -189,5 +187,10 @@
   "source_type_file": "Archivo de vídeo",
   "source_type_ipfs": "Entre pares (IPFS)",
   "play": "Reproducir",
-  "play_from": "Reproducir desde {{source}}"
+  "play_from": "Reproducir desde {{source}}",
+  "notifications_all": "Todas",
+  "notifications_none": "Ninguna",
+  "unsubscribe": "Anular suscripción",
+  "unsubscribe_from": "¿Anular la suscripción a {{channel}}?",
+  "cancel": "Cancelar"
 }

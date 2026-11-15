@@ -175,8 +175,6 @@
   "sort_videos": "Video's sorteren",
   "subscribed": "Geabonneerd",
   "subscribers_unavailable": "Het aantal abonnees is nog niet beschikbaar",
-  "turn_off_notifications": "Meldingen uitschakelen",
-  "turn_on_notifications": "Meldingen aanzetten",
   "unknown_subscribers": "? abonnees",
   "unknown_videos": "? video's",
   "video_count_unavailable": "Het aantal video's is nog niet beschikbaar",
@@ -189,5 +187,10 @@
   "source_type_file": "Videobestand",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Afspelen",
-  "play_from": "Afspelen vanaf {{source}}"
+  "play_from": "Afspelen vanaf {{source}}",
+  "notifications_all": "Alle",
+  "notifications_none": "Geen",
+  "unsubscribe": "Abonnement opzeggen",
+  "unsubscribe_from": "Abonnement op {{channel}} opzeggen?",
+  "cancel": "Annuleren"
 }

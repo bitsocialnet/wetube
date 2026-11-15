@@ -175,8 +175,6 @@
   "sort_videos": "Sortați videoclipurile",
   "subscribed": "Abonat",
   "subscribers_unavailable": "Numărul de abonați nu este încă disponibil",
-  "turn_off_notifications": "Dezactivați notificările",
-  "turn_on_notifications": "Activați notificările",
   "unknown_subscribers": "? abonați",
   "unknown_videos": "? videoclipuri",
   "video_count_unavailable": "Numărul de videoclipuri nu este încă disponibil",
@@ -189,5 +187,10 @@
   "source_type_file": "Fișier video",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Redă",
-  "play_from": "Redă de pe {{source}}"
+  "play_from": "Redă de pe {{source}}",
+  "notifications_all": "Toate",
+  "notifications_none": "Niciuna",
+  "unsubscribe": "Dezabonează-te",
+  "unsubscribe_from": "Te dezabonezi de la {{channel}}?",
+  "cancel": "Anulează"
 }

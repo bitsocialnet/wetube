@@ -175,8 +175,6 @@
   "sort_videos": "Sortera videor",
   "subscribed": "Prenumererar",
   "subscribers_unavailable": "Antalet prenumeranter är inte tillgängligt ännu",
-  "turn_off_notifications": "Stäng av aviseringar",
-  "turn_on_notifications": "Aktivera aviseringar",
   "unknown_subscribers": "? prenumeranter",
   "unknown_videos": "? videor",
   "video_count_unavailable": "Antalet videor är inte tillgängligt än",
@@ -189,5 +187,10 @@
   "source_type_file": "Videofil",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Spela upp",
-  "play_from": "Spela upp från {{source}}"
+  "play_from": "Spela upp från {{source}}",
+  "notifications_all": "Alla",
+  "notifications_none": "Inga",
+  "unsubscribe": "Säg upp prenumeration",
+  "unsubscribe_from": "Vill du säga upp prenumerationen på {{channel}}?",
+  "cancel": "Avbryt"
 }

@@ -175,8 +175,6 @@
   "sort_videos": "מיון סרטונים",
   "subscribed": "רשום כמנוי",
   "subscribers_unavailable": "ספירת המנויים עדיין לא זמינה",
-  "turn_off_notifications": "כיבוי התראות",
-  "turn_on_notifications": "הפעלת התראות",
   "unknown_subscribers": "? מנויים",
   "unknown_videos": "? סרטונים",
   "video_count_unavailable": "מספר הסרטונים עדיין לא זמין",
@@ -189,5 +187,10 @@
   "source_type_file": "קובץ וידאו",
   "source_type_ipfs": "עמית לעמית (IPFS)",
   "play": "הפעלה",
-  "play_from": "הפעלה מ־{{source}}"
+  "play_from": "הפעלה מ־{{source}}",
+  "notifications_all": "הכול",
+  "notifications_none": "ללא",
+  "unsubscribe": "ביטול המינוי",
+  "unsubscribe_from": "לבטל את המינוי ל־{{channel}}?",
+  "cancel": "ביטול"
 }

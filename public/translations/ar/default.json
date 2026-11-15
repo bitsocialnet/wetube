@@ -175,8 +175,6 @@
   "sort_videos": "ترتيب الفيديوهات",
   "subscribed": "تم الاشتراك",
   "subscribers_unavailable": "أعداد المشتركين غير متاحة بعد",
-  "turn_off_notifications": "إيقاف الإشعارات",
-  "turn_on_notifications": "تفعيل الإشعارات",
   "unknown_subscribers": "؟ مشترك",
   "unknown_videos": "? فيديو",
   "video_count_unavailable": "عدد الفيديوهات غير متاح بعد",
@@ -189,5 +187,10 @@
   "source_type_file": "ملف فيديو",
   "source_type_ipfs": "نظير إلى نظير (IPFS)",
   "play": "تشغيل",
-  "play_from": "التشغيل من {{source}}"
+  "play_from": "التشغيل من {{source}}",
+  "notifications_all": "الكل",
+  "notifications_none": "لا شيء",
+  "unsubscribe": "إلغاء الاشتراك",
+  "unsubscribe_from": "هل تريد إلغاء الاشتراك في {{channel}}؟",
+  "cancel": "إلغاء"
 }

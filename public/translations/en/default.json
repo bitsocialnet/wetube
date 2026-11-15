@@ -175,8 +175,6 @@
   "sort_videos": "Sort videos",
   "subscribed": "Subscribed",
   "subscribers_unavailable": "Subscriber counts are not available yet",
-  "turn_off_notifications": "Turn off notifications",
-  "turn_on_notifications": "Turn on notifications",
   "unknown_subscribers": "? subscribers",
   "unknown_videos": "? videos",
   "video_count_unavailable": "The video count is not available yet",
@@ -189,5 +187,10 @@
   "source_type_file": "Video file",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Play",
-  "play_from": "Play from {{source}}"
+  "play_from": "Play from {{source}}",
+  "notifications_all": "All",
+  "notifications_none": "None",
+  "unsubscribe": "Unsubscribe",
+  "unsubscribe_from": "Unsubscribe from {{channel}}?",
+  "cancel": "Cancel"
 }

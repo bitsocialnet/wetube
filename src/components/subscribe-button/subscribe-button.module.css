@@ -1,0 +1,161 @@
+.root {
+  --button-height: 36px;
+  display: inline-flex;
+  flex: none;
+}
+
+.root[data-size='large'] {
+  --button-height: 40px;
+}
+
+.subscribe,
+.subscribed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: var(--button-height);
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.subscribe {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.subscribe:hover {
+  opacity: 0.85;
+}
+
+.subscribe:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.subscribed {
+  padding-inline: 12px 10px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.subscribed:hover,
+.subscribed[data-open] {
+  background: var(--surface-hover);
+}
+
+/* UI SDK places the menu in the top layer under its trigger; only its size and look are set here. */
+.menu {
+  min-width: 200px;
+  margin: 0;
+  padding: 8px 0;
+  background: var(--raised);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+  color: var(--ink);
+}
+
+/* Focus sits on the menu while no item is highlighted; the highlighted item shows where it is. */
+.menu:focus-visible {
+  outline: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 40px;
+  padding: 6px 16px;
+  background: none;
+  border: 0;
+  font-size: 14px;
+  text-align: start;
+  cursor: pointer;
+}
+
+.item:focus-visible {
+  outline: none;
+}
+
+.item[data-highlighted] {
+  background: var(--surface-hover);
+}
+
+.label {
+  flex: 1;
+}
+
+.check {
+  display: inline-flex;
+  width: 18px;
+}
+
+.check[data-unchecked] {
+  visibility: hidden;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+}
+
+/* UI SDK resets inset and margin on its content; the question is centered like YouTube's. */
+.confirm {
+  position: fixed;
+  inset: 0;
+  width: min(400px, calc(100vw - 32px));
+  height: fit-content;
+  margin: auto;
+  padding: 24px 24px 12px;
+  background: var(--raised);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+  color: var(--ink);
+}
+
+.confirm:focus-visible {
+  outline: none;
+}
+
+.confirmTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.textButton {
+  height: 36px;
+  padding: 0 16px;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.textButton:hover {
+  background: var(--surface);
+}
+
+.confirmButton {
+  color: var(--accent);
+}

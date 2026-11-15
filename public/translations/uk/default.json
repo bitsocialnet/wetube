@@ -175,8 +175,6 @@
   "sort_videos": "Сортувати відео",
   "subscribed": "Ви підписані",
   "subscribers_unavailable": "Кількість підписників поки недоступна",
-  "turn_off_notifications": "Вимкнути сповіщення",
-  "turn_on_notifications": "Увімкнути сповіщення",
   "unknown_subscribers": "? підписників",
   "unknown_videos": "? відео",
   "video_count_unavailable": "Кількість відео поки недоступна",
@@ -189,5 +187,10 @@
   "source_type_file": "Відеофайл",
   "source_type_ipfs": "Однорангова мережа (IPFS)",
   "play": "Дивитися",
-  "play_from": "Дивитися з {{source}}"
+  "play_from": "Дивитися з {{source}}",
+  "notifications_all": "Усі",
+  "notifications_none": "Жодних",
+  "unsubscribe": "Скасувати підписку",
+  "unsubscribe_from": "Скасувати підписку на {{channel}}?",
+  "cancel": "Скасувати"
 }

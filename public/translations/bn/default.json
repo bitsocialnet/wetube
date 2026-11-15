@@ -175,8 +175,6 @@
   "sort_videos": "ভিডিও সাজান",
   "subscribed": "সাবস্ক্রাইব করা হয়েছে",
   "subscribers_unavailable": "সাবস্ক্রাইবার সংখ্যা এখনও পাওয়া যাচ্ছে না",
-  "turn_off_notifications": "বিজ্ঞপ্তি বন্ধ করুন",
-  "turn_on_notifications": "বিজ্ঞপ্তি চালু করুন",
   "unknown_subscribers": "? সাবস্ক্রাইবার",
   "unknown_videos": "? টি ভিডিও",
   "video_count_unavailable": "ভিডিওর সংখ্যা এখনও পাওয়া যায়নি",
@@ -189,5 +187,10 @@
   "source_type_file": "ভিডিও ফাইল",
   "source_type_ipfs": "পিয়ার-টু-পিয়ার (IPFS)",
   "play": "চালান",
-  "play_from": "{{source}} থেকে চালান"
+  "play_from": "{{source}} থেকে চালান",
+  "notifications_all": "সব",
+  "notifications_none": "কোনোটিই নয়",
+  "unsubscribe": "আনসাবস্ক্রাইব করুন",
+  "unsubscribe_from": "{{channel}} থেকে আনসাবস্ক্রাইব করবেন?",
+  "cancel": "বাতিল করুন"
 }

@@ -175,8 +175,6 @@
   "sort_videos": "Seřadit videa",
   "subscribed": "Odebíráno",
   "subscribers_unavailable": "Počty odběratelů zatím nejsou k dispozici",
-  "turn_off_notifications": "Vypnout oznámení",
-  "turn_on_notifications": "Zapnout oznámení",
   "unknown_subscribers": "? odběratelů",
   "unknown_videos": "? videí",
   "video_count_unavailable": "Počet videí zatím není k dispozici",
@@ -189,5 +187,10 @@
   "source_type_file": "Videosoubor",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Přehrát",
-  "play_from": "Přehrát z {{source}}"
+  "play_from": "Přehrát z {{source}}",
+  "notifications_all": "Vše",
+  "notifications_none": "Žádná",
+  "unsubscribe": "Zrušit odběr",
+  "unsubscribe_from": "Zrušit odběr kanálu {{channel}}?",
+  "cancel": "Zrušit"
 }

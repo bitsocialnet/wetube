@@ -175,8 +175,6 @@
   "sort_videos": "Ordina video",
   "subscribed": "Iscritto",
   "subscribers_unavailable": "Il numero di iscritti non è ancora disponibile",
-  "turn_off_notifications": "Disattiva le notifiche",
-  "turn_on_notifications": "Attiva le notifiche",
   "unknown_subscribers": "? iscritti",
   "unknown_videos": "? video",
   "video_count_unavailable": "Il numero di video non è ancora disponibile",
@@ -189,5 +187,10 @@
   "source_type_file": "File video",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Riproduci",
-  "play_from": "Riproduci da {{source}}"
+  "play_from": "Riproduci da {{source}}",
+  "notifications_all": "Tutte",
+  "notifications_none": "Nessuna",
+  "unsubscribe": "Annulla iscrizione",
+  "unsubscribe_from": "Annullare l’iscrizione a {{channel}}?",
+  "cancel": "Annulla"
 }

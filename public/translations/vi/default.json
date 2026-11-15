@@ -175,8 +175,6 @@
   "sort_videos": "Sắp xếp video",
   "subscribed": "Đã đăng ký",
   "subscribers_unavailable": "Chưa có số người đăng ký",
-  "turn_off_notifications": "Tắt thông báo",
-  "turn_on_notifications": "Bật thông báo",
   "unknown_subscribers": "? người đăng ký",
   "unknown_videos": "? video",
   "video_count_unavailable": "Chưa có số lượng video",
@@ -189,5 +187,10 @@
   "source_type_file": "Tệp video",
   "source_type_ipfs": "Ngang hàng (IPFS)",
   "play": "Phát",
-  "play_from": "Phát từ {{source}}"
+  "play_from": "Phát từ {{source}}",
+  "notifications_all": "Tất cả",
+  "notifications_none": "Không",
+  "unsubscribe": "Hủy đăng ký",
+  "unsubscribe_from": "Hủy đăng ký {{channel}}?",
+  "cancel": "Hủy"
 }

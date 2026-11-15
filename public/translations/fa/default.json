@@ -175,8 +175,6 @@
   "sort_videos": "مرتب‌سازی ویدیوها",
   "subscribed": "مشترک شده‌اید",
   "subscribers_unavailable": "تعداد مشترکان هنوز در دسترس نیست",
-  "turn_off_notifications": "خاموش کردن اعلان‌ها",
-  "turn_on_notifications": "روشن کردن اعلان‌ها",
   "unknown_subscribers": "؟ مشترک",
   "unknown_videos": "? ویدیو",
   "video_count_unavailable": "تعداد ویدیوها هنوز در دسترس نیست",
@@ -189,5 +187,10 @@
   "source_type_file": "فایل ویدیو",
   "source_type_ipfs": "همتا‌به‌همتا (IPFS)",
   "play": "پخش",
-  "play_from": "پخش از {{source}}"
+  "play_from": "پخش از {{source}}",
+  "notifications_all": "همه",
+  "notifications_none": "هیچ‌کدام",
+  "unsubscribe": "لغو اشتراک",
+  "unsubscribe_from": "اشتراک {{channel}} لغو شود؟",
+  "cancel": "لغو"
 }

@@ -175,8 +175,6 @@
   "sort_videos": "Ordenar vídeos",
   "subscribed": "Inscrito",
   "subscribers_unavailable": "A contagem de inscritos ainda não está disponível",
-  "turn_off_notifications": "Desativar notificações",
-  "turn_on_notifications": "Ativar notificações",
   "unknown_subscribers": "? inscritos",
   "unknown_videos": "? vídeos",
   "video_count_unavailable": "A contagem de vídeos ainda não está disponível",
@@ -189,5 +187,10 @@
   "source_type_file": "Arquivo de vídeo",
   "source_type_ipfs": "Ponto a ponto (IPFS)",
   "play": "Reproduzir",
-  "play_from": "Reproduzir de {{source}}"
+  "play_from": "Reproduzir de {{source}}",
+  "notifications_all": "Todas",
+  "notifications_none": "Nenhuma",
+  "unsubscribe": "Cancelar inscrição",
+  "unsubscribe_from": "Cancelar inscrição em {{channel}}?",
+  "cancel": "Cancelar"
 }

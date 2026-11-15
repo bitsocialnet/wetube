@@ -175,8 +175,6 @@
   "sort_videos": "동영상 정렬",
   "subscribed": "구독중",
   "subscribers_unavailable": "구독자 수를 아직 사용할 수 없습니다",
-  "turn_off_notifications": "알림 끄기",
-  "turn_on_notifications": "알림 사용",
   "unknown_subscribers": "구독자 ?명",
   "unknown_videos": "동영상 ?개",
   "video_count_unavailable": "동영상 수를 아직 확인할 수 없습니다",
@@ -189,5 +187,10 @@
   "source_type_file": "동영상 파일",
   "source_type_ipfs": "P2P (IPFS)",
   "play": "재생",
-  "play_from": "{{source}}에서 재생"
+  "play_from": "{{source}}에서 재생",
+  "notifications_all": "전체",
+  "notifications_none": "없음",
+  "unsubscribe": "구독 취소",
+  "unsubscribe_from": "{{channel}} 구독을 취소하시겠습니까?",
+  "cancel": "취소"
 }

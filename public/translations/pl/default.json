@@ -175,8 +175,6 @@
   "sort_videos": "Sortuj filmy",
   "subscribed": "Subskrybujesz",
   "subscribers_unavailable": "Liczba subskrybentów nie jest jeszcze dostępna",
-  "turn_off_notifications": "Wyłącz powiadomienia",
-  "turn_on_notifications": "Włącz powiadomienia",
   "unknown_subscribers": "? subskrybentów",
   "unknown_videos": "? filmów",
   "video_count_unavailable": "Liczba filmów nie jest jeszcze dostępna",
@@ -189,5 +187,10 @@
   "source_type_file": "Plik wideo",
   "source_type_ipfs": "Peer-to-peer (IPFS)",
   "play": "Odtwórz",
-  "play_from": "Odtwórz z {{source}}"
+  "play_from": "Odtwórz z {{source}}",
+  "notifications_all": "Wszystkie",
+  "notifications_none": "Brak",
+  "unsubscribe": "Anuluj subskrypcję",
+  "unsubscribe_from": "Anulować subskrypcję kanału {{channel}}?",
+  "cancel": "Anuluj"
 }
