@@ -27,7 +27,7 @@
     "ai-workflow:test": "node --test --test-concurrency=1 scripts/__tests__/*.node-test.mjs"
   },
   "dependencies": {
-    "@bitsocial/bitsocial-react-hooks": "0.2.2",
+    "@bitsocial/bitsocial-react-hooks": "0.2.4",
     "@ui-sdk/core": "0.1.0-beta.1",
     "@ui-sdk/react": "0.1.0-beta.1",
     "assert": "2.1.0",

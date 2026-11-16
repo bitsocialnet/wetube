@@ -246,12 +246,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bitsocial/bitsocial-react-hooks@npm:0.2.2":
-  version: 0.2.2
-  resolution: "@bitsocial/bitsocial-react-hooks@npm:0.2.2"
+"@bitsocial/bitsocial-react-hooks@npm:0.2.4":
+  version: 0.2.4
+  resolution: "@bitsocial/bitsocial-react-hooks@npm:0.2.4"
   dependencies:
     "@bitsocial/bso-resolver": "npm:0.0.10"
-    "@pkcprotocol/pkc-js": "npm:0.0.132"
+    "@pkcprotocol/pkc-js": "npm:0.0.148"
     "@pkcprotocol/pkc-logger": "npm:0.1.0"
     ethers: "npm:5.8.0"
     localforage: "npm:1.10.0"
@@ -266,7 +266,7 @@ __metadata:
     zustand: "npm:4.5.7"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10c0/f150c514244633307da3444f725be70199f897065c3356bf1bca5d93fe3eea0b3209dc8b26ea0d618031ecd3f0d8d3ef3f7b2b1d1686c13c8c95a47524cec19d
+  checksum: 10c0/5431de1bf47e197344bafaa3a55395a5c68905e4e3c6835cc6a6b0baff7449810304ea9dc97337eef651f8a0ef1bb3bea8c2a9b097a1d482fadaeb6218348fdd
   languageName: node
   linkType: hard
 
@@ -1012,6 +1012,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ipld/dag-cbor@npm:9.2.7, @ipld/dag-cbor@npm:^9.0.0":
+  version: 9.2.7
+  resolution: "@ipld/dag-cbor@npm:9.2.7"
+  dependencies:
+    cborg: "npm:^5.0.1"
+    multiformats: "npm:^13.1.0"
+  checksum: 10c0/2f55d0826737256fb473eda30a3352503a4bb76d1a1491933c4e71511539f55e82be63dea43ff032228a7cc7d3cb4a7e64d7aaef189638428d3179e82a692654
+  languageName: node
+  linkType: hard
+
 "@ipld/dag-cbor@npm:^10.0.0, @ipld/dag-cbor@npm:^10.0.1":
   version: 10.0.2
   resolution: "@ipld/dag-cbor@npm:10.0.2"
@@ -1019,16 +1029,6 @@ __metadata:
     cborg: "npm:^6.1.1"
     multiformats: "npm:^14.0.0"
   checksum: 10c0/719601db980a03c207d205f5d9b3ff7cab76b1a858d4d945f80f9fa9755ceb56d6c7c5c561cce815cf0865ed34a7048125ba23ac569c2b4917d6bcc1f40a9634
-  languageName: node
-  linkType: hard
-
-"@ipld/dag-cbor@npm:^9.0.0":
-  version: 9.2.7
-  resolution: "@ipld/dag-cbor@npm:9.2.7"
-  dependencies:
-    cborg: "npm:^5.0.1"
-    multiformats: "npm:^13.1.0"
-  checksum: 10c0/2f55d0826737256fb473eda30a3352503a4bb76d1a1491933c4e71511539f55e82be63dea43ff032228a7cc7d3cb4a7e64d7aaef189638428d3179e82a692654
   languageName: node
   linkType: hard
 
@@ -1544,7 +1544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@libp2p/noise@npm:^17.0.2, @libp2p/noise@npm:^17.0.4":
+"@libp2p/noise@npm:^17.0.2, @libp2p/noise@npm:^17.0.4, @libp2p/noise@npm:^17.0.7":
   version: 17.0.7
   resolution: "@libp2p/noise@npm:17.0.7"
   dependencies:
@@ -1708,7 +1708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@libp2p/utils@npm:^7.0.15, @libp2p/utils@npm:^7.0.4, @libp2p/utils@npm:^7.2.2, @libp2p/utils@npm:^7.2.3, @libp2p/utils@npm:^7.4.2, @libp2p/utils@npm:^7.4.5":
+"@libp2p/utils@npm:7.4.5, @libp2p/utils@npm:^7.0.15, @libp2p/utils@npm:^7.0.4, @libp2p/utils@npm:^7.2.2, @libp2p/utils@npm:^7.2.3, @libp2p/utils@npm:^7.4.2, @libp2p/utils@npm:^7.4.5":
   version: 7.4.5
   resolution: "@libp2p/utils@npm:7.4.5"
   dependencies:
@@ -1798,6 +1798,25 @@ __metadata:
     uint8arrays: "npm:^6.1.1"
     ws: "npm:^8.18.3"
   checksum: 10c0/b52ab05f0e2af2be9b8b01c5677cea69a797f029ade6d9bb5e000f2dc5412457665880389a2dcfc93512cfa7d1cf32ebcab8a8bd0349c53fda36ce64aa3f63d8
+  languageName: node
+  linkType: hard
+
+"@libp2p/webtransport@npm:6.0.44":
+  version: 6.0.44
+  resolution: "@libp2p/webtransport@npm:6.0.44"
+  dependencies:
+    "@libp2p/interface": "npm:^3.4.0"
+    "@libp2p/noise": "npm:^17.0.7"
+    "@libp2p/peer-id": "npm:^6.0.18"
+    "@libp2p/utils": "npm:^7.4.5"
+    "@multiformats/multiaddr": "npm:^13.0.3"
+    "@multiformats/multiaddr-matcher": "npm:^3.0.2"
+    multiformats: "npm:^14.0.0"
+    progress-events: "npm:^1.0.1"
+    race-signal: "npm:^2.0.0"
+    uint8arraylist: "npm:^3.0.2"
+    uint8arrays: "npm:^6.1.1"
+  checksum: 10c0/235b3f5f414fbebf527e0d5e2d0e9d8d38d07bc1a44eeb8ec6930a626e048a884c90c588e312fc65811c4f4ecccbf3a7660175dd8d04879fadb827ad42fb018a
   languageName: node
   linkType: hard
 
@@ -3347,9 +3366,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkcprotocol/pkc-js@npm:0.0.132":
-  version: 0.0.132
-  resolution: "@pkcprotocol/pkc-js@npm:0.0.132"
+"@pkcprotocol/pkc-js@npm:0.0.148":
+  version: 0.0.148
+  resolution: "@pkcprotocol/pkc-js@npm:0.0.148"
   dependencies:
     "@enhances/with-resolvers": "npm:0.0.5"
     "@helia/bitswap": "npm:4.0.20"
@@ -3357,12 +3376,15 @@ __metadata:
     "@helia/ipns": "npm:10.2.2"
     "@helia/libp2p": "npm:2.1.5"
     "@helia/unixfs": "npm:8.0.9"
+    "@ipld/dag-cbor": "npm:9.2.7"
     "@libp2p/crypto": "npm:5.2.0"
     "@libp2p/fetch": "npm:4.1.17"
     "@libp2p/gossipsub": "npm:17.2.1"
     "@libp2p/identify": "npm:4.1.18"
     "@libp2p/interface": "npm:3.4.0"
     "@libp2p/peer-id": "npm:6.0.18"
+    "@libp2p/utils": "npm:7.4.5"
+    "@libp2p/webtransport": "npm:6.0.44"
     "@multiformats/multiaddr": "npm:13.0.3"
     "@noble/curves": "npm:2.2.0"
     "@pkcprotocol/pkc-logger": "npm:0.1.0"
@@ -3380,6 +3402,7 @@ __metadata:
     ext-name: "npm:5.0.0"
     helia: "npm:7.1.16"
     hpagent: "npm:1.2.0"
+    ipfs-unixfs: "npm:13.1.2"
     ipfs-unixfs-importer: "npm:17.0.1"
     ipns: "npm:11.0.1"
     it-all: "npm:3.0.6"
@@ -3413,7 +3436,7 @@ __metadata:
     uuid: "npm:14.0.3"
     ws: "npm:8.22.0"
     zod: "npm:4.6.7"
-  checksum: 10c0/709fbde3d7944a24644e9811fb60910977b8596ebc334c01057c7c7d75cccc98b8394987d148e1e1907260aac54f4cc6c31137b0f684873b5745743f01d8fe7a
+  checksum: 10c0/b532299e54d35b13f88d99b218410109ecda167694e114243d19b70e8e5f988aae5fdc078fb998da593d6aca9a24f1728acde89bc6de344a867eb4ed273a21e7
   languageName: node
   linkType: hard
 
@@ -6439,7 +6462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ipfs-unixfs@npm:^13.0.0, ipfs-unixfs@npm:^13.1.1":
+"ipfs-unixfs@npm:13.1.2, ipfs-unixfs@npm:^13.0.0, ipfs-unixfs@npm:^13.1.1":
   version: 13.1.2
   resolution: "ipfs-unixfs@npm:13.1.2"
   dependencies:
@@ -10825,7 +10848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "wetube@workspace:."
   dependencies:
-    "@bitsocial/bitsocial-react-hooks": "npm:0.2.2"
+    "@bitsocial/bitsocial-react-hooks": "npm:0.2.4"
     "@playwright/cli": "npm:0.1.22"
     "@types/node": "npm:22.20.5"
     "@types/react": "npm:19.3.0"
