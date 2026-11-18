@@ -70,4 +70,9 @@ Design decisions not yet made. These are the questions to answer before WeTube m
 ## Naming and Branding
 
 - Channel identity: encourage `.bso` names (`alice.bso`) as the canonical channel handle from day one?
-- Verification/impersonation: with no global admin there's no verified badge — is `.bso` ownership plus category reputation enough?
+- Verification/impersonation: **Proposed 2026-11-18:** `.bso` ownership is not enough. Channels prove outside identities (YouTube, domains, X) by cross-linking, verifier providers check the proofs, and visibility and tips follow verification ([curation-and-discovery.md](curation-and-discovery.md#channel-identity-and-impersonation)). Remaining:
+  - The proof format: the bare public key in the YouTube description, or a signed statement naming both the channel and the outside account? Which outside identities does the default verifier support first?
+  - How verifiers publish their results (a BSIP, so every Bitsocial client shows the same checks?), and how often they recheck, since a creator can remove the key later.
+  - How the client marks an unverified channel whose name or avatar copies a verified one.
+  - Where "claim your channel" imports run (Forge, the creator's own node) and how they keep up with new YouTube uploads.
+  - Whether providers detect reuploads by their content, which overlaps with the content-hash question in [Source Health and Trust](#source-health-and-trust).

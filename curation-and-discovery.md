@@ -47,3 +47,21 @@ It is **not part of Forge RPC**. Forge RPC hosts nodes, the channels and profile
 - **Across channels:** there is nothing to moderate globally, only to *curate*. Lists choose which channels to include; clients choose which lists to ship as defaults; users choose which clients and lists to use. Objectionable channels can lose every listing and still exist — reachable only by direct address, hosted only by their owner.
 
 This is the same separation Bitsocial applies everywhere: hosting is uncensorable, visibility is earned.
+
+## Channel Identity and Impersonation
+
+**Proposed 2026-11-18, not decided.**
+
+Anyone can create a channel with a creator's name and avatar and repost their videos, and nothing at the hosting layer can stop it. Piracy alone is not the problem WeTube has to solve; it already happens on torrent sites and Telegram. The problem is impersonation: a copy that viewers mistake for the creator, which takes the creator's subscribers and tips and makes creators see WeTube as the scam. A post that only embeds the creator's YouTube video does little harm, since it plays on YouTube with YouTube's ads and the views count for the creator. The harm comes from copies rehosted under a fake identity.
+
+Reserving names does not fix it. A `.bso` name is not proof of identity: anyone can register `mrbeast.bso` first, and no one can reserve names for creators in a decentralized name system. Holding names or money in a creator's name without their consent also backfires: in 2018 Brave accepted tips on behalf of YouTubers who had not signed up, and creators publicly called it a scam.
+
+- **Proofs by cross-linking.** A channel lists the outside identities it claims: a YouTube channel, an X account, a domain. A claim counts only when the other side links back, for example when the YouTube channel's description contains the channel's public key, or the domain has a DNS TXT record with it. Only the real owner can write there, so nothing needs reserving. Keybase proofs and Mastodon's verified links use the same pattern.
+- **Verifiers are providers.** A static client cannot read youtube.com pages, because the browser blocks cross-origin requests, so a verifier service checks claims and signs the result. Verifiers are a provider list like search and views: Forge runs the default, and viewers can switch or add their own. The client shows "✓ youtube.com/@X" only for claims a verifier they trust has confirmed.
+- **Visibility follows verification.** Reviewed category membership gets one more veto reason: a channel that reposts another creator's channel as its own. Search and recommendation providers rank the verified original above copies. Copies still exist at their address; they just don't reach the home page.
+- **Tips go to verified owners.** When a channel claims an outside identity that no trusted verifier has confirmed, the tip button says so ([monetization.md](monetization.md#tipping)).
+- **Claim your channel.** A creator adds their channel's public key to their YouTube description, and WeTube imports their uploads as video posts with the YouTube video as the first source. The verified original then outranks every copy, and the creator gets a backup that survives a YouTube ban. When pirates show there is demand for a creator, claiming becomes that creator's easiest response.
+
+**Keep the defaults clean.** The app cannot be taken down, but its defaults can: the web origin, app store listings, the Forge index and the curated lists are run by identifiable people. If those defaults promote impersonating or pirated channels, that is where legal pressure lands. Hosting stays uncensorable for everyone; the defaults never promote copies.
+
+Still open: see [open-questions.md](open-questions.md#naming-and-branding).

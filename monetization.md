@@ -14,6 +14,8 @@ Monetization is the most important part of WeTube. Creators leave a platform for
 
 The baseline primitive: viewers send money directly to the channel or to a specific video. On-chain, permissionless, no middleman able to block it or take a cut the creator didn't agree to.
 
+When a channel claims an outside identity, such as a YouTube channel or a domain, that no trusted verifier has confirmed, the tip button says so, so copies of a creator's channel don't collect the creator's tips ([curation-and-discovery.md](curation-and-discovery.md#channel-identity-and-impersonation), proposed).
+
 ### Revenue Sharing
 
 Bitsocial Chain structures for splitting income between parties — for example between a creator and collaborators, or between a creator and the RPC or client that brought the paying viewer. Revenue sharing is what lets the ecosystem fund itself without a central platform setting the split unilaterally: the split is a term of the deal, chosen by the channel owner.
