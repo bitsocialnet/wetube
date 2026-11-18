@@ -70,4 +70,11 @@ Design decisions not yet made. These are the questions to answer before WeTube m
 ## Naming and Branding
 
 - Channel identity: encourage `.bso` names (`alice.bso`) as the canonical channel handle from day one?
-- Verification/impersonation: with no global admin there's no verified badge — is `.bso` ownership plus category reputation enough?
+- Verification/impersonation: **Proposed 2026-11-18:** `.bso` ownership is not enough. Channels prove outside identities (YouTube, domains, X) by cross-linking, verifier providers check the proofs, and visibility and the tip button follow verification ([curation-and-discovery.md](curation-and-discovery.md#channel-identity-and-impersonation)). Remaining:
+  - The exact format of the claim statement in a YouTube description or a DNS record, so that a link to someone else's channel can never read as a claim, and whether it is signed. Which outside identities does the default verifier support first?
+  - How verifiers publish their results (a BSIP, so every Bitsocial client shows the same checks?), how often they recheck, since a creator can remove the statement later, and how old a stored result can be and still show, dated, when no verifier answers.
+  - How a verifier tells an outside account that was terminated, which keeps its dated confirmation, apart from one whose owner removed the statement, on each outside service.
+  - Hijacked outside accounts: an attacker who takes over a creator's YouTube account can replace the creator's statement with one claiming their own channel, and keeps that confirmation if YouTube then terminates the account. Should a confirmation outlive its account only after it has held for some time, or can the creator contest it with an older one?
+  - How the client marks an unverified channel whose name or avatar copies a verified one, and whether default search and feeds leave such copies out instead of only ranking them lower.
+  - Where "claim your channel" imports run (Forge, the creator's own node), how they keep up with new YouTube uploads, and whether they also mirror the files elsewhere so the videos survive a YouTube ban.
+  - Whether providers detect reuploads by their content, which overlaps with the content-hash question in [Source Health and Trust](#source-health-and-trust).
