@@ -14,7 +14,7 @@ Monetization is the most important part of WeTube. Creators leave a platform for
 
 The baseline primitive: viewers send money directly to the channel or to a specific video. On-chain, permissionless, no middleman able to block it or take a cut the creator didn't agree to.
 
-The tip button shows the channel's outside identities that a trusted verifier confirmed, such as a YouTube channel or a domain. It says the identity is unverified when a verifier answered and confirmed none, and that verification is unavailable when no verifier answered. This reduces tips sent by mistake to copies of a creator's channel; it cannot stop a viewer who tips anyway ([curation-and-discovery.md](curation-and-discovery.md#channel-identity-and-impersonation), proposed).
+The tip button shows the channel's outside identities that a trusted verifier confirmed, such as a YouTube channel or a domain. It says the identity is unverified when a verifier answered and confirmed none, and that verification is unavailable when no trusted verifier answered and the client has no signed result stored. This reduces tips sent by mistake to copies of a creator's channel; it cannot stop a viewer who tips anyway ([curation-and-discovery.md](curation-and-discovery.md#channel-identity-and-impersonation), proposed).
 
 ### Revenue Sharing
 
