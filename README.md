@@ -51,7 +51,8 @@ WeTube splits YouTube into its parts and decentralizes each one:
 | Channel hosting | The creator's own full node, or a non-custodial public RPC (e.g. Forge RPC) |
 | Video hosting | A list of redundant embed sources per video (web embeds, IPFS, WebTorrent) |
 | Comments, likes, dislikes | Bitsocial replies and votes, seeded by users peer-to-peer |
-| View counts | Open problem — likely aggregated from each embed source's counter by competing RPC/indexer aggregators |
+| View counts | View providers that viewers choose or turn off, with Forge running the default; providers may also report the embed hosts' own counters |
+| Subscriber counts | Public follows from signed profiles, counted by switchable graph providers |
 | Homepage / trending | Categories: community lists of channels, ranked by users' pubsub votes |
 | Recommendation algorithm | Provided by competing public RPCs; users can switch it or turn it off |
 | Monetization | Bitsocial Chain: tipping, revenue sharing; ads run by RPCs or by channel owners themselves |

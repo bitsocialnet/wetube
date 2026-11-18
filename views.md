@@ -40,6 +40,17 @@ A provider learns which videos an IP address watches. Providers should keep tota
 
 Bitsocial Forge runs the default provider as part of its WeTube index, which also serves search and related videos ([curation-and-discovery.md](curation-and-discovery.md#search-related-videos-and-feeds-come-from-providers)). Paid creator analytics built on it (watch time, retention, audience by country, all aggregated) are a Forge product. The provider API should become a BSIP so that other operators can run compatible providers and clients can list them.
 
+## Why Not Bitsocial Chain
+
+Counting views on Bitsocial Chain would make the counter tamper-evident, not honest. The hard part of a view count is deciding which reports are real, and a chain does not help with that:
+
+- Keys and addresses are free, so a fake view intent costs only its fee. Gas becomes the price of inflating a count, not a filter.
+- Every node derives the same state, so the filtering rules would become consensus, and the signals that catch fake views (IP addresses, timing, playback behavior) are invisible to a chain.
+- Intents are public and permanent, so the chain would hold every viewer's watch history. Bitsocial Chain's design names reconstructing a user's social graph and finances from the economic layer as the threat to avoid, and keeps the chain to small economic state, never social content.
+- A view is the most frequent and least valuable event in the app. It must not need a wallet, a fee or a confirmation.
+
+Views meet the chain through money. If ads or revenue sharing ever pay per view, whoever served the impression counts it and the chain settles the split; a provider can post a hash of each period's totals so a disputed payout can be checked against them.
+
 ## Until Then
 
 Cards and the watch page show "? views". The count is a placeholder, not a zero.
