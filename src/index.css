@@ -22,6 +22,9 @@
   --brand: #ed004a;
   --accent: #ff3d73;
   --focus: #ff3d73;
+  /* A video source's status: its host confirmed it, or it failed. */
+  --online: #2ba640;
+  --offline: #ff4e45;
   /* The frosted header: YouTube's glass color and blur. */
   --glass: rgb(15 15 15 / 0.8);
   --glass-blur: blur(48px);
@@ -49,6 +52,8 @@
   --muted: #606060;
   --accent: #d6003f;
   --focus: #d6003f;
+  --online: #1e8a33;
+  --offline: #cc0000;
   --glass: rgb(255 255 255 / 0.9);
   --overlay: rgb(0 0 0 / 0.35);
   --popover-shadow: 0 8px 28px rgb(0 0 0 / 0.18);
@@ -69,6 +74,8 @@
     --muted: #606060;
     --accent: #d6003f;
     --focus: #d6003f;
+    --online: #1e8a33;
+    --offline: #cc0000;
     --glass: rgb(255 255 255 / 0.9);
   }
 }

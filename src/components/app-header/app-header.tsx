@@ -7,14 +7,18 @@ import logoOnLight from '../../../design/logo/wetube-logo-on-light.svg';
 import { useTheme } from '../../hooks/use-theme';
 import { channelPath, looksLikeChannelAddress } from '../../lib/channels';
 import { AccountMenu } from '../account-menu';
+import { CreateMenu } from '../create-menu';
 import { NotificationsMenu } from '../notifications-menu';
 import styles from './app-header.module.css';
+import { VoiceSearch } from './voice-search';
 
 interface AppHeaderProps {
   onToggleSidebar: () => void;
+  /** An opaque header, as on YouTube's watch page, instead of frosted glass. */
+  solid?: boolean;
 }
 
-export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
+export const AppHeader = ({ onToggleSidebar, solid = false }: AppHeaderProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') ?? '');
@@ -35,7 +39,7 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-solid={solid || undefined}>
       <div className={styles.start}>
         <button type='button' className={styles.iconButton} onClick={onToggleSidebar} aria-label={t('menu')}>
           <Menu size={22} aria-hidden='true' />
@@ -48,22 +52,26 @@ export const AppHeader = ({ onToggleSidebar }: AppHeaderProps) => {
           <span className={styles.previewTag}>{t('preview')}</span>
         </Link>
       </div>
-      <form className={styles.search} role='search' onSubmit={search}>
-        <input
-          className={styles.input}
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder={t('search')}
-          aria-label={t('search_label')}
-          autoComplete='off'
-          spellCheck={false}
-          type='search'
-        />
-        <button type='submit' className={styles.submit} aria-label={t('search')}>
-          <Search size={20} aria-hidden='true' />
-        </button>
-      </form>
+      <div className={styles.center}>
+        <form className={styles.search} role='search' onSubmit={search}>
+          <input
+            className={styles.input}
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={t('search')}
+            aria-label={t('search_label')}
+            autoComplete='off'
+            spellCheck={false}
+            type='search'
+          />
+          <button type='submit' className={styles.submit} aria-label={t('search')}>
+            <Search size={20} aria-hidden='true' />
+          </button>
+        </form>
+        <VoiceSearch />
+      </div>
       <div className={styles.end}>
+        <CreateMenu />
         <NotificationsMenu />
         <AccountMenu />
       </div>

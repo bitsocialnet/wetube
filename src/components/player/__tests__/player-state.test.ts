@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseVideoSource, type VideoSource } from '../../../lib/video-sources';
-import { initialPlayerState, playerReducer } from '../player-state';
+import { getSourceStatus, initialPlayerState, playerReducer } from '../player-state';
 
 const sources = [
   'https://www.youtube.com/watch?v=SintelBlock',
@@ -11,28 +11,45 @@ const sources = [
 describe('playerReducer', () => {
   it('moves to the next source that has not failed when the one on screen fails', () => {
     const state = playerReducer(initialPlayerState, { type: 'fail', playUrl: sources[0].playUrl, sources });
-    expect(state).toEqual({ selectedIndex: 1, failedUrls: [sources[0].playUrl] });
+    expect(state).toEqual({ selectedIndex: 1, failedUrls: [sources[0].playUrl], availableUrls: [] });
     expect(playerReducer(state, { type: 'fail', playUrl: sources[1].playUrl, sources })).toEqual({
       selectedIndex: 2,
       failedUrls: [sources[0].playUrl, sources[1].playUrl],
+      availableUrls: [],
     });
   });
 
   it('records a late failure of another source without switching away from the one on screen', () => {
     const state = playerReducer(initialPlayerState, { type: 'fail', playUrl: sources[2].playUrl, sources });
-    expect(state).toEqual({ selectedIndex: 0, failedUrls: [sources[2].playUrl] });
+    expect(state).toEqual({ selectedIndex: 0, failedUrls: [sources[2].playUrl], availableUrls: [] });
   });
 
   it('stays put when every source failed, and retries a failed source the viewer picks', () => {
     let state = initialPlayerState;
     for (const source of sources) state = playerReducer(state, { type: 'fail', playUrl: source.playUrl, sources });
-    expect(state).toEqual({ selectedIndex: 2, failedUrls: sources.map((source) => source.playUrl) });
+    expect(state).toEqual({ selectedIndex: 2, failedUrls: sources.map((source) => source.playUrl), availableUrls: [] });
     const retried = playerReducer(state, { type: 'select', index: 0, playUrl: sources[0].playUrl });
-    expect(retried).toEqual({ selectedIndex: 0, failedUrls: [sources[1].playUrl, sources[2].playUrl] });
+    expect(retried).toEqual({ selectedIndex: 0, failedUrls: [sources[1].playUrl, sources[2].playUrl], availableUrls: [] });
   });
 
   it('ignores a repeated failure report', () => {
     const state = playerReducer(initialPlayerState, { type: 'fail', playUrl: sources[0].playUrl, sources });
     expect(playerReducer(state, { type: 'fail', playUrl: sources[0].playUrl, sources })).toBe(state);
+  });
+
+  it('marks a source its host confirmed, until it fails to play', () => {
+    const confirmed = playerReducer(initialPlayerState, { type: 'available', playUrl: sources[1].playUrl });
+    expect(confirmed.availableUrls).toEqual([sources[1].playUrl]);
+    expect(playerReducer(confirmed, { type: 'available', playUrl: sources[1].playUrl })).toBe(confirmed);
+    const failed = playerReducer(confirmed, { type: 'fail', playUrl: sources[1].playUrl, sources });
+    expect(failed).toEqual({ selectedIndex: 0, failedUrls: [sources[1].playUrl], availableUrls: [] });
+    expect(playerReducer(failed, { type: 'available', playUrl: sources[1].playUrl })).toBe(failed);
+  });
+
+  it('gives each source a status for the sources dialog', () => {
+    let state = playerReducer(initialPlayerState, { type: 'available', playUrl: sources[1].playUrl });
+    expect(sources.map((_, index) => getSourceStatus(state, sources, index))).toEqual(['playing', 'online', 'unchecked']);
+    state = playerReducer(state, { type: 'fail', playUrl: sources[0].playUrl, sources });
+    expect(sources.map((_, index) => getSourceStatus(state, sources, index))).toEqual(['offline', 'playing', 'unchecked']);
   });
 });

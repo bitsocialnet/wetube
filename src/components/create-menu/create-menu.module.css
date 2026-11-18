@@ -1,0 +1,89 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px 0 10px;
+  background: var(--surface);
+  border: 0;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.trigger:hover,
+.trigger[data-open] {
+  background: var(--surface-hover);
+}
+
+/* UI SDK places the menu in the top layer under its trigger; only its size and look are set here. */
+.menu {
+  min-width: 200px;
+  margin: 0;
+  padding: 8px 0;
+  background: var(--raised);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--popover-shadow);
+  color: var(--ink);
+}
+
+/* On a small touch screen the menu is a bottom sheet; UI SDK moves the sheet itself. */
+.menu[data-presentation='sheet'] {
+  width: 100%;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* Focus sits on the menu while no item is highlighted; the highlighted item shows where it is. */
+.menu:focus-visible {
+  outline: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 40px;
+  padding: 6px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.item:focus-visible {
+  outline: none;
+}
+
+.item[data-highlighted] {
+  background: var(--surface-hover);
+}
+
+/* As on YouTube, the button keeps only its icon when the header runs out of room. */
+@media (max-width: 900px) {
+  .trigger {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+    background: none;
+    border-radius: 50%;
+  }
+
+  .trigger:hover,
+  .trigger[data-open] {
+    background: var(--surface);
+  }
+
+  .triggerText {
+    display: none;
+  }
+}
+
+/* A phone header keeps its room for search; YouTube's phone header has no Create button either. */
+@media (max-width: 480px) {
+  .trigger {
+    display: none;
+  }
+}
