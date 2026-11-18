@@ -54,7 +54,7 @@ WeTube splits YouTube into its parts and decentralizes each one:
 | View counts | View providers that viewers choose or turn off, with Forge running the default; providers may also report the embed hosts' own counters |
 | Subscriber counts | Public follows from signed profiles, counted by switchable graph providers |
 | Homepage / trending | Categories: community lists of channels, ranked by users' pubsub votes |
-| Recommendation algorithm | Provided by competing public RPCs; users can switch it or turn it off |
+| Recommendation algorithm | Search and recommendation providers, separate from the node RPC, with a Forge-run default; users can switch them or turn them off |
 | Monetization | Bitsocial Chain: tipping, revenue sharing; ads run by RPCs or by channel owners themselves |
 | Terms of service, global bans | None. Each channel sets its own rules; no one can set rules for all channels |
 
