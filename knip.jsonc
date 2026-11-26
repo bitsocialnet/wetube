@@ -12,6 +12,8 @@
     "events",
     "process",
     "util",
+    // Not imported: pinned with the matching resolution so bitsocial-react-hooks runs this pkc-js, not its own.
+    "@pkcprotocol/pkc-js",
     // Binaries the dev and browser scripts resolve from node_modules/.bin by path.
     "@playwright/cli",
     "portless"

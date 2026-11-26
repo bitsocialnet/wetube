@@ -27,7 +27,8 @@
     "ai-workflow:test": "node --test --test-concurrency=1 scripts/__tests__/*.node-test.mjs"
   },
   "dependencies": {
-    "@bitsocial/bitsocial-react-hooks": "0.2.5",
+    "@bitsocial/bitsocial-react-hooks": "0.4.2",
+    "@pkcprotocol/pkc-js": "0.0.163",
     "@ui-sdk/core": "0.1.0-beta.1",
     "@ui-sdk/react": "0.1.0-beta.1",
     "assert": "2.1.0",
@@ -68,5 +69,8 @@
     "typescript": "7.0.2",
     "vite": "8.3.5",
     "vitest": "5.0.5"
+  },
+  "resolutions": {
+    "@pkcprotocol/pkc-js": "0.0.163"
   }
 }
